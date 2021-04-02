@@ -6,6 +6,8 @@
   ],
   "compilerOptions": {
     "module": "esnext",
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "noFallthroughCasesInSwitch": true,
+    "jsx": "react-jsx"
   }
 }
