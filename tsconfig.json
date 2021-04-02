@@ -1,0 +1,11 @@
+{
+  "noImplicitAny": false,
+  "extends": "./tsconfig.paths.json",
+  "include": [
+    "src"
+  ],
+  "compilerOptions": {
+    "module": "esnext",
+    "moduleResolution": "node"
+  }
+}
