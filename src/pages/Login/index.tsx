@@ -4,9 +4,9 @@ import Button from '@components/Button';
 import Input from '@components/Input';
 import Link from '@components/Link';
 import React from 'react';
-import { LoginContainer } from './styles';
+import { LoginContainer, LinksContainer } from './styles';
 
-const Login = (): JSX.Element => {
+const Login: React.FC = () => {
   return (
     <LoginContainer>
       <Logo />
@@ -15,8 +15,9 @@ const Login = (): JSX.Element => {
       <Input label="Login" type="text" />
       <Input label="Senha" type="password" />
       <Button text="Acessar" />
-      <Link path="/forgot" text="Esqueci minha senha" />
-      <Link path="/register" text="Sou novo aqui" />
+      <LinksContainer>
+        <Link path="/register" text="Sou novo aqui" />
+      </LinksContainer>
     </LoginContainer>
   );
 };

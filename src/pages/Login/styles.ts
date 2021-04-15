@@ -8,3 +8,9 @@ export const LoginContainer = styled.div`
   gap: 32px;
   padding: 32px;
 `;
+
+export const LinksContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+`;
