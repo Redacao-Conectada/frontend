@@ -3,9 +3,17 @@ import styled from 'styled-components';
 
 export const InputContainer = styled.input`
   ${Container}
-  border-radius: 15px;
   background-color: #fff;
-  filter: drop-shadow(0px 16px 20px rgba(4, 167, 119, 0.025));
+  // TODO: Colocar sombra
+  height: 48px;
+  padding-left: 12px;
+  border: 1px solid rgba(42, 70, 112, 0.1);
+  border-radius: 15px;
+
+  :focus {
+    border: 1px solid rgba(4, 167, 119, 0.5);
+    outline: none;
+  }
 `;
 
 export const Wrapper = styled.div`
