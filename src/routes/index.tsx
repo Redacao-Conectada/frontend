@@ -1,18 +1,56 @@
-import Login from '@pages/Login';
+import PrivateTemplate from '@templates/Private';
 import React from 'react';
 import { Route, BrowserRouter, Switch, Redirect } from 'react-router-dom';
+import { privateRouteList, publicRouteList } from './routeList';
 
 const Routes: React.FC = () => {
   // TODO: Verificar a autenticação do usuário
-  // TODO: Criar componente para rota privada
-  // TODO: Criar componente para rota pública
+
+  const authenticated = false;
+
+  const publicRouteComponents = publicRouteList.map(
+    ({ component: Component, path, exact, title }) => {
+      document.title = title;
+
+      return (
+        <Route
+          path={path}
+          exact={exact}
+          render={(props) => <Component {...props} />}
+        />
+      );
+    },
+  );
+
+  const privateRouteComponents = privateRouteList.map(
+    ({ component: Component, path, exact, title }) => {
+      document.title = title;
+
+      return (
+        <PrivateTemplate>
+          <Route
+            path={path}
+            exact={exact}
+            render={(props) => <Component {...props} />}
+          />
+        </PrivateTemplate>
+      );
+    },
+  );
 
   return (
     <BrowserRouter>
-      <Switch>
-        <Route exact path="/login" component={Login} />
-        <Redirect to="/login" />
-      </Switch>
+      {authenticated ? (
+        <Switch>
+          {privateRouteComponents}
+          <Redirect to="/feed" />
+        </Switch>
+      ) : (
+        <Switch>
+          {publicRouteComponents}
+          <Redirect to="/login" />
+        </Switch>
+      )}
     </BrowserRouter>
   );
 };
