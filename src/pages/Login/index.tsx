@@ -1,4 +1,4 @@
-import { ReactComponent as Image } from '@assets/loginImage.svg';
+import Image from '@assets/loginImage.svg';
 import { ReactComponent as Logo } from '@assets/logo.svg';
 import Button from '@components/Button';
 import Input from '@components/Input';
@@ -11,7 +11,7 @@ const Login: React.FC = () => {
     <LoginContainer>
       <Logo />
       <h2>Acesse sua conta e comece escrever redações agora!</h2>
-      <Image />
+      <img src={Image} alt="imagem" />
       <Input label="Login" type="text" />
       <Input label="Senha" type="password" />
       <Button text="Acessar" />
