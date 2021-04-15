@@ -75,6 +75,12 @@
       "@styles/*": [
         "src/styles/*"
       ],
+      "@templates": [
+        "src/templates"
+      ],
+      "@templates/*": [
+        "src/templates/*"
+      ],
       "@utils": [
         "src/utils"
       ],
