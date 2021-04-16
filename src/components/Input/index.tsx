@@ -1,24 +1,43 @@
-import React from 'react';
-import { InputTypes } from './definitions';
+import { General, Input as InputInterface } from '@interfaces';
+import React, { useState, useEffect } from 'react';
 import { InputContainer, Wrapper } from './styles';
 
 interface InputProps {
-  mask?: string;
+  entity: General.Value;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  label: string;
+  type: InputInterface.InputTypes;
   validated?: boolean;
-  type: InputTypes;
-  label?: string;
+  mask?: string;
+  placeholder?: string;
 }
 
 const Input: React.FC<InputProps> = ({
-  mask,
+  entity,
+  onChange,
   validated,
   type = 'text',
   label,
-}) => (
-  <Wrapper>
-    {label}
-    <InputContainer type={type} />
-  </Wrapper>
-);
+  mask,
+  placeholder,
+}) => {
+  const { value, validation, invalidity } = entity;
+
+  const [invalid, setInvalid] = useState(false);
+
+  useEffect(() => {
+    console.log({ value });
+
+    setInvalid(Boolean(validated && invalidity));
+    console.log({ erro: Boolean(validated && invalidity) });
+  }, [value]);
+
+  return (
+    <Wrapper>
+      {label}
+      <InputContainer type={type} placeholder={placeholder} error={invalid} />
+    </Wrapper>
+  );
+};
 
 export default Input;
