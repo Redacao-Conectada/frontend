@@ -17,4 +17,10 @@ export const publicRouteList: RouteProps[] = [
     exact: true,
     title: 'Login',
   },
+  {
+    path: '/essay', // FIXME: deve ser /essay/${id}
+    component: pages.EssayDetails,
+    exact: true,
+    title: 'Redação em Detalhes',
+  },
 ];
