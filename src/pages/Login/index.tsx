@@ -34,15 +34,15 @@ const Login: React.FC = () => {
   const handleEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     console.log({ event });
 
-    const { name, value } = event.target;
+    const { value } = event.target;
 
-    console.log({ name, value });
+    console.log({ value });
   };
 
   const handlePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
+    const { value } = event.target;
 
-    console.log({ name, value });
+    console.log({ value });
   };
 
   return (

@@ -35,7 +35,12 @@ const Input: React.FC<InputProps> = ({
   return (
     <Wrapper>
       {label}
-      <InputContainer type={type} placeholder={placeholder} error={invalid} />
+      <InputContainer
+        type={type}
+        placeholder={placeholder}
+        error={invalid}
+        onChange={onChange}
+      />
     </Wrapper>
   );
 };
