@@ -1,6 +1,6 @@
 import { General, Input as InputInterface } from '@interfaces';
-import React, { useState } from 'react';
-import { InputContainer, Wrapper } from './styles';
+import React, { useState, useEffect } from 'react';
+import { InputContainer, Wrapper, ErrorMessage } from './styles';
 
 interface InputProps {
   entity: General.Value;
@@ -26,10 +26,12 @@ const Input: React.FC<InputProps> = ({
   const [invalid, setInvalid] = useState(false);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInvalid(Boolean(validated && invalidity));
-
     if (onChange) onChange(event);
   };
+
+  useEffect(() => {
+    setInvalid(Boolean(validated && invalidity));
+  }, [entity]);
 
   return (
     <Wrapper>
@@ -40,6 +42,7 @@ const Input: React.FC<InputProps> = ({
         error={invalid}
         onChange={handleChange}
       />
+      <ErrorMessage show={invalid}>{invalidity}</ErrorMessage>
     </Wrapper>
   );
 };
