@@ -1,13 +1,14 @@
+import { colors } from '@styles/colors';
 import { Container } from '@styles/general';
 import styled from 'styled-components';
 
 interface InputContainerProps {
-  error: boolean;
+  error?: boolean;
 }
 
-const normalBorder = '1px solid rgba(42, 70, 112, 0.1)';
-const errorBorder = '1px solid #EE6352';
-const focusBorder = '1px solid rgba(4, 167, 119, 0.5)';
+const normalBorder = `1px solid ${colors.normalBorder}`;
+const errorBorder = `1px solid ${colors.errorBorder}`;
+const focusBorder = `1px solid ${colors.focusBorder}`;
 
 export const InputContainer = styled.input<InputContainerProps>`
   ${Container}

@@ -1,5 +1,5 @@
 import { General, Input as InputInterface } from '@interfaces';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { InputContainer, Wrapper } from './styles';
 
 interface InputProps {
@@ -21,16 +21,15 @@ const Input: React.FC<InputProps> = ({
   mask,
   placeholder,
 }) => {
-  const { value, validation, invalidity } = entity;
+  const { invalidity } = entity;
 
   const [invalid, setInvalid] = useState(false);
 
-  useEffect(() => {
-    console.log({ value });
-
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInvalid(Boolean(validated && invalidity));
-    console.log({ erro: Boolean(validated && invalidity) });
-  }, [value]);
+
+    if (onChange) onChange(event);
+  };
 
   return (
     <Wrapper>
@@ -39,7 +38,7 @@ const Input: React.FC<InputProps> = ({
         type={type}
         placeholder={placeholder}
         error={invalid}
-        onChange={onChange}
+        onChange={handleChange}
       />
     </Wrapper>
   );
