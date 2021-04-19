@@ -1,8 +1,6 @@
+import { Button, Input, Link } from '@/components/General';
 import Image from '@assets/loginImage.svg';
 import { ReactComponent as Logo } from '@assets/logo.svg';
-import Button from '@components/Button';
-import Input from '@components/Input';
-import Link from '@components/Link';
 import { General } from '@interfaces';
 import { validateEmail } from '@utils/validations';
 import React, { useState } from 'react';
@@ -28,21 +26,20 @@ const Login: React.FC = () => {
     event.preventDefault();
 
     setValidated(true);
-    console.log('Deu submit!');
   };
 
   const handleEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log({ event });
-
     const { value } = event.target;
 
-    console.log({ value });
+    const invalidity = email.validation(value);
+
+    setEmail({ ...email, value, invalidity });
   };
 
   const handlePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
 
-    console.log({ value });
+    setPassword({ ...password, value });
   };
 
   return (
