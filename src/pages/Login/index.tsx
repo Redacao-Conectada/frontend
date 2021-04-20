@@ -6,21 +6,17 @@ import { CenteredForm, LinksContainer } from '@styles/general';
 import { validateEmail } from '@utils/validations';
 import React, { useState } from 'react';
 
-const initialValue: General.Value = {
-  value: '',
-  invalidity: '',
-  validation: () => '',
-};
-
 const Login: React.FC = () => {
   const [validated, setValidated] = useState(false);
 
   const [email, setEmail] = useState<General.Value>({
-    ...initialValue,
+    ...General.initialValue,
     validation: (value: string) => validateEmail(value),
   });
 
-  const [password, setPassword] = useState<General.Value>({ ...initialValue });
+  const [password, setPassword] = useState<General.Value>({
+    ...General.initialValue,
+  });
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
