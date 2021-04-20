@@ -2,25 +2,21 @@ import { Button, Input, Link } from '@/components/General';
 import Image from '@assets/loginImage.svg';
 import { ReactComponent as Logo } from '@assets/logo.svg';
 import { General } from '@interfaces';
+import { CenteredForm, LinksContainer } from '@styles/general';
 import { validateEmail } from '@utils/validations';
 import React, { useState } from 'react';
-import { LoginContainer, LinksContainer } from './styles';
-
-const initialValue: General.Value = {
-  value: '',
-  invalidity: '',
-  validation: () => '',
-};
 
 const Login: React.FC = () => {
   const [validated, setValidated] = useState(false);
 
   const [email, setEmail] = useState<General.Value>({
-    ...initialValue,
+    ...General.initialValue,
     validation: (value: string) => validateEmail(value),
   });
 
-  const [password, setPassword] = useState<General.Value>({ ...initialValue });
+  const [password, setPassword] = useState<General.Value>({
+    ...General.initialValue,
+  });
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -43,7 +39,7 @@ const Login: React.FC = () => {
   };
 
   return (
-    <LoginContainer onSubmit={handleSubmit}>
+    <CenteredForm onSubmit={handleSubmit}>
       <Logo />
       <h2>Acesse sua conta e comece escrever redações agora!</h2>
       <img src={Image} alt="imagem" />
@@ -67,7 +63,7 @@ const Login: React.FC = () => {
       <LinksContainer>
         <Link path="/register" text="Sou novo aqui" />
       </LinksContainer>
-    </LoginContainer>
+    </CenteredForm>
   );
 };
 

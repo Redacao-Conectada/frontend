@@ -33,3 +33,19 @@ export const Wrapper = styled.div`
   gap: 8px;
   width: 100%;
 `;
+
+interface ErrorMessageProps {
+  show: boolean;
+}
+
+export const ErrorMessage = styled.span<ErrorMessageProps>`
+  transition: all 200ms ease-in-out;
+
+  visibility: ${({ show }) => (show ? 'initial' : 'hidden')};
+  opacity: ${({ show }) => (show ? '1' : '0')};
+
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: ${colors.error};
+  height: 0;
+`;
