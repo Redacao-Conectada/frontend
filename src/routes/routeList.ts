@@ -17,4 +17,10 @@ export const publicRouteList: RouteProps[] = [
     exact: true,
     title: 'Login',
   },
+  {
+    path: '/register',
+    component: pages.Register,
+    exact: true,
+    title: 'Cadastro',
+  },
 ];
