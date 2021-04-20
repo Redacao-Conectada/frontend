@@ -1,5 +1,4 @@
 import { colors } from '@styles/colors';
-import { Container } from '@styles/general';
 import styled from 'styled-components';
 
 interface InputContainerProps {
@@ -11,7 +10,6 @@ const errorBorder = `1px solid ${colors.errorBorder}`;
 const focusBorder = `1px solid ${colors.focusBorder}`;
 
 export const InputContainer = styled.input<InputContainerProps>`
-  ${Container}
   background-color: #fff;
   // TODO: Colocar sombra
   height: 48px;

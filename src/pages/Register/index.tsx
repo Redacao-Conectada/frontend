@@ -1,11 +1,8 @@
-import { Button, Input, Link } from '@/components/General';
-import FormContainer from '@/components/Register/FormPersonal';
-import Image from '@assets/loginImage.svg';
+import { PersonalForm, EducationForm } from '@/components/Register';
 import { ReactComponent as Logo } from '@assets/logo.svg';
-import { General } from '@interfaces';
-import { validateEmail } from '@utils/validations';
+import SwitchTab from '@components/General/SwitchTab';
+import { CenteredContainer, Header } from '@styles/publicRoutes';
 import React, { useState } from 'react';
-import { RegisterContainer, Header } from './styles';
 
 const Register: React.FC = () => {
   const [validated, setValidated] = useState(false);
@@ -17,13 +14,14 @@ const Register: React.FC = () => {
   };
 
   return (
-    <RegisterContainer onSubmit={handleSubmit}>
+    <CenteredContainer onSubmit={handleSubmit}>
       <Header>
         <Logo />
-        <h6>Crie sua conta</h6>
+        <h2>Crie sua conta</h2>
       </Header>
-      <FormContainer />
-    </RegisterContainer>
+      <SwitchTab />
+      <PersonalForm />
+    </CenteredContainer>
   );
 };
 

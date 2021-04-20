@@ -1,30 +1,24 @@
 import { Button, Input, Link } from '@/components/General';
-import Image from '@assets/loginImage.svg';
-import { ReactComponent as Logo } from '@assets/logo.svg';
 import { General } from '@interfaces';
+import { Form, LinksContainer } from '@styles/publicRoutes';
 import { validateEmail } from '@utils/validations';
 import React, { useState } from 'react';
-import { FormContainer } from './styles';
 
-const initialValue: General.Value = {
-  value: '',
-  invalidity: '',
-  validation: () => '',
-};
-
-const FormPersonal: React.FC = () => {
+const PersonalForm: React.FC = () => {
   const [validated, setValidated] = useState(false);
 
   const [email, setEmail] = useState<General.Value>({
-    ...initialValue,
+    ...General.initialValue,
     validation: (value: string) => validateEmail(value),
   });
 
-  const [password, setPassword] = useState<General.Value>({ ...initialValue });
+  const [password, setPassword] = useState<General.Value>({
+    ...General.initialValue,
+  });
 
-  const [name, setName] = useState<General.Value>({ ...initialValue });
+  const [name, setName] = useState<General.Value>({ ...General.initialValue });
 
-  const [date, setDate] = useState<General.Value>({ ...initialValue });
+  const [date, setDate] = useState<General.Value>({ ...General.initialValue });
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -59,7 +53,7 @@ const FormPersonal: React.FC = () => {
   };
 
   return (
-    <FormContainer onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
       <Input
         entity={name}
         label="Nome"
@@ -93,8 +87,11 @@ const FormPersonal: React.FC = () => {
         onChange={handlePassword}
       />
       <Button text="Próximo" typeButton="submit" />
-    </FormContainer>
+      <LinksContainer>
+        <Link path="/login" text="Já possuo uma conta" />
+      </LinksContainer>
+    </Form>
   );
 };
 
-export default FormPersonal;
+export default PersonalForm;
