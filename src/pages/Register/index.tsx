@@ -47,6 +47,12 @@ const Register: React.FC = () => {
     });
   };
 
+  const handleSelect = (event: React.FormEvent<HTMLSelectElement>) => {
+    const { value, name } = event.currentTarget;
+
+    handleEducationData(name as EducationFields, value);
+  };
+
   const handleData = (
     event: React.ChangeEvent<HTMLInputElement>,
     group: RegisterGroups,
@@ -59,10 +65,6 @@ const Register: React.FC = () => {
     };
 
     dataHandler[group]();
-  };
-
-  const handleSelect = (event: React.FormEvent<HTMLSelectElement>) => {
-    console.log({ event });
   };
 
   const handleSubmit = async (event: React.FormEvent) => {

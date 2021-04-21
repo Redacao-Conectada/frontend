@@ -1,5 +1,9 @@
 import { Button, Input, Select } from '@/components/General';
-import { EducationDataForm } from '@definitions/Register/component';
+import {
+  EducationDataForm,
+  statesOptionsList,
+  schoolYearOptionsList,
+} from '@definitions/Register/component';
 import { Form } from '@styles/publicRoutes';
 import React, { useState } from 'react';
 
@@ -15,10 +19,11 @@ const EducationForm: React.FC<EducationDataForm> = ({
   return (
     <Form onSubmit={onSubmit}>
       <Select
-        entity={data.state}
+        value={data.state.value}
         name="state"
         label="Estado"
         onChange={onChangeSelect}
+        optionsList={statesOptionsList}
       />
       <Input
         entity={data.city}
@@ -39,10 +44,11 @@ const EducationForm: React.FC<EducationDataForm> = ({
         onChange={onChange}
       />
       <Select
-        entity={data.schoolYear}
-        name="state"
+        value={data.schoolYear.value}
+        name="schoolYear"
         label="Ano escolar"
         onChange={onChangeSelect}
+        optionsList={schoolYearOptionsList}
       />
       <Button text="Concluir" typeButton="submit" />
     </Form>
