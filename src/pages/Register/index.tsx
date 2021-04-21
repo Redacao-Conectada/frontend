@@ -71,7 +71,7 @@ const Register: React.FC = () => {
     name: 'Educação',
     Component: (
       <EducationForm
-        data={data.personal}
+        data={data.education}
         onChange={(event) => handleData(event, 'education')}
       />
     ),

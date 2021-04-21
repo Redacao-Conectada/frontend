@@ -1,24 +1,10 @@
-import { General } from '@/definitions';
-import { RegisterDataForm } from '@definitions/Register/component';
+import { Button, Input } from '@/components/General';
+import { EducationDataForm } from '@definitions/Register/component';
 import { Form } from '@styles/publicRoutes';
-import { validateEmail } from '@utils/validations';
 import React, { useState } from 'react';
 
-const EducationForm: React.FC<RegisterDataForm> = ({ data, onChange }) => {
+const EducationForm: React.FC<EducationDataForm> = ({ data, onChange }) => {
   const [validated, setValidated] = useState(false);
-
-  const [email, setEmail] = useState<General.Value>({
-    ...General.initialValue,
-    validation: (value: string) => validateEmail(value),
-  });
-
-  const [password, setPassword] = useState<General.Value>({
-    ...General.initialValue,
-  });
-
-  const [name, setName] = useState<General.Value>({ ...General.initialValue });
-
-  const [date, setDate] = useState<General.Value>({ ...General.initialValue });
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -26,71 +12,45 @@ const EducationForm: React.FC<RegisterDataForm> = ({ data, onChange }) => {
     setValidated(true);
   };
 
-  const handleEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-
-    const invalidity = email.validation(value);
-
-    setEmail({ ...email, value, invalidity });
-  };
-
-  const handlePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-
-    setPassword({ ...password, value });
-  };
-
-  const handleName = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-
-    setName({ ...name, value });
-  };
-
-  const handleDate = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-
-    setDate({ ...date, value });
-  };
-
   return (
     <Form onSubmit={handleSubmit}>
-      Educacional
-      {/* <Input
-        entity={name}
-        label="Nome"
+      <Input
+        entity={data.state}
+        name="state"
+        label="Estado"
         type="text"
         validated={validated}
-        placeholder="Digite seu nome"
-        onChange={handleName}
+        placeholder="Selecione seu estado"
+        onChange={onChange}
       />
       <Input
-        entity={date}
-        label="Data de nascimento"
+        entity={data.city}
+        name="city"
+        label="Cidade"
         type="text"
         validated={validated}
-        placeholder="01/01/2000"
-        onChange={handleDate}
+        placeholder="Informe sua cidade"
+        onChange={onChange}
       />
       <Input
-        entity={email}
-        label="Email"
-        type="email"
+        entity={data.school}
+        name="school"
+        label="Escola / Curso"
+        type="text"
         validated={validated}
-        placeholder="Digite seu e-mail"
-        onChange={handleEmail}
+        placeholder="Informe onde você estuda"
+        onChange={onChange}
       />
       <Input
-        entity={password}
-        label="Senha"
-        type="password"
+        entity={data.schoolYear}
+        name="state"
+        label="Estado"
+        type="text"
         validated={validated}
-        placeholder="Digite sua senha"
-        onChange={handlePassword}
+        placeholder="Selecione seu ano escolar"
+        onChange={onChange}
       />
-      <Button text="Próximo" typeButton="submit" />
-      <LinksContainer>
-        <Link path="/login" text="Já possuo uma conta" />
-      </LinksContainer> */}
+      <Button text="Concluir" typeButton="submit" />
     </Form>
   );
 };

@@ -1,15 +1,13 @@
 import { PersonalGroup, EducationGroup } from './dataForm';
 
-export interface RegisterDataForm {
-  data: PersonalGroup | EducationGroup;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-}
-
-export interface PersonalDataForm extends RegisterDataForm {
+export interface PersonalDataForm {
   data: PersonalGroup;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+
   nextPage: () => void;
 }
 
-export interface EducationDataForm extends RegisterDataForm {
+export interface EducationDataForm {
   data: EducationGroup;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
