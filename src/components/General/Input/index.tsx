@@ -1,4 +1,4 @@
-import { General, Input as InputInterface } from '@interfaces';
+import { General, Input as InputInterface } from '@/definitions';
 import React, { useState, useEffect } from 'react';
 import { InputContainer, Wrapper, ErrorMessage } from './styles';
 

@@ -1,6 +1,5 @@
-import { Button, Input, Link } from '@/components/General';
-import { General } from '@interfaces';
-import { Form, LinksContainer } from '@styles/publicRoutes';
+import { General } from '@/definitions';
+import { Form } from '@styles/publicRoutes';
 import { validateEmail } from '@utils/validations';
 import React, { useState } from 'react';
 
@@ -54,7 +53,8 @@ const EducationForm: React.FC = () => {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Input
+      Educacional
+      {/* <Input
         entity={name}
         label="Nome"
         type="text"
@@ -89,7 +89,7 @@ const EducationForm: React.FC = () => {
       <Button text="Próximo" typeButton="submit" />
       <LinksContainer>
         <Link path="/login" text="Já possuo uma conta" />
-      </LinksContainer>
+      </LinksContainer> */}
     </Form>
   );
 };
