@@ -1,3 +1,5 @@
+import { General } from '@definitions';
+
 export const validateEmail = (email: string): string => {
   // eslint-disable-next-line no-useless-escape
   const regularExpression = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -12,7 +14,7 @@ export const validateEmail = (email: string): string => {
 };
 
 export const validateName = (name: string): string =>
-  name.trim().length < 2 ? 'Insira seu nome completo' : '';
+  name.split(' ').length < 2 ? 'Insira seu nome completo' : '';
 
 export const validateText = (text: string, field: string): string =>
   text.trim().length < 1 ? `O campo ${field} está vazio` : '';
@@ -46,7 +48,7 @@ const stringDateToISO = (strDate: string): string => {
   return `${month}-${day}-${year}`;
 };
 
-export function validateBirthdate(birthdate: string): string {
+export const validateBirthdate = (birthdate: string): string => {
   if (!isValidDate(birthdate)) {
     return 'A data de nascimento inserida é inválida';
   }
@@ -67,4 +69,16 @@ export function validateBirthdate(birthdate: string): string {
   }
 
   return '';
-}
+};
+
+export const validateValues = (object: any): string[] => {
+  const invalidityMessages = Object.values(object).reduce(
+    (acc: string[], obj: any) => {
+      const invalidity = obj.validation(obj.value);
+      return [...acc, invalidity];
+    },
+    [],
+  );
+
+  return invalidityMessages.filter(Boolean);
+};
