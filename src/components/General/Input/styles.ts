@@ -25,12 +25,6 @@ export const InputContainer = styled.input<InputContainerProps>`
   }
 `;
 
-export const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-`;
-
 interface ErrorMessageProps {
   show: boolean;
 }

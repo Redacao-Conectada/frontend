@@ -1,6 +1,7 @@
 import { General, Input as InputInterface } from '@/definitions';
+import { Wrapper } from '@styles/generalComponents';
 import React, { useState, useEffect } from 'react';
-import { InputContainer, Wrapper, ErrorMessage } from './styles';
+import { InputContainer, ErrorMessage } from './styles';
 
 interface InputProps {
   entity: General.Value;

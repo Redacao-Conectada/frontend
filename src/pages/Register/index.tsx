@@ -61,6 +61,18 @@ const Register: React.FC = () => {
     dataHandler[group]();
   };
 
+  const handleSelect = (event: React.FormEvent<HTMLSelectElement>) => {
+    console.log({ event });
+  };
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+
+    setValidated(true);
+
+    // TODO: Passar por todos os campos de data procurando algum invalidity, se houver, chamar um toast com error informando o campo inválido
+  };
+
   const [activeTab, setActiveTab] = useState('Pessoal');
 
   const changeActiveTab = (tabName: string) => {
@@ -73,6 +85,8 @@ const Register: React.FC = () => {
       <EducationForm
         data={data.education}
         onChange={(event) => handleData(event, 'education')}
+        onChangeSelect={handleSelect}
+        onSubmit={() => handleSubmit}
       />
     ),
   };
@@ -86,14 +100,6 @@ const Register: React.FC = () => {
         nextPage={() => changeActiveTab(educationOption.name)}
       />
     ),
-  };
-
-  const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-
-    setValidated(true);
-
-    // TODO: Passar por todos os campos de data procurando algum invalidity, se houver, chamar um toast com error informando o campo inválido
   };
 
   return (

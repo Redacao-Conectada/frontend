@@ -1,27 +1,24 @@
-import { Button, Input } from '@/components/General';
+import { Button, Input, Select } from '@/components/General';
 import { EducationDataForm } from '@definitions/Register/component';
 import { Form } from '@styles/publicRoutes';
 import React, { useState } from 'react';
 
-const EducationForm: React.FC<EducationDataForm> = ({ data, onChange }) => {
+const EducationForm: React.FC<EducationDataForm> = ({
+  data,
+  onChange,
+  onChangeSelect,
+  onSubmit,
+}) => {
   const [validated, setValidated] = useState(false);
-
-  const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-
-    setValidated(true);
-  };
+  // TODO: Corrigir uso do validated
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Input
+    <Form onSubmit={onSubmit}>
+      <Select
         entity={data.state}
         name="state"
         label="Estado"
-        type="text"
-        validated={validated}
-        placeholder="Selecione seu estado"
-        onChange={onChange}
+        onChange={onChangeSelect}
       />
       <Input
         entity={data.city}
@@ -41,14 +38,11 @@ const EducationForm: React.FC<EducationDataForm> = ({ data, onChange }) => {
         placeholder="Informe onde você estuda"
         onChange={onChange}
       />
-      <Input
+      <Select
         entity={data.schoolYear}
         name="state"
-        label="Estado"
-        type="text"
-        validated={validated}
-        placeholder="Selecione seu ano escolar"
-        onChange={onChange}
+        label="Ano escolar"
+        onChange={onChangeSelect}
       />
       <Button text="Concluir" typeButton="submit" />
     </Form>
