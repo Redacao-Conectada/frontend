@@ -1,14 +1,13 @@
 import styled from 'styled-components';
 
 export const CenteredContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 32px;
   padding: 32px;
 
   width: calc(100vw - 64px);
+  max-width: 500px;
 
   h2 {
     font-size: 1.5rem;
@@ -18,13 +17,11 @@ export const CenteredContainer = styled.div`
 export const LinksContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 100%;
 `;
 
 export const Form = styled.form`
   display: grid;
   gap: 24px;
-  width: 100%;
 `;
 
 export const Header = styled.head`
@@ -33,7 +30,6 @@ export const Header = styled.head`
   justify-content: left;
   align-items: left;
   gap: 32px;
-  width: 100%;
 
   img {
     max-height: 150px;

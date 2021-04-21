@@ -9,7 +9,6 @@ export const ButtonContainer = styled.button`
   color: #fff;
   font-weight: 600;
 
-  width: 100%;
   height: 44px;
 
   background: ${colors.primary};

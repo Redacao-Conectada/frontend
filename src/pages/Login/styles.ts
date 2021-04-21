@@ -6,7 +6,6 @@ export const Header = styled.head`
   justify-content: left;
   align-items: left;
   gap: 32px;
-  width: 100%;
 
   img {
     max-height: 150px;

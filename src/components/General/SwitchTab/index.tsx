@@ -1,11 +1,13 @@
 import React from 'react';
-import { SwitchContainer } from './styles';
+import { SwitchContainer, TabOption } from './styles';
 
 const SwitchTab: React.FC = () => {
   return (
     <SwitchContainer>
-      <span>Opção 01</span>
-      <span>Opção 02</span>
+      <TabOption active>Opção 01</TabOption>
+      <TabOption active={false} alignRight>
+        Opção 02
+      </TabOption>
     </SwitchContainer>
   );
 };
