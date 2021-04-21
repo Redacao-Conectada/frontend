@@ -8,7 +8,9 @@ import {
 } from '@/definitions/Register/dataForm';
 import { ReactComponent as Logo } from '@assets/logo.svg';
 import { CenteredContainer, Header } from '@styles/publicRoutes';
+import { validateValues } from '@utils/validations';
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
 
 const Register: React.FC = () => {
   const [validated, setValidated] = useState(false);
@@ -72,6 +74,15 @@ const Register: React.FC = () => {
 
     setValidated(true);
 
+    const errors = [
+      ...validateValues(data.personal),
+      ...validateValues(data.education),
+    ];
+
+    if (errors) {
+      errors.map((error) => toast.error(error));
+    }
+
     // TODO: Passar por todos os campos de data procurando algum invalidity, se houver, chamar um toast com error informando o campo inválido
   };
 
@@ -105,18 +116,20 @@ const Register: React.FC = () => {
   };
 
   return (
-    <CenteredContainer onSubmit={handleSubmit}>
-      <Header>
-        <Logo />
-        <h2>Crie sua conta</h2>
-      </Header>
-      <SwitchRouter
-        firstOption={personalOption}
-        secondOption={educationOption}
-        activeTab={activeTab}
-        changeTab={changeActiveTab}
-      />
-    </CenteredContainer>
+    <>
+      <CenteredContainer onSubmit={handleSubmit}>
+        <Header>
+          <Logo />
+          <h2>Crie sua conta</h2>
+        </Header>
+        <SwitchRouter
+          firstOption={personalOption}
+          secondOption={educationOption}
+          activeTab={activeTab}
+          changeTab={changeActiveTab}
+        />
+      </CenteredContainer>
+    </>
   );
 };
 
