@@ -1,9 +1,10 @@
 import { General } from '@/definitions';
+import { RegisterDataForm } from '@definitions/Register/component';
 import { Form } from '@styles/publicRoutes';
 import { validateEmail } from '@utils/validations';
 import React, { useState } from 'react';
 
-const EducationForm: React.FC = () => {
+const EducationForm: React.FC<RegisterDataForm> = ({ data, onChange }) => {
   const [validated, setValidated] = useState(false);
 
   const [email, setEmail] = useState<General.Value>({

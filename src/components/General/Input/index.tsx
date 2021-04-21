@@ -10,6 +10,7 @@ interface InputProps {
   validated?: boolean;
   mask?: string;
   placeholder?: string;
+  name?: string;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -20,6 +21,7 @@ const Input: React.FC<InputProps> = ({
   label,
   mask,
   placeholder,
+  name: inputName,
 }) => {
   const { invalidity } = entity;
 
@@ -37,6 +39,7 @@ const Input: React.FC<InputProps> = ({
     <Wrapper>
       {label}
       <InputContainer
+        name={inputName}
         type={type}
         placeholder={placeholder}
         error={invalid}

@@ -4,15 +4,16 @@ import {
   validateBirthdate,
   validateText,
 } from '@utils/validations';
-import { Value, initialValue } from './general';
+import { Value, initialValue } from '../general';
 
-interface PersonalGroup {
+export interface PersonalGroup {
   name: Value;
   birthDate: Value;
   email: Value;
   password: Value;
 }
-interface EducationGroup {
+
+export interface EducationGroup {
   state: Value;
   city: Value;
   school: Value;

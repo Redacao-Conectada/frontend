@@ -1,24 +1,10 @@
 import { Button, Input, Link } from '@/components/General';
-import { General } from '@/definitions';
+import { PersonalDataForm } from '@definitions/Register/component';
 import { Form, LinksContainer } from '@styles/publicRoutes';
-import { validateEmail } from '@utils/validations';
 import React, { useState } from 'react';
 
-const PersonalForm: React.FC = () => {
+const PersonalForm: React.FC<PersonalDataForm> = ({ data, onChange }) => {
   const [validated, setValidated] = useState(false);
-
-  const [email, setEmail] = useState<General.Value>({
-    ...General.initialValue,
-    validation: (value: string) => validateEmail(value),
-  });
-
-  const [password, setPassword] = useState<General.Value>({
-    ...General.initialValue,
-  });
-
-  const [name, setName] = useState<General.Value>({ ...General.initialValue });
-
-  const [date, setDate] = useState<General.Value>({ ...General.initialValue });
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -26,65 +12,43 @@ const PersonalForm: React.FC = () => {
     setValidated(true);
   };
 
-  const handleEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-
-    const invalidity = email.validation(value);
-
-    setEmail({ ...email, value, invalidity });
-  };
-
-  const handlePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-
-    setPassword({ ...password, value });
-  };
-
-  const handleName = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-
-    setName({ ...name, value });
-  };
-
-  const handleDate = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-
-    setDate({ ...date, value });
-  };
-
   return (
     <Form onSubmit={handleSubmit}>
       <Input
-        entity={name}
+        entity={data.name}
+        name="name"
         label="Nome"
         type="text"
         validated={validated}
         placeholder="Digite seu nome"
-        onChange={handleName}
+        onChange={onChange}
       />
       <Input
-        entity={date}
+        entity={data.birthDate}
+        name="birthDate"
         label="Data de nascimento"
         type="text"
         validated={validated}
         placeholder="01/01/2000"
-        onChange={handleDate}
+        onChange={onChange}
       />
       <Input
-        entity={email}
+        entity={data.email}
+        name="email"
         label="Email"
         type="email"
         validated={validated}
         placeholder="Digite seu e-mail"
-        onChange={handleEmail}
+        onChange={onChange}
       />
       <Input
-        entity={password}
+        entity={data.password}
+        name="password"
         label="Senha"
         type="password"
         validated={validated}
         placeholder="Digite sua senha"
-        onChange={handlePassword}
+        onChange={onChange}
       />
       <Button text="Próximo" typeButton="submit" />
       <LinksContainer>

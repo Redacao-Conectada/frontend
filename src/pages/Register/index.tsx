@@ -1,14 +1,12 @@
 import SwitchRouter, { SwitchOption } from '@/components/General/SwitchRouter';
 import { PersonalForm, EducationForm } from '@/components/Register';
-import { ReactComponent as Logo } from '@assets/logo.svg';
 import {
   initialRegisterData,
-  // RegisterData,
-  // RegisterGroups,
-  // PersonalFields,
-  // EducationFields,
-  // RegisterFields,
-} from '@definitions/register';
+  RegisterGroups,
+  PersonalFields,
+  EducationFields,
+} from '@/definitions/Register/dataForm';
+import { ReactComponent as Logo } from '@assets/logo.svg';
 import { CenteredContainer, Header } from '@styles/publicRoutes';
 import React, { useState } from 'react';
 
@@ -17,17 +15,75 @@ const Register: React.FC = () => {
 
   const [data, setData] = useState(initialRegisterData);
 
-  // const handleData = (
-  //   group: RegisterGroups,
-  //   name: RegisterFields,
-  //   value: any,
-  // ) => {
-  //   let type;
-  //   if (group === 'education') {
-  //     type = typeof PersonalFields;
-  //   }
-  //   const invalidity = data[group][name];
-  // };
+  const handlePersonalData = (name: PersonalFields, value: any) => {
+    const invalidity = data.personal[name].validation(value);
+
+    console.log({ name, value, entidade: data.personal[name] });
+
+    setData({
+      ...data,
+      personal: {
+        ...data.personal,
+        [name]: {
+          ...data.personal[name],
+          value,
+          invalidity,
+        },
+      },
+    });
+  };
+
+  const handleEducationData = (name: EducationFields, value: any) => {
+    const invalidity = data.education[name].validation(value);
+
+    setData({
+      ...data,
+      education: {
+        ...data.education,
+        [name]: {
+          ...data.education[name],
+          value,
+          invalidity,
+        },
+      },
+    });
+  };
+
+  const handleData = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    group: RegisterGroups,
+  ) => {
+    const { value, name } = event.target;
+
+    console.log({ data });
+
+    const dataHandler = {
+      personal: () => handlePersonalData(name as PersonalFields, value),
+      education: () => handleEducationData(name as EducationFields, value),
+    };
+
+    dataHandler[group]();
+  };
+
+  const personalOption: SwitchOption = {
+    name: 'Pessoal',
+    Component: (
+      <PersonalForm
+        data={data.personal}
+        onChange={(event) => handleData(event, 'personal')}
+      />
+    ),
+  };
+
+  const educationOption: SwitchOption = {
+    name: 'Educação',
+    Component: (
+      <EducationForm
+        data={data.personal}
+        onChange={(event) => handleData(event, 'education')}
+      />
+    ),
+  };
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -36,18 +92,6 @@ const Register: React.FC = () => {
 
     // TODO: Passar por todos os campos de data procurando algum invalidity, se houver, chamar um toast com error informando o campo inválido
   };
-
-  const personalOption: SwitchOption = {
-    name: 'Pessoal',
-    Component: <PersonalForm />,
-  };
-  // Component: <PersonalForm data={data.personal} handleData={handleData} />,
-
-  const educationOption: SwitchOption = {
-    name: 'Educação',
-    Component: <EducationForm />,
-  };
-  // Component: <EducationForm data={data.personal} handleData={handleData}/>,
 
   return (
     <CenteredContainer onSubmit={handleSubmit}>
