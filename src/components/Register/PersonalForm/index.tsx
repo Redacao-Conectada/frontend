@@ -3,7 +3,11 @@ import { PersonalDataForm } from '@definitions/Register/component';
 import { Form, LinksContainer } from '@styles/publicRoutes';
 import React, { useState } from 'react';
 
-const PersonalForm: React.FC<PersonalDataForm> = ({ data, onChange }) => {
+const PersonalForm: React.FC<PersonalDataForm> = ({
+  data,
+  onChange,
+  nextPage,
+}) => {
   const [validated, setValidated] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -50,7 +54,7 @@ const PersonalForm: React.FC<PersonalDataForm> = ({ data, onChange }) => {
         placeholder="Digite sua senha"
         onChange={onChange}
       />
-      <Button text="Próximo" typeButton="submit" />
+      <Button text="Próximo" typeButton="button" onClick={nextPage} />
       <LinksContainer>
         <Link path="/login" text="Já possuo uma conta" />
       </LinksContainer>

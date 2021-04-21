@@ -9,32 +9,34 @@ export interface SwitchOption {
 interface SwitchRouterProps {
   firstOption: SwitchOption;
   secondOption: SwitchOption;
+  activeTab: string;
+  changeTab: Function;
 }
 
 const SwitchRouter: React.FC<SwitchRouterProps> = ({
   firstOption,
   secondOption,
+  activeTab,
+  changeTab,
 }) => {
   const componentRender = {
     [firstOption.name]: firstOption.Component,
     [secondOption.name]: secondOption.Component,
   };
 
-  const [activeTab, setActiveTab] = useState(firstOption.name);
-
   return (
     <>
       <SwitchContainer>
         <TabOption
           active={activeTab === firstOption.name}
-          onClick={() => setActiveTab(firstOption.name)}
+          onClick={() => changeTab(firstOption.name)}
         >
           {firstOption.name}
         </TabOption>
 
         <TabOption
           active={activeTab === secondOption.name}
-          onClick={() => setActiveTab(secondOption.name)}
+          onClick={() => changeTab(secondOption.name)}
           alignRight
         >
           {secondOption.name}

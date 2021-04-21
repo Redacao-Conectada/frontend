@@ -7,6 +7,7 @@ export interface RegisterDataForm {
 
 export interface PersonalDataForm extends RegisterDataForm {
   data: PersonalGroup;
+  nextPage: () => void;
 }
 
 export interface EducationDataForm extends RegisterDataForm {

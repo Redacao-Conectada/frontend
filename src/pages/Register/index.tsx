@@ -61,14 +61,10 @@ const Register: React.FC = () => {
     dataHandler[group]();
   };
 
-  const personalOption: SwitchOption = {
-    name: 'Pessoal',
-    Component: (
-      <PersonalForm
-        data={data.personal}
-        onChange={(event) => handleData(event, 'personal')}
-      />
-    ),
+  const [activeTab, setActiveTab] = useState('Pessoal');
+
+  const changeActiveTab = (tabName: string) => {
+    setActiveTab(tabName);
   };
 
   const educationOption: SwitchOption = {
@@ -77,6 +73,17 @@ const Register: React.FC = () => {
       <EducationForm
         data={data.personal}
         onChange={(event) => handleData(event, 'education')}
+      />
+    ),
+  };
+
+  const personalOption: SwitchOption = {
+    name: 'Pessoal',
+    Component: (
+      <PersonalForm
+        data={data.personal}
+        onChange={(event) => handleData(event, 'personal')}
+        nextPage={() => changeActiveTab(educationOption.name)}
       />
     ),
   };
@@ -98,6 +105,8 @@ const Register: React.FC = () => {
       <SwitchRouter
         firstOption={personalOption}
         secondOption={educationOption}
+        activeTab={activeTab}
+        changeTab={changeActiveTab}
       />
     </CenteredContainer>
   );
