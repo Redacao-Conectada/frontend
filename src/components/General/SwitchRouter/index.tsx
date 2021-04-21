@@ -15,26 +15,32 @@ const SwitchRouter: React.FC<SwitchRouterProps> = ({
   firstOption,
   secondOption,
 }) => {
-  const [activeTab, setActiveTab] = useState(firstOption);
+  const componentRender = {
+    [firstOption.name]: firstOption.Component,
+    [secondOption.name]: secondOption.Component,
+  };
+
+  const [activeTab, setActiveTab] = useState(firstOption.name);
 
   return (
     <>
       <SwitchContainer>
         <TabOption
-          active={activeTab === firstOption}
-          onClick={() => setActiveTab(firstOption)}
+          active={activeTab === firstOption.name}
+          onClick={() => setActiveTab(firstOption.name)}
         >
           {firstOption.name}
         </TabOption>
+
         <TabOption
-          active={activeTab === secondOption}
-          onClick={() => setActiveTab(secondOption)}
+          active={activeTab === secondOption.name}
+          onClick={() => setActiveTab(secondOption.name)}
           alignRight
         >
           {secondOption.name}
         </TabOption>
       </SwitchContainer>
-      {activeTab.Component}
+      {componentRender[activeTab]}
     </>
   );
 };
