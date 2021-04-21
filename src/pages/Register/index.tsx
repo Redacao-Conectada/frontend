@@ -18,8 +18,6 @@ const Register: React.FC = () => {
   const handlePersonalData = (name: PersonalFields, value: any) => {
     const invalidity = data.personal[name].validation(value);
 
-    console.log({ name, value, entidade: data.personal[name] });
-
     setData({
       ...data,
       personal: {
@@ -54,8 +52,6 @@ const Register: React.FC = () => {
     group: RegisterGroups,
   ) => {
     const { value, name } = event.target;
-
-    console.log({ data });
 
     const dataHandler = {
       personal: () => handlePersonalData(name as PersonalFields, value),
