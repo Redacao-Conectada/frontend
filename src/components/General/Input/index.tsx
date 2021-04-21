@@ -24,7 +24,7 @@ const Input: React.FC<InputProps> = ({
   placeholder,
   name: inputName,
 }) => {
-  const { invalidity } = entity;
+  const { value, invalidity } = entity;
 
   const [invalid, setInvalid] = useState(false);
 
@@ -45,6 +45,7 @@ const Input: React.FC<InputProps> = ({
         placeholder={placeholder}
         error={invalid}
         onChange={handleChange}
+        value={value}
       />
       <ErrorMessage show={invalid}>{invalidity}</ErrorMessage>
     </Wrapper>
