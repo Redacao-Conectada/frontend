@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { Link } from './styles';
 
 interface LinkProps {
   path: string;
@@ -9,9 +10,16 @@ interface LinkProps {
 const LinkText: React.FC<LinkProps> = ({ path, text }) => {
   return (
     <span>
-      <NavLink to={path}>{text}</NavLink>
+      <Link to={path}>{text}</Link>
     </span>
   );
 };
+// const LinkText: React.FC<LinkProps> = ({ path, text }) => {
+//   return (
+//     <span>
+//       <NavLink to={path}>{text}</NavLink>
+//     </span>
+//   );
+// };
 
 export default LinkText;
