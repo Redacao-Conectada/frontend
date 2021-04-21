@@ -17,6 +17,10 @@
   box-sizing: border-box;
 }
 
+h2 {
+  font-family: 'Open Sans', sans-serif;;
+}
+
 body {
   display: grid;
   place-items: center;

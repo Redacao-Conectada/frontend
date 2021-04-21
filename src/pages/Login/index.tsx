@@ -1,7 +1,7 @@
 import { Button, Input, Link } from '@/components/General';
+import { General } from '@/definitions';
 import Image from '@assets/loginImage.svg';
 import { ReactComponent as Logo } from '@assets/logo.svg';
-import { General } from '@interfaces';
 import {
   CenteredContainer,
   LinksContainer,

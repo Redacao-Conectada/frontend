@@ -1,5 +1,5 @@
 import { Button, Input, Link } from '@/components/General';
-import { General } from '@interfaces';
+import { General } from '@/definitions';
 import { Form, LinksContainer } from '@styles/publicRoutes';
 import { validateEmail } from '@utils/validations';
 import React, { useState } from 'react';

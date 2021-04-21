@@ -45,11 +45,11 @@
       "@contexts/*": [
         "src/contexts/*"
       ],
-      "@interfaces": [
-        "src/interfaces"
+      "@definitions": [
+        "src/definitions"
       ],
-      "@interfaces/*": [
-        "src/interfaces/*"
+      "@definitions/*": [
+        "src/definitions/*"
       ],
       "@components": [
         "src/components"
