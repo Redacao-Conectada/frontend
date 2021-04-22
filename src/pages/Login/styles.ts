@@ -1,16 +1,13 @@
 import styled from 'styled-components';
 
-export const LoginContainer = styled.form`
+export const Header = styled.head`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: left;
+  align-items: left;
   gap: 32px;
-  padding: 32px;
-`;
 
-export const LinksContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
+  img {
+    max-height: 150px;
+  }
 `;
