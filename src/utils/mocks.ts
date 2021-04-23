@@ -29,3 +29,32 @@ export const commentariesList = [
     text: 'Sei não, mas eu só acho que tá pra um 600!',
   },
 ];
+
+export const ratingList = {
+  evaluator: {
+    name: 'Elmar Melcher',
+    avatar: 'https://avatars.githubusercontent.com/u/50139832?v=4',
+  },
+  rate1: {
+    rate: '200',
+    commentary:
+      'Essa competência foi super bem escrita, eu como professora de redação super formada posso garantir isso.',
+  },
+  rate2: {
+    rate: '120',
+    commentary: '',
+  },
+  rate3: {
+    rate: '160',
+    commentary: 'Isso aí mt bom carakkk',
+  },
+  rate4: {
+    rate: '40',
+    commentary: 'Mlk tu é mt ruim',
+  },
+  rate5: {
+    rate: '160',
+    commentary: 'Boa acho q vai dar bom',
+  },
+  total: 680,
+};
