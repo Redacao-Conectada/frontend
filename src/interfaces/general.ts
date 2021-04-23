@@ -12,6 +12,6 @@ export interface Essay {
   title: string;
   author: Author;
   date: string;
-  isStared: boolean;
+  isStarred: boolean;
   numOfStars: number;
 }

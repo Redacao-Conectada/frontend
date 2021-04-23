@@ -12,6 +12,7 @@ export const EssayCardContainer = styled.div<EssayCardProps>`
   width: ${(props) => props.width};
 
   border: 1px solid ${colors.normalBorder};
+  border-radius: 5px;
 
   h2 {
     font-weight: 600;
@@ -36,6 +37,8 @@ export const DateContainer = styled.div`
   display: flex;
   justify-content: flex-end;
 
+  margin-bottom: 4px;
+
   b {
     font-size: 10px;
     font-weight: 400;
@@ -46,6 +49,8 @@ export const DateContainer = styled.div`
 
 export const FooterContainer = styled.div`
   width: 100%;
+
+  margin-top: 5px;
 
   display: flex;
   justify-content: space-between;

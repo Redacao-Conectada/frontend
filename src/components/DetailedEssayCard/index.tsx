@@ -1,6 +1,7 @@
+import { InteractiveStarIcon } from '@/assets/icons/InteractiveIcon';
 import { Essay } from '@/interfaces/general';
 import { icons } from '@assets/icons';
-import React from 'react';
+import React, { useState } from 'react';
 import {
   AuthorContainer,
   DateContainer,
@@ -16,15 +17,22 @@ interface DetailedEssayCardProps {
   essay: Essay;
 }
 
+const defaultAvatar =
+  'https://www.ecp.org.br/wp-content/uploads/2017/12/default-avatar-1-300x300.png';
+
 const DetailedEssayCard: React.FC<DetailedEssayCardProps> = ({
   essay,
   width,
 }) => {
-  const defaultAvatar =
-    'https://www.ecp.org.br/wp-content/uploads/2017/12/default-avatar-1-300x300.png';
-
   // TODO: fazer estrela ficar amarela quando curtido.
   // TODO: fazer gerenciamento de estado
+
+  const [isStarred, setIsStarred] = useState(essay.isStarred);
+
+  const handleStarClick = () => {
+    setIsStarred(!isStarred);
+    // TODO: lança requisição para dar ou retirar estrela
+  };
 
   return (
     <EssayCardContainer width={width || '314px'}>
@@ -35,7 +43,7 @@ const DetailedEssayCard: React.FC<DetailedEssayCardProps> = ({
       <p>{essay.text}</p>
       <FooterContainer>
         <StarsCounter>
-          {icons.star}
+          <InteractiveStarIcon onClick={handleStarClick} isFilled={isStarred} />
           <a>{essay.numOfStars}</a>
         </StarsCounter>
         <MoreInfoContainer>

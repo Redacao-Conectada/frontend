@@ -9,6 +9,23 @@ export const mockedEssay = {
     avatar: 'https://avatars.githubusercontent.com/u/32914505?s=60&v=4',
   },
   date: '23/03/1980',
-  isStared: true,
+  isStarred: true,
   numOfStars: 900,
 };
+
+export const commentariesList = [
+  {
+    author: {
+      name: 'Chiquinho da Silva',
+      avatar: 'https://avatars.githubusercontent.com/u/36909697?v=4',
+    },
+    text: 'Muito top, Amegan!',
+  },
+  {
+    author: {
+      name: 'Netinho da Comunidade',
+      avatar: 'https://avatars.githubusercontent.com/u/50139832?v=4',
+    },
+    text: 'Sei não, mas eu só acho que tá pra um 600!',
+  },
+];
