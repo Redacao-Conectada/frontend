@@ -46,7 +46,8 @@ export const ratingList = {
   },
   rate3: {
     rate: '160',
-    commentary: 'Isso aí mt bom carakkk',
+    commentary:
+      'Esse comentário vai ter 3 linhas pra eu ficar testando o padding',
   },
   rate4: {
     rate: '40',
@@ -54,7 +55,7 @@ export const ratingList = {
   },
   rate5: {
     rate: '160',
-    commentary: 'Boa acho q vai dar bom',
+    commentary: 'Comentário de 2 linhas aaaaaaaaa',
   },
   total: 680,
 };

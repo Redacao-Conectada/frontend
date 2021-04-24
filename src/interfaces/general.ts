@@ -23,6 +23,7 @@ export interface RatingList {
   rate3: Rate;
   rate4: Rate;
   rate5: Rate;
+  total: number;
 }
 
 export interface Rate {
