@@ -1,13 +1,10 @@
 import { RatingList, Rate } from '@/interfaces/general';
 import React from 'react';
-import { HeaderContainer, RatingTable, RatingContainer } from './styles';
+import { RatingTable, RatingContainer } from './styles';
 
 interface RatingEssayCardProps {
   ratingList: RatingList;
 }
-
-const defaultAvatar =
-  'https://lh3.googleusercontent.com/proxy/X3Wfe2B9sdiWvPtWbStKsXYHsYAEMZBF9W3wdrZALafEJULJlkWQ-1NKQeMkSfKTvu_haz87uOHCREro4TLRqsRF9m1GDdw-UYTD_XXoonCXdlib4uRDXCsBG-c';
 
 const RatingEssayCard: React.FC<RatingEssayCardProps> = ({ ratingList }) => {
   const showCommentary = (commentary: string) => {
@@ -28,14 +25,6 @@ const RatingEssayCard: React.FC<RatingEssayCardProps> = ({ ratingList }) => {
   };
   return (
     <RatingContainer>
-      <HeaderContainer>
-        <div>
-          <img alt="avaliador" src={defaultAvatar} />
-          {/* TODO: Mock api de professor */}
-          <div>Elmar Melcher</div>
-          <div>Corretorx</div>
-        </div>
-      </HeaderContainer>
       <RatingTable>
         <tr>
           <th colSpan={2}> Nota </th>
