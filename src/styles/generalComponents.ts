@@ -5,3 +5,10 @@ export const Wrapper = styled.div`
   flex-direction: column;
   gap: 8px;
 `;
+
+export const HorizontalWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.125rem;
+`;
