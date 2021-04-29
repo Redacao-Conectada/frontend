@@ -23,4 +23,10 @@ export const publicRouteList: RouteProps[] = [
     exact: true,
     title: 'Cadastro',
   },
+  {
+    path: '/example',
+    component: pages.Example,
+    exact: true,
+    title: 'Exemplo',
+  },
 ];

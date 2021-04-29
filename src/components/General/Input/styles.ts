@@ -11,7 +11,6 @@ const focusBorder = `1px solid ${colors.focusBorder}`;
 
 export const InputContainer = styled.input<InputContainerProps>`
   background-color: #fff;
-  // TODO: Colocar sombra
   height: 48px;
   padding-left: 12px;
   border: ${({ error }) => (error ? errorBorder : normalBorder)};
@@ -23,6 +22,7 @@ export const InputContainer = styled.input<InputContainerProps>`
     border: ${({ error }) => (error ? errorBorder : focusBorder)};
     outline: none;
   }
+  // TODO: Colocar sombra
 `;
 
 interface ErrorMessageProps {

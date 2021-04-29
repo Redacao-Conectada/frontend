@@ -49,7 +49,7 @@ const Routes: React.FC = () => {
         ) : (
           <>
             {publicRouteComponents}
-            <Redirect to="/login" />
+            {/* <Redirect to="/login" /> */}
           </>
         )}
       </Switch>
