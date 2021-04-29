@@ -5,11 +5,8 @@ const Example: React.FC = () => {
   const [boolValue, setBoolValue] = useState(false);
 
   const handleBoolValue = (name: string, value: boolean) => {
-    // console.log({ name, value });
     setBoolValue(value);
   };
-
-  console.log({ boolValue });
 
   return (
     <div style={{ paddingTop: '100px', width: '250px' }}>
