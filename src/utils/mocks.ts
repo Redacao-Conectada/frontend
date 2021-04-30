@@ -59,3 +59,12 @@ export const ratingList = {
   },
   total: 680,
 };
+
+export const keywordsList: string[] = [
+  'Cachorro',
+  'pet',
+  'animal',
+  'meio ambiente',
+  'natureza',
+  'etc',
+];

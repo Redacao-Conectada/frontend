@@ -17,11 +17,11 @@
 }
 
 h2 {
-  font-family: 'Open Sans', sans-serif;;
+  font-family: 'Open Sans', sans-serif;
 }
 
 body {
   display: grid;
   place-items: center;
-  background-color: #FCFAF9;
+  background-color: #fcfaf9;
 }
