@@ -1,17 +1,36 @@
-import { Switch } from '@components/General';
+import { RadioSelect } from '@components/General';
+import { CenteredContainer } from '@styles/publicRoutes';
 import React, { useState } from 'react';
 
-const Example: React.FC = () => {
-  const [boolValue, setBoolValue] = useState(false);
+const carOptionsList = ['SUV', 'Sedan', 'Hatch'];
 
-  const handleBoolValue = (name: string, value: boolean) => {
-    setBoolValue(value);
+interface Data {
+  chosenCar: string;
+}
+
+const initialData: Data = {
+  chosenCar: carOptionsList[0],
+};
+
+const Example: React.FC = () => {
+  const [data, setData] = useState(initialData);
+
+  const handleSelectCar = (name: string, value: string) => {
+    setData({
+      ...data,
+      [name as keyof Data]: value,
+    });
   };
 
   return (
-    <div style={{ paddingTop: '100px', width: '250px' }}>
-      <Switch name="boolValue" label="teste" onChange={handleBoolValue} />
-    </div>
+    <CenteredContainer>
+      <RadioSelect
+        label="Tipo de carro"
+        name="chosenCar"
+        optionList={carOptionsList}
+        onChange={handleSelectCar}
+      />
+    </CenteredContainer>
   );
 };
 
