@@ -9,6 +9,7 @@ export const colors = {
   focusBorder: 'rgba(4, 167, 119, 0.5)',
   white: '#FFF',
   offWhite: '#EEE',
+  darkGrey: '#888997',
 
   // Switch
   switchBackground: '#04A777',
