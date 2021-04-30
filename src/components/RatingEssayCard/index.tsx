@@ -1,6 +1,6 @@
 import { RatingList, Rate } from '@/interfaces/general';
 import React from 'react';
-import { RatingTable, RatingContainer } from './styles';
+import { RatingTable, RatingContainer, EmptyCommentary } from './styles';
 
 interface RatingEssayCardProps {
   ratingList: RatingList;
@@ -11,7 +11,11 @@ const RatingEssayCard: React.FC<RatingEssayCardProps> = ({ ratingList }) => {
     if (commentary) {
       return `"${commentary}"`;
     }
-    return 'Sem comentários do corretor!';
+    return (
+      <EmptyCommentary>
+        &apos;Sem comentários do corretor!&apos;
+      </EmptyCommentary>
+    );
   };
   const ratingRow = (rate: Rate, index: number) => {
     const rateNumber = ['i', 'ii', 'iii', 'iv', 'v'];
