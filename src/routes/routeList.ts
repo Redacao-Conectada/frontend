@@ -18,6 +18,24 @@ export const publicRouteList: RouteProps[] = [
     title: 'Login',
   },
   {
+    path: '/essay', // FIXME: deve ser /essay/${id}
+    component: pages.EssayDetails,
+    exact: true,
+    title: 'Redação em Detalhes',
+  },
+  {
+    path: '/essayRating', // FIXME: deve ser /essay/${id}
+    component: pages.EssayRating,
+    exact: true,
+    title: 'Nota das competências',
+  },
+  {
+    path: '/essayKeywords', // FIXME: deve ser /essay/${id}
+    component: pages.EssayKeywords,
+    exact: true,
+    title: 'Palavras chave da redação',
+  },
+  {
     path: '/register',
     component: pages.Register,
     exact: true,
