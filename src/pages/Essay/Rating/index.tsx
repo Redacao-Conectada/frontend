@@ -1,16 +1,16 @@
 // import Evaluator from '@/components/Evaluator';
 import Evaluator from '@/components/EvaluatorCard';
 import RatingEssayCard from '@/components/RatingEssayCard';
+import { CenteredContainer } from '@styles/publicRoutes';
 import { ratingList } from '@utils/mocks';
 import React from 'react';
-import { RatingContainer } from './styles';
 
 const EssayRating: React.FC = () => {
   return (
-    <RatingContainer>
+    <CenteredContainer>
       <Evaluator evaluator={ratingList.evaluator} />
       <RatingEssayCard ratingList={ratingList} />
-    </RatingContainer>
+    </CenteredContainer>
   );
 };
 

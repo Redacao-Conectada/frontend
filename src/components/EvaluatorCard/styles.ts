@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 export const EvaluatorCard = styled.div`
   background-color: #fcfaf9;
-  margin: 36px 0px 0px 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,7 +18,7 @@ export const EvaluatorCard = styled.div`
     border-radius: 50%;
   }
   div:nth-child(1) {
-    width: 314px;
+    width: 100%;
     padding: 8px;
     background-color: #ffffff;
     border-radius: 5px;
