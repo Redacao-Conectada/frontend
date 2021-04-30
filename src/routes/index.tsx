@@ -14,6 +14,7 @@ const Routes: React.FC = () => {
 
       return (
         <Route
+          key={path}
           path={path}
           exact={exact}
           render={(props) => <Component {...props} />}
