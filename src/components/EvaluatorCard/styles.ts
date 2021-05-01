@@ -2,30 +2,38 @@ import styled from 'styled-components';
 
 // interface RatingContainerProps {}
 
-export const EvaluatorCard = styled.div`
-  background-color: #fcfaf9;
+export const EvaluatorContainer = styled.div`
+  background-color: #ffffff;
+  padding: 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   border-radius: 5px;
   border: 1px solid rgba(42, 70, 112, 0.1);
+  div {
+    font-family: 'Open Sans';
+  }
+  .gradedEssaysText {
+    font-weight: bold;
+    font-size: 14px;
+    color: rgb(78, 82, 104);
+  }
+  .gradedEssays {
+    margin-top: 0 !important;
+    font-weight: bold;
+    font-size: 16px;
+  }
+  .center {
+    display: flex;
+    justify-content: center;
+  }
   img {
     border: 1px solid #131735;
     object-fit: cover;
     width: 36px;
     height: 36px;
     border-radius: 50%;
-  }
-  div:nth-child(1) {
-    width: 100%;
-    padding: 8px;
-    background-color: #ffffff;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
   }
   div:nth-child(2) {
     margin-top: 8px;
@@ -34,8 +42,8 @@ export const EvaluatorCard = styled.div`
   }
   div:nth-child(3) {
     font-size: 14px;
-    font-weight: 500;
-    color: #131735;
+    font-weight: 600;
+    color: #4b4f65;
     margin-top: 9px;
     /* font-weight: 700; */
   }
