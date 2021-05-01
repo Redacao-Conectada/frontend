@@ -47,4 +47,10 @@ export const publicRouteList: RouteProps[] = [
     exact: true,
     title: 'Exemplo',
   },
+  {
+    path: '/profile/evaluator',
+    component: pages.ProfileView,
+    exact: true,
+    title: 'Exemplo',
+  },
 ];

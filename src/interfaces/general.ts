@@ -34,6 +34,7 @@ export interface Rate {
 export interface Evaluator {
   name: string;
   avatar: string;
+  ratedEssays: number;
 }
 
 export interface KeywordsList {
