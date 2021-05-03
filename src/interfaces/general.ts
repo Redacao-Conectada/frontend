@@ -15,3 +15,10 @@ export interface Essay {
   isStarred: boolean;
   numOfStars: number;
 }
+
+export interface Commentary {
+  id: string;
+  author: Author;
+  text: string;
+  replies?: Array<Commentary>;
+}
