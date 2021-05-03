@@ -22,3 +22,26 @@ export interface Commentary {
   text: string;
   replies?: Array<Commentary>;
 }
+export interface RatingList {
+  evaluator: Evaluator;
+  rate1: Rate;
+  rate2: Rate;
+  rate3: Rate;
+  rate4: Rate;
+  rate5: Rate;
+  total: number;
+}
+
+export interface Rate {
+  rate: string;
+  commentary: string;
+}
+
+export interface Evaluator {
+  name: string;
+  avatar: string;
+}
+
+export interface KeywordsList {
+  keywordsList: string[];
+}

@@ -49,3 +49,42 @@ export const commentariesList = [
     ],
   },
 ];
+
+export const ratingList = {
+  evaluator: {
+    name: 'Elmar Melcher',
+    avatar: 'https://avatars.githubusercontent.com/u/50139832?v=4',
+  },
+  rate1: {
+    rate: '200',
+    commentary:
+      'Essa competência foi super bem escrita, eu como professora de redação super formada posso garantir isso.',
+  },
+  rate2: {
+    rate: '120',
+    commentary: '',
+  },
+  rate3: {
+    rate: '160',
+    commentary:
+      'Esse comentário vai ter 3 linhas pra eu ficar testando o padding',
+  },
+  rate4: {
+    rate: '40',
+    commentary: 'Mlk tu é mt ruim',
+  },
+  rate5: {
+    rate: '160',
+    commentary: 'Comentário de 2 linhas aaaaaaaaa',
+  },
+  total: 680,
+};
+
+export const keywordsList: string[] = [
+  'Cachorro',
+  'pet',
+  'animal',
+  'meio ambiente',
+  'natureza',
+  'etc',
+];
