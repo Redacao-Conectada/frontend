@@ -56,6 +56,7 @@ export const essayList = {
 
 export const commentariesList = [
   {
+    id: '1',
     author: {
       name: 'Chiquinho da Silva',
       avatar: 'https://avatars.githubusercontent.com/u/36909697?v=4',
@@ -63,11 +64,30 @@ export const commentariesList = [
     text: 'Muito top, Amegan!',
   },
   {
+    id: '2',
     author: {
       name: 'Netinho da Comunidade',
       avatar: 'https://avatars.githubusercontent.com/u/50139832?v=4',
     },
     text: 'Sei não, mas eu só acho que tá pra um 600!',
+    replies: [
+      {
+        id: '3',
+        author: {
+          name: 'Chico Milicote',
+          avatar: 'https://avatars.githubusercontent.com/u/50139832?v=4',
+        },
+        text: 'Rapaz, sei não!',
+      },
+      {
+        id: '4',
+        author: {
+          name: 'Chiquinha Do Chaves',
+          avatar: 'https://avatars.githubusercontent.com/u/50139832?v=4',
+        },
+        text: 'Chaves, Chaves!',
+      },
+    ],
   },
 ];
 

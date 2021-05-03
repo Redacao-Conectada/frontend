@@ -35,7 +35,7 @@ const DetailedEssayCard: React.FC<DetailedEssayCardProps> = ({
   };
 
   return (
-    <EssayCardContainer width={width || '314px'}>
+    <EssayCardContainer>
       <HeaderContainer>
         <h2>{essay.title}</h2>
         <a>{icons.pen}</a>

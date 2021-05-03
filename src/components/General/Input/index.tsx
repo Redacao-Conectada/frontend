@@ -6,7 +6,7 @@ import { InputContainer, ErrorMessage } from './styles';
 interface InputProps {
   entity: General.Value;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  label: string;
+  label?: string;
   type: InputInterface.InputTypes;
   validated?: boolean;
   mask?: string;
@@ -38,7 +38,7 @@ const Input: React.FC<InputProps> = ({
 
   return (
     <Wrapper>
-      {label}
+      {label || null}
       <InputContainer
         name={inputName}
         type={type}
