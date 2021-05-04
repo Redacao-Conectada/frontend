@@ -1,17 +1,8 @@
 import { colors } from '@/styles/colors';
 import styled from 'styled-components';
 
-interface CommentBoxProps {
-  width: string;
-}
-
-export const EssayContainer = styled.div`
-  width: 314px;
-`;
-
-export const CommentBox = styled.div<CommentBoxProps>`
+export const CommentBox = styled.div`
   min-width: 300px;
-  width: ${(props) => props.width};
   padding-bottom: 4px;
 `;
 
@@ -31,4 +22,9 @@ export const ShowCommentariesBox = styled.div`
     text-decoration: underline;
     color: ${colors.link};
   }
+`;
+
+export const DetailsContainer = styled.div`
+  width: calc(100vw - 64px);
+  max-width: 500px;
 `;

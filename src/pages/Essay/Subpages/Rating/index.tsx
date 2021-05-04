@@ -1,11 +1,15 @@
 // import Evaluator from '@/components/Evaluator';
 import Evaluator from '@/components/EvaluatorCard';
 import RatingEssayCard from '@/components/RatingEssayCard';
+import { RatingList } from '@/interfaces/general';
 import { CenteredContainer } from '@styles/publicRoutes';
-import { ratingList } from '@utils/mocks';
 import React from 'react';
 
-const EssayRating: React.FC = () => {
+interface EssayRatingProps {
+  ratingList: RatingList;
+}
+
+const EssayRating: React.FC<EssayRatingProps> = ({ ratingList }) => {
   return (
     <CenteredContainer>
       <Evaluator evaluator={ratingList.evaluator} />
