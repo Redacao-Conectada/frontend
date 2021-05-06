@@ -1,5 +1,6 @@
 import { icons } from '@assets/icons';
 import { TagSwitcher } from '@components/General';
+import Menu from '@components/Menu';
 import { TagOptionList } from '@definitions/tag';
 import React, { useState } from 'react';
 
@@ -35,6 +36,8 @@ const Example: React.FC = () => {
         name="activeOption"
         value={data.activeOption}
       />
+      <div style={{ height: '24px' }} />
+      <Menu />
     </div>
   );
 };
