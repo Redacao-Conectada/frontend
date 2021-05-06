@@ -5,6 +5,10 @@ import EssayDetails from '../Subpages/Details';
 import EssayKeywords from '../Subpages/Keywords';
 import EssayRating from '../Subpages/Rating';
 
+interface essayComponentsProps {
+  [index: number]: JSX.Element;
+}
+
 const EssayMain: React.FC = () => {
   const [activePage, setActivePage] = useState(0);
 
@@ -21,20 +25,13 @@ const EssayMain: React.FC = () => {
 
   const steps = ['Redação', 'Correção', 'Palavras-chave'];
 
-  const getPageByIndex = (index: number) => {
-    switch (index) {
-      case 0:
-        return <EssayDetails essay={mockedEssay} />;
-      case 1:
-        return <EssayRating ratingList={ratingList} />;
-      case 2:
-        return <EssayKeywords keywords={keywordsList} />;
-      default:
-        return null;
-    }
+  const essayComponents: essayComponentsProps = {
+    0: <EssayDetails essay={mockedEssay} />,
+    1: <EssayRating ratingList={ratingList} />,
+    2: <EssayKeywords keywords={keywordsList} />,
   };
 
-  const getActivePage = () => getPageByIndex(activePage);
+  const getActivePage = () => essayComponents[activePage];
 
   return (
     <>

@@ -5,7 +5,7 @@ import React from 'react';
 import { KeywordsContainer } from './styles';
 
 interface EssayKeywordsProps {
-  keywords: Array<string>;
+  keywords: string[];
 }
 
 const EssayKeywords: React.FC<EssayKeywordsProps> = ({ keywords }) => {

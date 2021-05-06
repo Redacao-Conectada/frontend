@@ -2,7 +2,7 @@ import React from 'react';
 import { OptionsContainer, Option } from './styles';
 
 interface PageStepperProps {
-  steps: Array<string>;
+  steps: string[];
   activeStep: number;
   onStepClick: (newActiveStep: number) => void;
 }
@@ -12,13 +12,11 @@ const PageStepper: React.FC<PageStepperProps> = ({
   activeStep,
   onStepClick,
 }) => {
-  const optionItem = (index: number, isActive: boolean, option: string) => {
-    return (
-      <Option isActive={isActive} key={option}>
-        <a onClick={() => onStepClick(index)}>{option}</a>
-      </Option>
-    );
-  };
+  const optionItem = (index: number, isActive: boolean, option: string) => (
+    <Option isActive={isActive} key={option}>
+      <a onClick={() => onStepClick(index)}>{option}</a>
+    </Option>
+  );
 
   return (
     <OptionsContainer>

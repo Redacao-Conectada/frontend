@@ -1,5 +1,5 @@
-import { Essay } from '@/interfaces/general';
-import CommentaryList, { ShowCommentariesLabel } from '@components/Commentary';
+import { Commentary, Essay } from '@/interfaces/general';
+import CommentaryList from '@components/Commentary';
 import DetailedEssayCard from '@components/DetailedEssayCard';
 import { commentariesList } from '@utils/mocks';
 import React, { useState } from 'react';
@@ -10,10 +10,13 @@ interface EssayDetailsProps {
 }
 
 const EssayDetails: React.FC<EssayDetailsProps> = ({ essay }) => {
-  const [showCommentaries, setShowCommentaries] = useState(false);
+  // TODO: adicionar state para guardar comentários
+
+  const [commentaries, setCommentaries] = useState<Commentary[]>([]);
 
   const handleShowCommentaries = () => {
-    setShowCommentaries(true);
+    console.log('carrega comentários');
+    setCommentaries(commentariesList);
     // TODO: fazer requisição para buscar comentários da redação
     // TODO: fazer loading
   };
@@ -28,15 +31,12 @@ const EssayDetails: React.FC<EssayDetailsProps> = ({ essay }) => {
     <DetailsContainer>
       <DetailedEssayCard essay={essay} />
       <CommentBox>
-        {showCommentaries ? (
-          <CommentaryList
-            onCommentSubmit={handleCommentSubmit}
-            authorAvatar={essay.author.avatar}
-            commentaries={commentariesList}
-          />
-        ) : (
-          <ShowCommentariesLabel onClick={handleShowCommentaries} />
-        )}
+        <CommentaryList
+          onCommentSubmit={handleCommentSubmit}
+          authorAvatar={essay.author.avatar}
+          commentaries={commentaries}
+          onShowCommentaries={handleShowCommentaries}
+        />
       </CommentBox>
     </DetailsContainer>
   );

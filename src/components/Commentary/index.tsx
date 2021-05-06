@@ -15,8 +15,9 @@ import {
 
 interface CommentaryListProps {
   authorAvatar: string;
-  commentaries: Array<Commentary>;
+  commentaries: Commentary[];
   onCommentSubmit: (text: string) => void;
+  onShowCommentaries: () => void;
 }
 
 interface ShowCommentaryBoxProps {
@@ -27,6 +28,7 @@ const CommentaryList: React.FC<CommentaryListProps> = ({
   onCommentSubmit,
   authorAvatar,
   commentaries,
+  onShowCommentaries,
 }) => {
   const [commentText, setCommentText] = useState<General.Value>({
     ...General.initialValue,
@@ -34,6 +36,8 @@ const CommentaryList: React.FC<CommentaryListProps> = ({
   });
 
   const [validated, setValidated] = useState(false);
+
+  const [showCommentaries, setShowCommentaries] = useState(false);
 
   const handleComment = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
@@ -50,6 +54,11 @@ const CommentaryList: React.FC<CommentaryListProps> = ({
     setValidated(true);
     onCommentSubmit(commentText.value);
     clearField();
+  };
+
+  const handleShowCommentariesClick = () => {
+    setShowCommentaries(true);
+    onShowCommentaries();
   };
 
   const comment = (commentary: Commentary, isReply: boolean) => (
@@ -98,15 +107,25 @@ const CommentaryList: React.FC<CommentaryListProps> = ({
     </WriteCommentaryContainer>
   );
 
-  return (
+  const ComentariesList = () => (
     <CommentaryListContainer>
       {writeCommentary()}
       <ul>{commentaries.map((c) => commentaryItem(c.id, c))}</ul>
     </CommentaryListContainer>
   );
+
+  return (
+    <>
+      {showCommentaries ? (
+        <ComentariesList />
+      ) : (
+        <ShowCommentariesLabel onClick={handleShowCommentariesClick} />
+      )}
+    </>
+  );
 };
 
-export const ShowCommentariesLabel: React.FC<ShowCommentaryBoxProps> = ({
+const ShowCommentariesLabel: React.FC<ShowCommentaryBoxProps> = ({
   onClick,
 }) => (
   <ShowCommentariesBox>
