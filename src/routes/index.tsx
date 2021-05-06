@@ -43,19 +43,9 @@ const Routes: React.FC = () => {
     <BrowserRouter>
       <Switch>
         {authenticated ? (
-          <>
-            {privateRouteComponents}
-            <Route path="/">
-              <Redirect to="/feed" />
-            </Route>
-          </>
+          <>{privateRouteComponents}</>
         ) : (
-          <>
-            {publicRouteComponents}
-            <Route path="/">
-              <Redirect to="/login" />
-            </Route>
-          </>
+          <>{publicRouteComponents}</>
         )}
       </Switch>
     </BrowserRouter>
