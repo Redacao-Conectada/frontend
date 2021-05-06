@@ -1,15 +1,10 @@
 import { colors } from '@styles/colors';
 import styled from 'styled-components';
 
-interface EssayCardProps {
-  width: string;
-}
-
-export const EssayCardContainer = styled.div<EssayCardProps>`
+export const EssayCardContainer = styled.div`
   padding: 12px;
 
   min-width: 300px;
-  width: ${(props) => props.width};
 
   border: 1px solid ${colors.normalBorder};
   border-radius: 5px;

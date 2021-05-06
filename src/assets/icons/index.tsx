@@ -6,6 +6,7 @@ import { ReactComponent as Clipboard } from './clipboard.svg';
 import { ReactComponent as EmptyStar } from './emptyStar.svg';
 import { ReactComponent as Home } from './home.svg';
 import { ReactComponent as Pen } from './pen.svg';
+import { ReactComponent as Reply } from './reply.svg';
 import { ReactComponent as PlusFile } from './plusFile.svg';
 import { ReactComponent as Search } from './search.svg';
 import { ReactComponent as Star } from './star.svg';
@@ -16,11 +17,12 @@ import { ReactComponent as Users } from './users.svg';
 export const icons = {
   award: <Award />,
   chat: <Chat />,
-  clipboard: <Clipboard />,
   chevron: <Chevron />,
+  clipboard: <Clipboard />,
   emptyStar: <EmptyStar />,
   home: <Home />,
   pen: <Pen />,
+  reply: <Reply />,
   plusFile: <PlusFile />,
   search: <Search />,
   star: <Star />,

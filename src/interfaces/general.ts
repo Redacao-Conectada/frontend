@@ -16,6 +16,12 @@ export interface Essay {
   numOfStars: number;
 }
 
+export interface Commentary {
+  id: string;
+  author: Author;
+  text: string;
+  replies?: Array<Commentary>;
+}
 export interface RatingList {
   evaluator: Evaluator;
   rate1: Rate;
@@ -34,8 +40,4 @@ export interface Rate {
 export interface Evaluator {
   name: string;
   avatar: string;
-}
-
-export interface KeywordsList {
-  keywordsList: string[];
 }
