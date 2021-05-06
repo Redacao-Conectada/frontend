@@ -45,12 +45,16 @@ const Routes: React.FC = () => {
         {authenticated ? (
           <>
             {privateRouteComponents}
-            <Redirect to="/feed" />
+            <Route path="/">
+              <Redirect to="/feed" />
+            </Route>
           </>
         ) : (
           <>
             {publicRouteComponents}
-            {/* <Redirect to="/login" /> */}
+            <Route path="/">
+              <Redirect to="/login" />
+            </Route>
           </>
         )}
       </Switch>
