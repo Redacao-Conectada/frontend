@@ -1,12 +1,16 @@
 // import Evaluator from '@/components/Evaluator';
 import EssayPreviewCard from '@/components/EssayPreviewCard';
-import Evaluator from '@/components/EvaluatorCard';
+import EvaluatorCard from '@/components/EvaluatorCard';
 import { TagSwitcher } from '@/components/General';
+import StudentCard from '@/components/StudentCard';
+import { User, Evaluator, Student } from '@/interfaces/general';
 import { icons } from '@assets/icons';
 import { TagOptionList } from '@definitions/tag';
 import { CenteredContainer } from '@styles/publicRoutes';
-import { ratingList, essayList } from '@utils/mocks';
+import { evaluator, student, essayList } from '@utils/mocks';
 import React, { useState } from 'react';
+
+const user: User = student;
 
 const tagOptions: TagOptionList = [
   { label: 'Votos', icon: icons.emptyStar },
@@ -34,10 +38,17 @@ const ProfileView: React.FC = () => {
   console.log(data);
   return (
     <CenteredContainer>
-      <Evaluator
-        evaluator={ratingList.evaluator}
-        ratedEssays={ratingList.evaluator.ratedEssays}
-      />
+      {user.roleName === 'teacher' && (
+        <EvaluatorCard
+          evaluator={evaluator}
+          ratedEssays={evaluator.ratedEssays}
+        />
+      )}
+
+      {user.roleName === 'student' && (
+        <StudentCard student={student} writtenEssays={student.writtenEssays} />
+      )}
+
       <TagSwitcher
         options={tagOptions}
         onChange={handleSelectOption}

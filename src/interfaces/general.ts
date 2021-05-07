@@ -5,18 +5,30 @@ export interface Value {
 }
 
 export interface User {
+  id?: number;
   name: string;
   avatar: string;
   birthDate: string;
   city: string;
   cpf: string;
   email: string;
-  schoolYear: string;
+  roleName?: string;
+  roleId?: number;
   school: string;
   state: string;
 }
+
+export interface Evaluator extends User {
+  ratedEssays: number;
+}
+
+export interface Student extends User {
+  writtenEssays: number;
+  schoolYear: string;
+}
+
 export interface Essay {
-  id: string;
+  id: number;
   text: string;
   title: string;
   author: User;
@@ -47,12 +59,6 @@ export interface RatingList {
 export interface Rate {
   rate: string;
   commentary: string;
-}
-
-export interface Evaluator {
-  name: string;
-  avatar: string;
-  ratedEssays: number;
 }
 
 export interface UserApi {
