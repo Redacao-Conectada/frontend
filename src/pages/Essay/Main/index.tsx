@@ -1,8 +1,7 @@
-import api, { getLoggedUsername } from '@/service/api';
+import api from '@/service/api';
 import PageStepper from '@components/PageStepper';
 import { mockedEssay, ratingList, keywordsList } from '@utils/mocks';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import EssayDetails from '../Subpages/Details';
 import EssayKeywords from '../Subpages/Keywords';
 import EssayRating from '../Subpages/Rating';
@@ -21,9 +20,7 @@ const EssayMain: React.FC<EssayMainProps> = (props) => {
   useEffect(() => {
     // TODO: implementa requests em busca de comentários, redação, ratings e keywords
     // TODO: request da redação pelo id do path
-    api
-      .get(`/users/essays?userName=${getLoggedUsername()}`)
-      .then((res) => console.log(res));
+    api.get(`/essays/${props.match.params.id}`).then((res) => console.log(res));
 
     // TODO: implementa request de busca de comentarios
     // TODO: implementa request em busca de correções via id da essay
