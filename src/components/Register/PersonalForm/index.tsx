@@ -28,6 +28,15 @@ const PersonalForm: React.FC<PersonalDataForm> = ({
         onChange={onChange}
       />
       <Input
+        entity={data.cpf}
+        name="cpf"
+        label="CPF"
+        type="text"
+        validated={validated}
+        placeholder="Digite seu CPF"
+        onChange={onChange}
+      />
+      <Input
         entity={data.birthDate}
         name="birthDate"
         label="Data de nascimento"

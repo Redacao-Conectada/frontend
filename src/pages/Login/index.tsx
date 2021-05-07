@@ -1,5 +1,6 @@
 import { Button, Input, Link } from '@/components/General';
 import { General } from '@/definitions';
+import api, { login } from '@/service/api';
 import Image from '@assets/loginImage.svg';
 import { ReactComponent as Logo } from '@assets/logo.svg';
 import {
@@ -9,6 +10,7 @@ import {
   Header,
 } from '@styles/publicRoutes';
 import { validateEmail } from '@utils/validations';
+import qs from 'qs';
 import React, { useState } from 'react';
 
 const Login: React.FC = () => {
@@ -27,6 +29,8 @@ const Login: React.FC = () => {
     event.preventDefault();
 
     setValidated(true);
+
+    login(email.value, password.value);
   };
 
   const handleEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
