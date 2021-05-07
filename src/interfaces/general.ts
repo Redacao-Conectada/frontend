@@ -3,14 +3,22 @@ export interface Value {
   invalidity: string;
   validation: Function;
 }
-export interface Author {
+
+export interface User {
   name: string;
   avatar: string;
+  birthDate: string;
+  city: string;
+  cpf: string;
+  email: string;
+  schoolYear: string;
+  school: string;
+  state: string;
 }
 export interface Essay {
   text: string;
   title: string;
-  author: Author;
+  author: User;
   date: string;
   isStarred: boolean;
   numOfStars: number;
@@ -18,7 +26,7 @@ export interface Essay {
 
 export interface Commentary {
   id: string;
-  author: Author;
+  author: User;
   text: string;
   replies?: Array<Commentary>;
 }
@@ -40,4 +48,25 @@ export interface Rate {
 export interface Evaluator {
   name: string;
   avatar: string;
+}
+
+export interface UserApi {
+  birthdate: string;
+  city: string;
+  cpf: string;
+  email: string;
+  graduation: string;
+  image: string;
+  name: string;
+  password: string;
+  schoolName: string;
+  state: string;
+}
+
+export interface EssayApi {
+  body: string;
+  id: number;
+  isAnon: boolean;
+  upVote: number;
+  userId: number;
 }

@@ -30,6 +30,7 @@ const Routes: React.FC = () => {
       return (
         <PrivateTemplate>
           <Route
+            key={path}
             path={path}
             exact={exact}
             render={(props) => <Component {...props} />}

@@ -13,6 +13,9 @@ export const validateEmail = (email: string): string => {
   return 'Digite um e-mail válido.';
 };
 
+export const validateCpf = (cpf: string): string =>
+  cpf.trim().length < 1 ? `O campo cpf está vazio` : '';
+
 export const validateName = (name: string): string =>
   name.split(' ').length < 2 ? 'Insira seu nome completo' : '';
 
