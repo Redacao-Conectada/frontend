@@ -14,6 +14,7 @@ export interface Essay {
   date: string;
   isStarred: boolean;
   numOfStars: number;
+  ratingList?: RatingList;
 }
 
 export interface Commentary {

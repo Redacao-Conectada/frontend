@@ -2,7 +2,7 @@
 import EssayPreviewCard from '@/components/EssayPreviewCard';
 import Evaluator from '@/components/EvaluatorCard';
 import { CenteredContainer } from '@styles/publicRoutes';
-import { mockedEssay, ratingList } from '@utils/mocks';
+import { ratingList, essayList } from '@utils/mocks';
 
 import React from 'react';
 
@@ -13,7 +13,7 @@ const ProfileView: React.FC = () => {
         evaluator={ratingList.evaluator}
         ratedEssays={ratingList.evaluator.ratedEssays}
       />
-      <EssayPreviewCard essay={mockedEssay} />
+      <EssayPreviewCard essayList={essayList.list} />
     </CenteredContainer>
   );
 };

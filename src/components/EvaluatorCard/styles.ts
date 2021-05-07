@@ -15,6 +15,7 @@ export const EvaluatorContainer = styled.div`
     font-family: 'Open Sans';
   }
   .gradedEssaysText {
+    margin-top: 8px;
     font-weight: bold;
     font-size: 14px;
     color: rgb(78, 82, 104);
@@ -27,6 +28,7 @@ export const EvaluatorContainer = styled.div`
   .center {
     display: flex;
     justify-content: center;
+    align-items: center;
   }
   img {
     border: 1px solid #131735;
@@ -40,7 +42,7 @@ export const EvaluatorContainer = styled.div`
     font-size: 16px;
     font-weight: 700;
   }
-  div:nth-child(3) {
+  .bottomText {
     font-size: 14px;
     font-weight: 600;
     color: #4b4f65;

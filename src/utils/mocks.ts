@@ -13,6 +13,37 @@ export const mockedEssay = {
   numOfStars: 900,
 };
 
+export const ratingList = {
+  evaluator: {
+    name: 'Elmar Melcher',
+    avatar: 'https://avatars.githubusercontent.com/u/50139832?v=4',
+    ratedEssays: 420,
+  },
+  rate1: {
+    rate: '200',
+    commentary:
+      'Essa competência foi super bem escrita, eu como professora de redação super formada posso garantir isso.',
+  },
+  rate2: {
+    rate: '120',
+    commentary: '',
+  },
+  rate3: {
+    rate: '160',
+    commentary:
+      'Esse comentário vai ter 3 linhas pra eu ficar testando o padding',
+  },
+  rate4: {
+    rate: '40',
+    commentary: 'Mlk tu é mt ruim',
+  },
+  rate5: {
+    rate: '160',
+    commentary: 'Comentário de 2 linhas aaaaaaaaa',
+  },
+  total: 680,
+};
+
 export const essayList = {
   list: [
     {
@@ -28,6 +59,7 @@ export const essayList = {
       date: '23/03/1980',
       isStarred: true,
       numOfStars: 900,
+      ratingList,
     },
     {
       text: `Donec ut libero eleifend, viverra enim at, efficitur magna. Vivamus nec neque vitae tortor tristique consectetur. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque quis elementum risus, eu vehicula leo. Praesent quis dignissim nibh. Aliquam rutrum, ex id hendrerit commodo, orci elit mollis tellus, at pharetra leo augue eu urna. Suspendisse faucibus dui vel aliquam placerat. Curabitur laoreet bibendum justo, et facilisis orci efficitur vitae. Sed viverra libero ex, a aliquam sapien finibus et. Morbi pretium blandit elit, consectetur dignissim lectus commodo id. Morbi malesuada, nisi eget sollicitudin maximus, turpis magna sodales dui, sit amet pellentesque quam metus in purus. Donec iaculis tellus massa, eu scelerisque nisl aliquet sed. Proin fringilla, dui ut tincidunt aliquam, metus libero gravida velit, eget laoreet elit libero in nisi. In in sapien in neque tempor vehicula id ut magna. Vestibulum enim magna, sodales nec nibh vel, tempus lacinia tortor. Sed molestie lobortis rhoncus.`,
@@ -90,37 +122,6 @@ export const commentariesList = [
     ],
   },
 ];
-
-export const ratingList = {
-  evaluator: {
-    name: 'Elmar Melcher',
-    avatar: 'https://avatars.githubusercontent.com/u/50139832?v=4',
-    ratedEssays: 420,
-  },
-  rate1: {
-    rate: '200',
-    commentary:
-      'Essa competência foi super bem escrita, eu como professora de redação super formada posso garantir isso.',
-  },
-  rate2: {
-    rate: '120',
-    commentary: '',
-  },
-  rate3: {
-    rate: '160',
-    commentary:
-      'Esse comentário vai ter 3 linhas pra eu ficar testando o padding',
-  },
-  rate4: {
-    rate: '40',
-    commentary: 'Mlk tu é mt ruim',
-  },
-  rate5: {
-    rate: '160',
-    commentary: 'Comentário de 2 linhas aaaaaaaaa',
-  },
-  total: 680,
-};
 
 export const keywordsList: string[] = [
   'Cachorro',
