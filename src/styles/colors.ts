@@ -26,6 +26,10 @@ export const colors = {
   plus600: '#398ECC',
   plus500: '#4A86E8',
   minus500: '#EE6352',
+
+  // Menu
+  menuBackground: '#FCFAF9',
+  menuShadow: 'rgba(24, 50, 115, 0.03)',
 };
 
 export const colorWithTransparency = (
