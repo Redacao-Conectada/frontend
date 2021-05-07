@@ -3,8 +3,22 @@ import { Switch } from '@components/General';
 import { Wrapper } from '@styles/generalComponents';
 import React, { useState } from 'react';
 
+const tagOptions: TagOptionList = [
+  { label: 'Votos', icon: icons.emptyStar },
+  { label: 'Comentários', icon: icons.chat },
+  { label: 'Nota', icon: icons.award },
+];
+
+interface Data {
+  activeOption: string;
+}
+
+const initialData: Data = {
+  activeOption: tagOptions[0].label,
+};
+
 const Example: React.FC = () => {
-  const [boolValue, setBoolValue] = useState(false);
+  const [data, setData] = useState(initialData);
 
   const handleBoolValue = (name: string, value: boolean) => {
     // console.log({ name, value });

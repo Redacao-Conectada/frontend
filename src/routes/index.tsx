@@ -14,6 +14,7 @@ const Routes: React.FC = () => {
 
       return (
         <Route
+          key={path}
           path={path}
           exact={exact}
           render={(props) => <Component {...props} />}
@@ -40,19 +41,17 @@ const Routes: React.FC = () => {
 
   return (
     <BrowserRouter>
-      <Switch>
-        {authenticated ? (
-          <>
-            {privateRouteComponents}
-            <Redirect to="/feed" />
-          </>
-        ) : (
-          <>
-            {publicRouteComponents}
-            {/* <Redirect to="/login" /> */}
-          </>
-        )}
-      </Switch>
+      {authenticated ? (
+        <Switch>
+          {privateRouteComponents}
+          <Redirect to="/example" />
+        </Switch>
+      ) : (
+        <Switch>
+          {publicRouteComponents}
+          <Redirect to="/login" />
+        </Switch>
+      )}
     </BrowserRouter>
   );
 };

@@ -11,4 +11,5 @@ export const HorizontalWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   font-size: 1.125rem;
+  cursor: pointer;
 `;
