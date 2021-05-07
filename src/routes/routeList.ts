@@ -29,4 +29,10 @@ export const publicRouteList: RouteProps[] = [
     exact: true,
     title: 'Exemplo',
   },
+  {
+    path: '/essay/create',
+    component: pages.CreateEssay,
+    exact: true,
+    title: 'Criar Redação',
+  },
 ];

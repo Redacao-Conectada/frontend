@@ -4,3 +4,4 @@ export { default as Link } from './Link';
 export { default as SwitchRouter } from './SwitchRouter';
 export { default as Select } from './Select';
 export { default as Switch } from './Switch';
+export { default as InputEssay } from './InputEssay';
