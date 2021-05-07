@@ -3,14 +3,14 @@ import EssayPreviewCard from '@/components/EssayPreviewCard';
 import EvaluatorCard from '@/components/EvaluatorCard';
 import { TagSwitcher } from '@/components/General';
 import StudentCard from '@/components/StudentCard';
-import { User, Evaluator, Student } from '@/interfaces/general';
+import { EssayApi, UserRole } from '@/interfaces/general';
+import api, { hasAuthority } from '@/service/api';
+import Mappers from '@/utils/mappers';
 import { icons } from '@assets/icons';
 import { TagOptionList } from '@definitions/tag';
 import { CenteredContainer } from '@styles/publicRoutes';
 import { evaluator, student, essayList } from '@utils/mocks';
-import React, { useState } from 'react';
-
-const user: User = student;
+import React, { useEffect, useState } from 'react';
 
 const tagOptions: TagOptionList = [
   { label: 'Votos', icon: icons.emptyStar },
@@ -29,6 +29,23 @@ const initialData: Data = {
 const ProfileView: React.FC = () => {
   const [data, setData] = useState(initialData);
 
+  const [essays, setEssays] = useState();
+
+  useEffect(() => {
+    api.get('/essays').then((res) => {
+      const essaysApi = res.data.content;
+      console.log(essaysApi);
+
+      // TODO: esperando backend trazer author junto com essay
+
+      // const essaysList: Essay[] = [];
+      /* essaysApi.map((essayApi: EssayApi) => {
+        // TODO: fazer request em busca do user para associar às Essays
+        essaysList = [...essaysList, Mappers.essayApiToEssay(essayApi)];
+      }); */
+    });
+  }, []);
+
   const handleSelectOption = (name: string, value: string) => {
     setData({
       ...data,
@@ -38,14 +55,14 @@ const ProfileView: React.FC = () => {
   console.log(data);
   return (
     <CenteredContainer>
-      {user.roleName === 'teacher' && (
+      {hasAuthority(UserRole.ROLE_TEACHER) && (
         <EvaluatorCard
           evaluator={evaluator}
           ratedEssays={evaluator.ratedEssays}
         />
       )}
 
-      {user.roleName === 'student' && (
+      {hasAuthority(UserRole.ROLE_STUDENT) && (
         <StudentCard student={student} writtenEssays={student.writtenEssays} />
       )}
 

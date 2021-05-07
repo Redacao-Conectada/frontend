@@ -1,9 +1,9 @@
-import { Evaluator } from '@/interfaces/general';
+import { User } from '@/interfaces/general';
 import React from 'react';
 import { EvaluatorContainer } from './styles';
 
 interface EvaluatorCardProps {
-  evaluator: Evaluator;
+  evaluator: User;
   ratedEssays?: number;
 }
 

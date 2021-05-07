@@ -13,19 +13,13 @@ export interface User {
   city: string;
   cpf: string;
   email: string;
-  roleName?: string;
+  roles?: UserRole[];
   roleId?: number;
   school: string;
+  schoolYear?: string;
   state: string;
-}
-
-export interface Evaluator extends User {
-  ratedEssays: number;
-}
-
-export interface Student extends User {
-  writtenEssays: number;
-  schoolYear: string;
+  writtenEssays?: number;
+  ratedEssays?: number;
 }
 
 export interface Essay {
@@ -48,7 +42,7 @@ export interface Commentary {
   replies?: Array<Commentary>;
 }
 export interface RatingList {
-  evaluator: Evaluator;
+  evaluator: User;
   rate1: Rate;
   rate2: Rate;
   rate3: Rate;
@@ -85,6 +79,7 @@ export interface EssayApi {
 
 export enum UserRole {
   ROLE_STUDENT = 'ROLE_STUDENT',
+  ROLE_TEACHER = 'ROLE_TEACHER',
 }
 
 // TODO: criar interface para Correction e CorrectionApi

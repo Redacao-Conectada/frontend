@@ -12,6 +12,7 @@ const CLIENT_ID = 'redacaoconectada';
 const CLIENT_SECRET = 'redacaoconectada123';
 const TOKEN_KEY = '@RedacaoConectada:token';
 const USER_ROLES = 'USER_ROLES';
+const USER_USERNAME = 'USER_USERNAME';
 
 const api = axios.create({ baseURL: API_URL });
 
@@ -67,6 +68,7 @@ export const login = (email: string, password: string): void => {
       console.log(user);
       localStorage.setItem(TOKEN_KEY, token);
       localStorage.setItem(USER_ROLES, user.authorities);
+      localStorage.setItem(USER_USERNAME, user.user_name);
     })
     .catch(() => toast.error('Usuário ou senha inválidos'));
 };
@@ -79,6 +81,9 @@ export const logout = (): void => {
 
 export const hasAuthority = (authority: UserRole): boolean =>
   localStorage.getItem(USER_ROLES)?.includes(authority) || false;
+
+export const getLoggedUsername = (): string =>
+  localStorage.getItem(USER_USERNAME) || '';
 
 export type AxiosResponse<T> = ImportedAxiosResponse<T>;
 

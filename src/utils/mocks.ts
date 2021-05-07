@@ -1,3 +1,5 @@
+import { UserRole } from '@/interfaces/general';
+
 export const mockedUser = {
   id: 8237,
   name: 'Guilherme Carneiro',
@@ -22,8 +24,7 @@ export const evaluator = {
   city: 'Pombal',
   cpf: '12345678901',
   email: 'gui@email.com',
-  roleName: 'teacher',
-  roleId: 889,
+  roles: [UserRole.ROLE_TEACHER, UserRole.ROLE_STUDENT],
   school: 'Colégio Geo',
   state: 'PB',
 };
@@ -38,7 +39,7 @@ export const student = {
   cpf: '12345678901',
   email: 'gui@email.com',
   schoolYear: '1m',
-  roleName: 'student',
+  roles: [UserRole.ROLE_STUDENT],
   roleId: 998,
   school: 'Colégio Geo',
   state: 'PB',

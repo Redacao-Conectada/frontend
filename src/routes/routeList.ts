@@ -18,7 +18,7 @@ export const publicRouteList: RouteProps[] = [
     title: 'Login',
   },
   {
-    path: '/essay', // FIXME: deve ser /essay/${id}
+    path: '/essay/:id',
     component: pages.EssayMainPage,
     exact: true,
     title: 'Redação em Detalhes',
@@ -36,7 +36,7 @@ export const publicRouteList: RouteProps[] = [
     title: 'Exemplo',
   },
   {
-    path: '/profile',
+    path: '/profile', // FIXME: deve ser /profile/id
     component: pages.ProfileView,
     exact: true,
     title: 'Exemplo',

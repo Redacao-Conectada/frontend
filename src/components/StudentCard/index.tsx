@@ -1,9 +1,9 @@
-import { Student } from '@/interfaces/general';
+import { User } from '@/interfaces/general';
 import React from 'react';
 import { StudentContainer } from './styles';
 
 interface EvaluatorCardProps {
-  student: Student;
+  student: User;
   writtenEssays?: number;
 }
 
