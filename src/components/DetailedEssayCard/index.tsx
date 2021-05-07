@@ -2,6 +2,7 @@ import { InteractiveStarIcon } from '@/assets/icons/InteractiveIcon';
 import { Essay } from '@/interfaces/general';
 import { icons } from '@assets/icons';
 import React, { useState } from 'react';
+import ShowGrade from '../General/ShowGrade';
 import {
   AuthorContainer,
   DateContainer,
@@ -14,6 +15,7 @@ import {
 
 interface DetailedEssayCardProps {
   width?: string;
+  preview?: boolean;
   essay: Essay;
 }
 
@@ -22,7 +24,7 @@ const defaultAvatar =
 
 const DetailedEssayCard: React.FC<DetailedEssayCardProps> = ({
   essay,
-  width,
+  preview,
 }) => {
   // TODO: fazer estrela ficar amarela quando curtido.
   // TODO: fazer gerenciamento de estado
@@ -34,13 +36,29 @@ const DetailedEssayCard: React.FC<DetailedEssayCardProps> = ({
     // TODO: lança requisição para dar ou retirar estrela
   };
 
+  type Grades = '+900' | '+800' | '+700' | '+600' | '+500' | '-500' | 'noGrade';
+
+  const getGrade = (): Grades => {
+    const grade = essay.ratingList?.total;
+    if (!grade) {
+      return 'noGrade';
+    }
+    if (grade < 499) {
+      return '-500';
+    }
+    const gradeMod = Math.min(Math.floor(grade / 100), 9);
+    return `+${gradeMod}00` as Grades;
+  };
+
   return (
-    <EssayCardContainer>
+    <EssayCardContainer preview={preview}>
       <HeaderContainer>
         <h2>{essay.title}</h2>
-        <a>{icons.pen}</a>
+        <ShowGrade grade={getGrade()} />
       </HeaderContainer>
-      <p>{essay.text}</p>
+      <div className={preview ? 'previewGradient' : ''}>
+        <p className={preview ? 'previewText' : ''}>{essay.text}</p>
+      </div>
       <FooterContainer>
         <StarsCounter>
           <InteractiveStarIcon onClick={handleStarClick} isFilled={isStarred} />
