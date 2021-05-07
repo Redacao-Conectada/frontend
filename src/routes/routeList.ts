@@ -35,4 +35,10 @@ export const publicRouteList: RouteProps[] = [
     exact: true,
     title: 'Exemplo',
   },
+  {
+    path: '/profile',
+    component: pages.ProfileView,
+    exact: true,
+    title: 'Exemplo',
+  },
 ];

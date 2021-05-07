@@ -6,23 +6,39 @@ export interface Value {
 
 // FIXME: precisa ter um conjunto de ROLE
 export interface User {
+  id?: number;
   name: string;
   avatar: string;
   birthDate: string;
   city: string;
   cpf: string;
   email: string;
-  schoolYear: string;
+  roleName?: string;
+  roleId?: number;
   school: string;
   state: string;
 }
+
+export interface Evaluator extends User {
+  ratedEssays: number;
+}
+
+export interface Student extends User {
+  writtenEssays: number;
+  schoolYear: string;
+}
+
 export interface Essay {
+  id: number;
   text: string;
   title: string;
   author: User;
   date: string;
   isStarred: boolean;
   numOfStars: number;
+  numOfComments: number;
+  total: number;
+  ratingList?: RatingList;
 }
 
 export interface Commentary {
@@ -44,11 +60,6 @@ export interface RatingList {
 export interface Rate {
   rate: string;
   commentary: string;
-}
-
-export interface Evaluator {
-  name: string;
-  avatar: string;
 }
 
 export interface UserApi {

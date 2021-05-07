@@ -12,12 +12,15 @@ const essayApiToEssay = (essayApi: EssayApi, user: User): Essay => {
   // FIXME: retornar data de cadastro da redação
 
   const essay = {
+    id: essayApi.id,
     text: essayApi.body,
     title: 'faltando título',
     author: user,
     date: 'faltando data',
     isStarred: false,
     numOfStars: essayApi.upVote,
+    numOfComments: 2398,
+    total: 800,
   };
 
   return essay;

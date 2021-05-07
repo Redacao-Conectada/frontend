@@ -2,20 +2,29 @@ import styled from 'styled-components';
 
 // interface RatingContainerProps {}
 
-export const EvaluatorContainer = styled.div`
+export const StudentContainer = styled.div`
   background-color: #ffffff;
   padding: 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   border-radius: 5px;
   border: 1px solid rgba(42, 70, 112, 0.1);
   div {
+    margin-top: 4px;
     font-family: 'Open Sans';
+    font-size: 16px;
+    font-weight: 700;
   }
-  .gradedEssaysText {
-    margin-top: 8px;
+  .divContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: space-evenly; */
+  }
+  .publishedEssaysText {
+    /* margin-top: 8px; */
     font-weight: bold;
     font-size: 14px;
     color: rgb(78, 82, 104);
@@ -36,11 +45,6 @@ export const EvaluatorContainer = styled.div`
     width: 36px;
     height: 36px;
     border-radius: 50%;
-  }
-  div:nth-child(2) {
-    margin-top: 8px;
-    font-size: 16px;
-    font-weight: 700;
   }
   .bottomText {
     font-size: 14px;
