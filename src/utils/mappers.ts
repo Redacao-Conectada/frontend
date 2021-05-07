@@ -39,6 +39,9 @@ const userApiToUser = (userApi: UserApi): User => {
   return user;
 };
 
+// TODO: mapear Commentary/CommentaryApi
+// TODO: mapear Correction/CorrectionApi
+
 const Mappers = {
   essayApiToEssay,
   userApiToUser,

@@ -4,6 +4,7 @@ export interface Value {
   validation: Function;
 }
 
+// FIXME: precisa ter um conjunto de ROLE
 export interface User {
   name: string;
   avatar: string;
@@ -70,3 +71,5 @@ export interface EssayApi {
   upVote: number;
   userId: number;
 }
+
+// TODO: criar interface para Correction e CorrectionApi
