@@ -23,7 +23,8 @@ const Menu: React.FC = () => {
         className={isActive ? 'active' : undefined}
         onClick={() => handleSelectItem(label)}
       >
-        {isActive ? label : icon}
+        <span>{label}</span>
+        {icon}
       </MenuItem>
     );
   });
