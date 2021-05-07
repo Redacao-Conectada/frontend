@@ -36,7 +36,7 @@ export const publicRouteList: RouteProps[] = [
     title: 'Exemplo',
   },
   {
-    path: '/profile/evaluator',
+    path: '/profile',
     component: pages.ProfileView,
     exact: true,
     title: 'Exemplo',
