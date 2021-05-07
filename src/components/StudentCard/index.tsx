@@ -1,35 +1,42 @@
-import { Evaluator } from '@/interfaces/general';
+import { Student } from '@/interfaces/general';
 import React from 'react';
-import { EvaluatorContainer } from './styles';
+import { StudentContainer } from './styles';
 
 interface EvaluatorCardProps {
-  evaluator: Evaluator;
-  ratedEssays?: number;
+  student: Student;
+  writtenEssays?: number;
 }
 
-const EvaluatorCard: React.FC<EvaluatorCardProps> = ({
-  evaluator,
-  ratedEssays,
+const StudentCard: React.FC<EvaluatorCardProps> = ({
+  student,
+  writtenEssays,
 }) => {
-  const showRatedEssays = (gradedEssays: number | undefined) => {
-    if (gradedEssays !== undefined) {
+  const showStudentHeader = () => {
+    if (writtenEssays !== undefined) {
       return (
-        <div>
-          <div className="gradedEssaysText"> Redações corrigidas </div>
-          <div className="center gradedEssays">{gradedEssays}</div>
+        <div className="divContainer">
+          <div>{student.name}</div>
+          <div>{student.schoolYear}</div>
+          <div className="publishedEssaysText"> Redações publicadas </div>
+          <div className="center gradedEssays">{writtenEssays}</div>
         </div>
       );
     }
-    return <div className="bottomText">Corretorx</div>;
+    return (
+      <div className="divContainer">
+        <div>{student.name}</div>
+        <div>{student.schoolYear}</div>
+        <div className="bottomText">Sem redações!</div>
+      </div>
+    );
   };
 
   return (
-    <EvaluatorContainer>
-      <img alt="avaliador" src={evaluator.avatar} />
-      <div className="evaluatorName">{evaluator.name}</div>
-      {showRatedEssays(ratedEssays)}
-    </EvaluatorContainer>
+    <StudentContainer>
+      <img alt="avaliador" src={student.avatar} />
+      {showStudentHeader()}
+    </StudentContainer>
   );
 };
 
-export default EvaluatorCard;
+export default StudentCard;
