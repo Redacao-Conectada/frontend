@@ -1,21 +1,21 @@
+import { UserRole } from '@/interfaces/general';
 import axios, {
   AxiosRequestConfig,
   AxiosResponse as ImportedAxiosResponse,
 } from 'axios';
+import jwt from 'jwt-decode';
 import qs from 'qs';
 import toast from 'react-hot-toast';
 
 const API_URL = 'https://api-rc.herokuapp.com';
-
 const CLIENT_ID = 'redacaoconectada';
 const CLIENT_SECRET = 'redacaoconectada123';
-
 const TOKEN_KEY = '@RedacaoConectada:token';
+const USER_ROLES = 'USER_ROLES';
 
 const api = axios.create({ baseURL: API_URL });
 
 const requestHandler = (request: AxiosRequestConfig) => {
-  console.log(request);
   const savedToken = localStorage.getItem(TOKEN_KEY);
   if (savedToken) {
     const token = `Bearer ${savedToken}`;
@@ -61,9 +61,24 @@ export const login = (email: string, password: string): void => {
         },
       },
     )
-    .then((res) => localStorage.setItem(TOKEN_KEY, res.data.access_token))
+    .then((res) => {
+      const token = res.data.access_token;
+      const user: any = jwt(token);
+      console.log(user);
+      localStorage.setItem(TOKEN_KEY, token);
+      localStorage.setItem(USER_ROLES, user.authorities);
+    })
     .catch(() => toast.error('Usuário ou senha inválidos'));
 };
+
+export const logout = (): void => {
+  localStorage.removeItem(TOKEN_KEY);
+  localStorage.removeItem(USER_ROLES);
+  toast.success('Bons estudos, volte sempre!');
+};
+
+export const hasAuthority = (authority: UserRole): boolean =>
+  localStorage.getItem(USER_ROLES)?.includes(authority) || false;
 
 export type AxiosResponse<T> = ImportedAxiosResponse<T>;
 

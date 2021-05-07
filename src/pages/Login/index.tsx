@@ -30,7 +30,10 @@ const Login: React.FC = () => {
 
     setValidated(true);
 
+    // TODO: validar campos antes de logar
     login(email.value, password.value);
+
+    // TODO: redirect to essays feed
   };
 
   const handleEmail = (event: React.ChangeEvent<HTMLInputElement>) => {

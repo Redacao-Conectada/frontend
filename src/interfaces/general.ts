@@ -72,4 +72,8 @@ export interface EssayApi {
   userId: number;
 }
 
+export enum UserRole {
+  ROLE_STUDENT = 'ROLE_STUDENT',
+}
+
 // TODO: criar interface para Correction e CorrectionApi
