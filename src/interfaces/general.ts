@@ -8,6 +8,7 @@ export interface Author {
   avatar: string;
 }
 export interface Essay {
+  id: string;
   text: string;
   title: string;
   author: Author;

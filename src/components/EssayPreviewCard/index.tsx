@@ -36,7 +36,7 @@ const EssayPreviewCard: React.FC<EssayPreviewCardProps> = ({
   const essayListSorted = essayList.sort(sortFunctions[sort]);
   console.log(essayListSorted);
   const listEssays = essayListSorted.map((essay) => (
-    <DetailedEssayCard preview={preview} essay={essay} />
+    <DetailedEssayCard key={essay.id} preview={preview} essay={essay} />
   ));
   return <>{listEssays}</>;
 };
