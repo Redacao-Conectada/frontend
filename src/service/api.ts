@@ -64,10 +64,10 @@ export const login = (email: string, password: string): void => {
       },
     )
     .then((res) => {
-      const { token, userId } = res.data.access_token;
-      const user: any = jwt(token);
+      const { access_token, userId } = res.data;
+      const user: any = jwt(access_token);
 
-      localStorage.setItem(TOKEN_KEY, token);
+      localStorage.setItem(TOKEN_KEY, access_token);
       localStorage.setItem(USER_ROLES, user.authorities);
       localStorage.setItem(USER_USERNAME, user.user_name);
       localStorage.setItem(USER_ID, userId);

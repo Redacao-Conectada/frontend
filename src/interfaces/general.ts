@@ -9,13 +9,13 @@ export interface User {
   id?: number;
   name: string;
   avatar: string;
-  birthDate: string;
-  city: string;
-  cpf: string;
+  birthDate?: string;
+  city?: string;
+  cpf?: string;
   email: string;
   roles?: UserRole[];
   roleId?: number;
-  school: string;
+  school?: string;
   schoolYear?: string;
   state: string;
   writtenEssays?: number;
