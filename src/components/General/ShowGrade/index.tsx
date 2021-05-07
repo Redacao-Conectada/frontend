@@ -27,7 +27,6 @@ const ShowGrade: React.FC<ShowGradeProps> = ({ grade }) => {
     noGrade: <GradeColoredNoGrade />,
   };
 
-  console.log(gradesOptions[grade]);
   return gradesOptions[grade];
 };
 

@@ -16,6 +16,7 @@ import {
 interface DetailedEssayCardProps {
   width?: string;
   preview?: boolean;
+  comments?: boolean;
   essay: Essay;
 }
 
@@ -39,7 +40,7 @@ const DetailedEssayCard: React.FC<DetailedEssayCardProps> = ({
   type Grades = '+900' | '+800' | '+700' | '+600' | '+500' | '-500' | 'noGrade';
 
   const getGrade = (): Grades => {
-    const grade = essay.ratingList?.total;
+    const grade = essay.numOfStars;
     if (!grade) {
       return 'noGrade';
     }
@@ -63,6 +64,12 @@ const DetailedEssayCard: React.FC<DetailedEssayCardProps> = ({
         <StarsCounter>
           <InteractiveStarIcon onClick={handleStarClick} isFilled={isStarred} />
           <a>{essay.numOfStars}</a>
+          {preview && (
+            <span>
+              {icons.comments}
+              <a>{essay.numOfComments}</a>
+            </span>
+          )}
         </StarsCounter>
         <MoreInfoContainer>
           <DateContainer>

@@ -1,11 +1,7 @@
 import { colors } from '@styles/colors';
 import styled from 'styled-components';
 
-interface PreviewOption {
-  preview: boolean | undefined;
-}
-
-export const EssayCardContainer = styled.div<PreviewOption>`
+export const EssayCardContainer = styled.div`
   padding: 12px;
   min-width: 300px;
   border: 1px solid ${colors.normalBorder};
@@ -59,6 +55,12 @@ export const FooterContainer = styled.div`
 export const StarsCounter = styled.div`
   display: flex;
   align-items: center;
+
+  span {
+    margin-left: 8px;
+    display: flex;
+    align-items: center;
+  }
 
   a {
     margin-left: 8px;
