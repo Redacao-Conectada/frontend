@@ -51,10 +51,10 @@ const DetailedEssayCard: React.FC<DetailedEssayCardProps> = ({
   };
 
   return (
-    <EssayCardContainer preview={preview}>
+    <EssayCardContainer>
       <HeaderContainer>
         <h2>{essay.title}</h2>
-        <ShowGrade grade={getGrade()} />
+        {preview && <ShowGrade grade={getGrade()} />}
       </HeaderContainer>
       <div className={preview ? 'previewGradient' : ''}>
         <p className={preview ? 'previewText' : ''}>{essay.text}</p>

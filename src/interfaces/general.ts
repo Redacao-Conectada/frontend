@@ -43,7 +43,3 @@ export interface Evaluator {
   avatar: string;
   ratedEssays: number;
 }
-
-export interface KeywordsList {
-  keywordsList: string[];
-}

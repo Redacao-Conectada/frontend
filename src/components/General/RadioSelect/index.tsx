@@ -32,8 +32,6 @@ const RadioSelect: React.FC<RadioButtonProps> = ({
     </OptionWrapper>
   ));
 
-  console.log({ selectedOption });
-
   return (
     <Wrapper>
       {label}

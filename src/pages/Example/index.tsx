@@ -1,21 +1,27 @@
-import { RadioSelect } from '@components/General';
-import { CenteredContainer } from '@styles/publicRoutes';
+import { icons } from '@assets/icons';
+import { TagSwitcher } from '@components/General';
+import Menu from '@components/Menu';
+import { TagOptionList } from '@definitions/tag';
 import React, { useState } from 'react';
 
-const carOptionsList = ['SUV', 'Sedan', 'Hatch'];
+const tagOptions: TagOptionList = [
+  { label: 'Votos', icon: icons.emptyStar },
+  { label: 'Comentários', icon: icons.chat },
+  { label: 'Nota', icon: icons.award },
+];
 
 interface Data {
-  chosenCar: string;
+  activeOption: string;
 }
 
 const initialData: Data = {
-  chosenCar: carOptionsList[0],
+  activeOption: tagOptions[0].label,
 };
 
 const Example: React.FC = () => {
   const [data, setData] = useState(initialData);
 
-  const handleSelectCar = (name: string, value: string) => {
+  const handleSelectOption = (name: string, value: string) => {
     setData({
       ...data,
       [name as keyof Data]: value,
@@ -23,14 +29,16 @@ const Example: React.FC = () => {
   };
 
   return (
-    <CenteredContainer>
-      <RadioSelect
-        label="Tipo de carro"
-        name="chosenCar"
-        optionList={carOptionsList}
-        onChange={handleSelectCar}
+    <div style={{ marginTop: '16px' }}>
+      <TagSwitcher
+        options={tagOptions}
+        onChange={handleSelectOption}
+        name="activeOption"
+        value={data.activeOption}
       />
-    </CenteredContainer>
+      <div style={{ height: '24px' }} />
+      <Menu />
+    </div>
   );
 };
 
