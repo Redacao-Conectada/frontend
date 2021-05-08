@@ -26,6 +26,10 @@ const initialData: Data = {
   activeOption: tagOptions[0].label,
 };
 
+interface UserCard {
+  [index: string]: JSX.Element;
+}
+
 const ProfileView: React.FC = () => {
   const [data, setData] = useState(initialData);
 
@@ -35,19 +39,22 @@ const ProfileView: React.FC = () => {
       [name as keyof Data]: value,
     });
   };
-  console.log(data);
+
+  const userCard: UserCard = {
+    teacher: (
+      <EvaluatorCard
+        evaluator={evaluator}
+        ratedEssays={evaluator.ratedEssays}
+      />
+    ),
+    student: (
+      <StudentCard student={student} writtenEssays={student.writtenEssays} />
+    ),
+  };
+
   return (
     <CenteredContainer>
-      {user.roleName === 'teacher' && (
-        <EvaluatorCard
-          evaluator={evaluator}
-          ratedEssays={evaluator.ratedEssays}
-        />
-      )}
-
-      {user.roleName === 'student' && (
-        <StudentCard student={student} writtenEssays={student.writtenEssays} />
-      )}
+      {user.roleName && userCard[user.roleName]}
 
       <TagSwitcher
         options={tagOptions}
