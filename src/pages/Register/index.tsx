@@ -6,6 +6,8 @@ import {
   PersonalFields,
   EducationFields,
 } from '@/definitions/Register/dataForm';
+import api from '@/service/api';
+import { FormMappers } from '@/utils/formUtils';
 import { ReactComponent as Logo } from '@assets/logo.svg';
 import { CenteredContainer, Header } from '@styles/publicRoutes';
 import { validateValues } from '@utils/validations';
@@ -79,9 +81,18 @@ const Register: React.FC = () => {
       ...validateValues(data.education),
     ];
 
-    if (errors) {
+    if (errors.length) {
       errors.map((error) => toast.error(error));
+      console.log('aqui');
+    } else {
+      api
+        .post('/users', FormMappers.userFormToUserApi(data))
+        .then(() => toast.success('Cadastrado com sucesso'));
+
+      api.get('/essays').then((res) => console.log(res.data));
     }
+
+    console.log('data: ', FormMappers.userFormToUserApi(data));
 
     // TODO: Passar por todos os campos de data procurando algum invalidity, se houver, chamar um toast com error informando o campo inválido
   };

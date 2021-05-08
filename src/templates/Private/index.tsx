@@ -1,3 +1,4 @@
+import Menu from '@components/Menu';
 import React from 'react';
 
 interface PrivateTemplateProps {
@@ -7,8 +8,8 @@ interface PrivateTemplateProps {
 const PrivateTemplate: React.FC<PrivateTemplateProps> = ({ children }) => {
   return (
     <>
-      <div>Menu</div>
       {children}
+      <Menu activeRole="student" />
     </>
   );
 };

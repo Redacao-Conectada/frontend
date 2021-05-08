@@ -1,23 +1,8 @@
-import { Switch } from '@components/General';
-import React, { useState } from 'react';
+import { CenteredContainer } from '@styles/publicRoutes';
+import React from 'react';
 
 const Example: React.FC = () => {
-  const [boolValue, setBoolValue] = useState(false);
-
-  const handleBoolValue = (name: string, value: boolean) => {
-    setBoolValue(value);
-  };
-
-  return (
-    <div style={{ paddingTop: '100px', width: '250px' }}>
-      <Switch
-        name="boolValue"
-        label="teste"
-        onChange={handleBoolValue}
-        value={boolValue}
-      />
-    </div>
-  );
+  return <CenteredContainer>Oi</CenteredContainer>;
 };
 
 export default Example;

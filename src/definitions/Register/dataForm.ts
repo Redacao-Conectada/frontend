@@ -3,11 +3,13 @@ import {
   validateEmail,
   validateBirthdate,
   validateText,
+  validateCpf,
 } from '@utils/validations';
 import { Value, initialValue } from '../general';
 
 export interface PersonalGroup {
   name: Value;
+  cpf: Value;
   birthDate: Value;
   email: Value;
   password: Value;
@@ -36,6 +38,10 @@ export const initialRegisterData: RegisterData = {
     name: {
       ...initialValue,
       validation: (value: string): string => validateName(value),
+    },
+    cpf: {
+      ...initialValue,
+      validation: (value: string): string => validateCpf(value),
     },
     birthDate: {
       ...initialValue,
