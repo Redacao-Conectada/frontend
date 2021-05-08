@@ -1,5 +1,5 @@
 import SwitchRouter, { SwitchOption } from '@/components/General/SwitchRouter';
-import { PersonalForm, EducationForm } from '@/components/Register';
+import { PersonalForm, EducationForm } from '@/components/Pages/Register';
 import {
   initialRegisterData,
   RegisterGroups,

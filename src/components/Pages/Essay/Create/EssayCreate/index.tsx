@@ -1,4 +1,5 @@
-import { Input, InputEssay, Button } from '@components/General';
+import { Input, Button } from '@components/General';
+import InputEssay from '@components/Pages/Essay/InputEssay';
 import { Essay } from '@definitions/Essay/Create';
 import { Form } from '@styles/publicRoutes';
 import React from 'react';

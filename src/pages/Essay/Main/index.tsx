@@ -1,4 +1,4 @@
-import PageStepper from '@components/PageStepper';
+import PageStepper from '@/components/Pages/Essay/PageStepper';
 import { mockedEssay, ratingList, keywordsList } from '@utils/mocks';
 import React, { useEffect, useState } from 'react';
 import EssayDetails from '../Subpages/Details';

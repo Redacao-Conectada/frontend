@@ -1,8 +1,8 @@
 // import Evaluator from '@/components/Evaluator';
-import EssayPreviewCard from '@/components/Essay/EssayPreviewCard';
 import { TagSwitcher } from '@/components/General';
-import EvaluatorCard from '@/components/Profile/EvaluatorCard';
-import StudentCard from '@/components/Profile/StudentCard';
+import EssayPreviewCard from '@/components/Pages/Essay/EssayPreviewCard';
+import EvaluatorCard from '@/components/Pages/Profile/EvaluatorCard';
+import StudentCard from '@/components/Pages/Profile/StudentCard';
 import { User } from '@/definitions/general';
 import { icons } from '@assets/icons';
 import { TagOptionList } from '@definitions/tag';

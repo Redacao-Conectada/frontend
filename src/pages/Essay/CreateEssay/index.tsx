@@ -1,5 +1,5 @@
-import { EssayConfigForm, EssayCreateForm } from '@components/Essay';
 import SwitchRouter, { SwitchOption } from '@components/General/SwitchRouter';
+import { EssayConfigForm, EssayCreateForm } from '@components/Pages/Essay';
 import {
   initialData,
   Essay,

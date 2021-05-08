@@ -1,5 +1,5 @@
-import CommentaryList from '@/components/Essay/Commentary';
-import DetailedEssayCard from '@/components/Essay/DetailedEssayCard';
+import CommentaryList from '@/components/Pages/Essay/Commentary';
+import DetailedEssayCard from '@/components/Pages/Essay/DetailedEssayCard';
 import { Commentary, Essay } from '@/definitions/general';
 import { commentariesList } from '@utils/mocks';
 import React, { useState } from 'react';

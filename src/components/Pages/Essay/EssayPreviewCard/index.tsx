@@ -1,4 +1,4 @@
-import DetailedEssayCard from '@/components/Essay/DetailedEssayCard';
+import DetailedEssayCard from '@/components/Pages/Essay/DetailedEssayCard';
 import { Essay } from '@/definitions/general';
 import React from 'react';
 import {} from './styles';
