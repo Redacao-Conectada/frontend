@@ -2,13 +2,24 @@ import {
   adminOptions,
   evaluatorOptions,
   studentsOptions,
+  MenuOption,
 } from '@definitions/menu';
 import React, { useState, useEffect } from 'react';
 
 import { useHistory, Link } from 'react-router-dom';
 import { MenuContainer, MenuItem } from './styles';
 
-type roles = 'admin' | 'student' | 'evaluator';
+type roles = 'admin' | 'evaluator' | 'student';
+
+interface Options {
+  [index: string]: MenuOption[];
+}
+
+const options: Options = {
+  admin: adminOptions,
+  evaluator: evaluatorOptions,
+  student: studentsOptions,
+};
 
 interface MenuProps {
   activeRole: roles;
@@ -27,7 +38,7 @@ const Menu: React.FC<MenuProps> = ({ activeRole }) => {
     setActiveOption(firstPathname);
   }, [pathname]);
 
-  const adminMenu = adminOptions.map(({ label, icon, path }) => {
+  const menu = options[activeRole].map(({ label, icon, path }) => {
     const isActive = path.replace('/', '') === activeOption;
 
     return (
@@ -40,39 +51,11 @@ const Menu: React.FC<MenuProps> = ({ activeRole }) => {
     );
   });
 
-  const evaluatorMenu = evaluatorOptions.map(({ label, icon, path }) => {
-    const isActive = path.replace('/', '') === activeOption;
-
-    return (
-      <Link to={path}>
-        <MenuItem active={isActive} key={label}>
-          <span>{label}</span>
-          {icon}
-        </MenuItem>
-      </Link>
-    );
-  });
-
-  const studentMenu = studentsOptions.map(({ label, icon, path }) => {
-    const isActive = path.replace('/', '') === activeOption;
-
-    return (
-      <Link to={path}>
-        <MenuItem active={isActive} key={label}>
-          <span>{label}</span>
-          {icon}
-        </MenuItem>
-      </Link>
-    );
-  });
-
-  const menus = {
-    admin: adminMenu,
-    student: studentMenu,
-    evaluator: evaluatorMenu,
-  };
-
-  return <MenuContainer>{menus[activeRole]}</MenuContainer>;
+  return (
+    <MenuContainer quantityOfItems={options[activeRole].length}>
+      {menu}
+    </MenuContainer>
+  );
 };
 
 export default Menu;

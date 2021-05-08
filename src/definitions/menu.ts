@@ -1,7 +1,7 @@
 import { icons } from '@assets/icons';
 import { ReactNode } from 'react';
 
-interface MenuOption {
+export interface MenuOption {
   label: string;
   icon: ReactNode;
   path: string;
@@ -21,7 +21,7 @@ export const studentsOptions: MenuOption[] = [
   {
     label: 'Escrever',
     icon: icons.plusFile,
-    path: '/write',
+    path: '/create',
   },
 ];
 
