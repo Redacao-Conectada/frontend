@@ -1,4 +1,5 @@
 import { Commentary, Essay } from '@/interfaces/general';
+import api from '@/service/api';
 import CommentaryList from '@components/Commentary';
 import DetailedEssayCard from '@components/DetailedEssayCard';
 import { commentariesList } from '@utils/mocks';
@@ -24,6 +25,7 @@ const EssayDetails: React.FC<EssayDetailsProps> = ({ essay }) => {
   const handleCommentSubmit = (text: string) => {
     // TODO: fazer requisição de cadastrar comentário
     // TODO: atualizar listagem de comentários
+    api.post('/');
     console.log(text);
   };
 

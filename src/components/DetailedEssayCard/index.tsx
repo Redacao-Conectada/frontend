@@ -62,7 +62,10 @@ const DetailedEssayCard: React.FC<DetailedEssayCardProps> = ({
       </div>
       <FooterContainer>
         <StarsCounter>
-          <InteractiveStarIcon onClick={handleStarClick} isFilled={isStarred} />
+          <InteractiveStarIcon
+            onClick={handleStarClick}
+            isFilled={isStarred || false}
+          />
           <a>{essay.numOfStars}</a>
           {preview && (
             <span>
@@ -78,10 +81,10 @@ const DetailedEssayCard: React.FC<DetailedEssayCardProps> = ({
             </p>
           </DateContainer>
           <AuthorContainer>
-            <b>{essay.author.name}</b>
+            <b>{essay.author?.name}</b>
             <img
-              alt={essay.author.name}
-              src={essay.author.avatar ? essay.author.avatar : defaultAvatar}
+              alt={essay.author?.name}
+              src={essay.author?.avatar ? essay.author.avatar : defaultAvatar}
             />
           </AuthorContainer>
         </MoreInfoContainer>

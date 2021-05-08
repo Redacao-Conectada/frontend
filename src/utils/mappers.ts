@@ -28,6 +28,7 @@ const essayApiToEssay = (essayApi: EssayApi, user: User): Essay => {
 
 const userApiToUser = (userApi: UserApi): User => {
   const user = {
+    id: userApi.id,
     name: userApi.name,
     avatar: userApi.image,
     birthDate: userApi.birthdate,

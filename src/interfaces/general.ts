@@ -25,9 +25,9 @@ export interface User {
 export interface Essay {
   id: number;
   text: string;
-  title: string;
+  title?: string;
   author: User;
-  date: string;
+  date?: string;
   isStarred: boolean;
   numOfStars: number;
   numOfComments: number;
@@ -57,6 +57,7 @@ export interface Rate {
 }
 
 export interface UserApi {
+  id?: number;
   birthdate: string;
   city: string;
   cpf: string;
