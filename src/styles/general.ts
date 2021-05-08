@@ -26,10 +26,14 @@ export const HorizontalWrapper = styled.div`
   cursor: pointer;
 `;
 
-export const CenteredContainer = styled.div`
+interface CenteredContainerProps {
+  gapSize?: string;
+}
+
+export const CenteredContainer = styled.div<CenteredContainerProps>`
   display: grid;
   grid-template-columns: 1fr;
-  gap: 32px;
+  gap: ${({ gapSize }) => gapSize || '32px'};
   padding: 32px;
 
   width: calc(100vw - 64px);
@@ -40,4 +44,9 @@ export const CenteredContainer = styled.div`
   }
 
   margin-bottom: 64px;
+`;
+
+export const Header = styled.h3`
+  font-size: 1.25rem;
+  font-weight: 500;
 `;
