@@ -46,6 +46,12 @@ export const publicRouteList: RouteProps[] = [
     path: '/profile', // FIXME: deve ser /profile/id
     component: pages.ProfileView,
     exact: true,
-    title: 'Exemplo',
+    title: 'Perfil',
+  },
+  {
+    path: '/update/profile', // FIXME: deve ser /profile/id
+    component: pages.UpdateProfile,
+    exact: true,
+    title: 'Atualizar Perfil',
   },
 ];
