@@ -1,7 +1,7 @@
 import { General, Input as InputInterface } from '@/definitions';
 import { Wrapper } from '@styles/general';
 import React, { useState, useEffect } from 'react';
-import { InputContainer, ErrorMessage } from './styles';
+import { InputContainer, InputMaskContainer, ErrorMessage } from './styles';
 
 interface InputProps {
   entity: General.Value;
@@ -9,9 +9,10 @@ interface InputProps {
   label?: string;
   type: InputInterface.InputTypes;
   validated?: boolean;
-  mask?: string;
   placeholder?: string;
   name?: string;
+  mask?: string;
+  maskChar?: string;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -20,9 +21,10 @@ const Input: React.FC<InputProps> = ({
   validated,
   type = 'text',
   label,
-  mask,
   placeholder,
   name: inputName,
+  mask,
+  maskChar = '_',
 }) => {
   const { value, invalidity } = entity;
 
@@ -39,14 +41,27 @@ const Input: React.FC<InputProps> = ({
   return (
     <Wrapper>
       {label || null}
-      <InputContainer
-        name={inputName}
-        type={type}
-        placeholder={placeholder}
-        error={invalid}
-        onChange={handleChange}
-        value={value}
-      />
+      {mask ? (
+        <InputMaskContainer
+          name={inputName}
+          type={type}
+          placeholder={placeholder}
+          onChange={handleChange}
+          value={value}
+          mask={mask}
+          maskPlaceholder={maskChar}
+        />
+      ) : (
+        <InputContainer
+          name={inputName}
+          type={type}
+          placeholder={placeholder}
+          error={invalid}
+          onChange={handleChange}
+          value={value}
+        />
+      )}
+
       <ErrorMessage show={invalid}>{invalidity}</ErrorMessage>
     </Wrapper>
   );
