@@ -50,6 +50,12 @@ const initialData: Data = {
 const CreateEssay: React.FC = () => {
   const [data, setData] = useState(initialData);
 
+  const [activeTab, setActiveTab] = useState('Redação');
+
+  const changeActiveTab = (tabName: string) => {
+    setActiveTab(tabName);
+  };
+
   const handleEssayCreate = (name: keyof Essay, value: string) => {
     const invalidity = data.essayCreate[name].validation(value);
 
@@ -73,15 +79,17 @@ const CreateEssay: React.FC = () => {
           [name]: { ...data.essayConfig[name], value, invalidity },
         },
       });
-    } else {
-      setData({
-        ...data,
-        essayConfig: {
-          ...data.essayConfig,
-          [name]: value,
-        },
-      });
     }
+  };
+
+  const handleSwitch = (name: string, value: boolean) => {
+    setData({
+      ...data,
+      essayConfig: {
+        ...data.essayConfig,
+        [name]: value,
+      },
+    });
   };
 
   const handleData = (
@@ -101,18 +109,12 @@ const CreateEssay: React.FC = () => {
     event.preventDefault();
   };
 
-  const [activeTab, setActiveTab] = useState('Redação');
-
-  const changeActiveTab = (tabName: string) => {
-    setActiveTab(tabName);
-  };
-
   const configOption: SwitchOption = {
     name: 'Config',
     Component: (
       <EssayConfigForm
         data={data.essayConfig}
-        onChangeSwitch={(event) => handleData(event, 'essayConfig')} // @TULIO
+        onChangeSwitch={handleSwitch}
         onChange={(event) => handleData(event, 'essayConfig')}
         onSubmit={handleSubmit}
       />
