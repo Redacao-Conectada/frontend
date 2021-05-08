@@ -1,6 +1,8 @@
 import * as pages from '@pages';
 import { RouteProps as ReactDOMRouterProps } from 'react-router-dom';
 
+const { Admin } = pages;
+
 interface RouteProps extends ReactDOMRouterProps {
   path: string;
   component: React.ComponentType<any>;
@@ -8,7 +10,26 @@ interface RouteProps extends ReactDOMRouterProps {
   title: string;
 }
 
-const adminRouteList: RouteProps[] = [];
+const adminRouteList: RouteProps[] = [
+  {
+    path: '/users',
+    component: Admin.Users,
+    exact: true,
+    title: 'Usuários',
+  },
+  {
+    path: '/requests',
+    component: Admin.RequestList,
+    exact: true,
+    title: 'Listagem de Solicitações',
+  },
+  {
+    path: '/requests/:id',
+    component: Admin.Request,
+    exact: true,
+    title: 'Avaliar Solicitação',
+  },
+];
 
 const evaluatorRouteList: RouteProps[] = [
   {
