@@ -40,7 +40,7 @@ const Routes: React.FC = () => {
     },
   );
 
-  const authenticated = true;
+  const authenticated = false;
 
   return (
     <BrowserRouter>

@@ -83,6 +83,15 @@ export const logout = (): void => {
   toast.success('Bons estudos, volte sempre!');
 };
 
+export const isLogged = (): boolean => {
+  return (
+    localStorage.getItem(TOKEN_KEY) != null &&
+    localStorage.getItem(USER_ROLES) != null &&
+    localStorage.getItem(USER_USERNAME) != null &&
+    localStorage.getItem(USER_ID) != null
+  );
+};
+
 export const hasAuthority = (authority: UserRole): boolean =>
   localStorage.getItem(USER_ROLES)?.includes(authority) || false;
 
