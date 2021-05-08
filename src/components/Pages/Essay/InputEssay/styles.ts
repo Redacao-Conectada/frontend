@@ -36,6 +36,7 @@ export const InputEssayContainer = styled.textarea<InputContainerProps>`
   padding: 12px;
 
   transition: all 200ms ease-in-out;
+  overflow-y: initial;
 
   :focus {
     border: ${({ error }) => (error ? errorBorder : focusBorder)};
