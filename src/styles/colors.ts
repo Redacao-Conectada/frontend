@@ -31,6 +31,9 @@ export const colors = {
   // Menu
   menuBackground: '#FCFAF9',
   menuShadow: 'rgba(24, 50, 115, 0.03)',
+
+  // Star
+  yellow: '#FFD700',
 };
 
 export const gradeColors = {
