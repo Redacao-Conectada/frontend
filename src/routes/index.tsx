@@ -9,7 +9,7 @@ import {
 } from './routeList';
 
 const Routes: React.FC = () => {
-  const activeRole: roles = 'student';
+  const activeRole: roles = 'admin';
   const authenticated = true;
 
   const publicRouteComponents = publicRouteList.map(
@@ -44,8 +44,6 @@ const Routes: React.FC = () => {
       );
     },
   );
-
-  // TODO: Alterar o Redirect de acordo com o role
 
   return (
     <BrowserRouter>
