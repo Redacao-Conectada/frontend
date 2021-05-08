@@ -1,4 +1,4 @@
-import CircularPhoto from '@components/General/CircularPhoto';
+import { CircularPhoto } from '@components/General';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { RequestContainer } from './styles';

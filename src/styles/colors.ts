@@ -12,6 +12,7 @@ export const colors = {
   white: '#FFF',
   offWhite: '#EEE',
   darkGrey: '#888997',
+  grey: '#7C7F8E',
   lightGrey: '#f0f1f5',
 
   // Switch

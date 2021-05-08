@@ -2,8 +2,7 @@ import { icons } from '@/assets/icons';
 import { General } from '@/definitions';
 import { Form } from '@/styles/publicRoutes';
 import { validateText } from '@/utils/validations';
-import Button from '@components/General/Button';
-import Input from '@components/General/Input';
+import { Button, Input } from '@components/General';
 import { Commentary } from '@definitions/general';
 import React, { useState } from 'react';
 import {

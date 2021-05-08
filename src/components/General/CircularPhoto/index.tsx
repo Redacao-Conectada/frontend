@@ -1,8 +1,12 @@
 import React from 'react';
 import { PhotoContainer } from './styles';
 
-const CircularPhoto: React.FC = () => {
-  return <PhotoContainer size="50px" />;
+interface CircularPhotoProps {
+  size?: string;
+}
+
+const CircularPhoto: React.FC<CircularPhotoProps> = ({ size = '50px' }) => {
+  return <PhotoContainer size={size} />;
 };
 
 export default CircularPhoto;
