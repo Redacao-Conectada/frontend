@@ -28,13 +28,12 @@ export const InputContainer = styled.input<InputContainerProps>`
 
 export const InputEssayContainer = styled.textarea<InputContainerProps>`
   background-color: #fff;
-  padding-left: 12px;
   border: ${({ error }) => (error ? errorBorder : normalBorder)};
   border-radius: 15px;
   overflow-wrap: break-word;
   height: 300px;
   resize: none;
-  padding-top: 12px;
+  padding: 12px;
 
   transition: all 200ms ease-in-out;
 
