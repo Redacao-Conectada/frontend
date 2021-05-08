@@ -1,14 +1,17 @@
 import { Button, Input, Link } from '@/components/General';
 import { PersonalDataForm } from '@definitions/Register/component';
 import { Form, LinksContainer } from '@styles/publicRoutes';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const PersonalForm: React.FC<PersonalDataForm> = ({
   data,
   onChange,
   nextPage,
+  toValidated,
 }) => {
-  const [validated, setValidated] = useState(false);
+  const [validated, setValidated] = useState(toValidated);
+
+  useEffect(() => setValidated(toValidated), [toValidated]);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -32,6 +35,8 @@ const PersonalForm: React.FC<PersonalDataForm> = ({
         name="cpf"
         label="CPF"
         type="text"
+        mask="999.999.999-99"
+        maskChar="."
         validated={validated}
         placeholder="Digite seu CPF"
         onChange={onChange}
@@ -41,6 +46,8 @@ const PersonalForm: React.FC<PersonalDataForm> = ({
         name="birthDate"
         label="Data de nascimento"
         type="text"
+        mask="99/99/9999"
+        maskChar="/"
         validated={validated}
         placeholder="01/01/2000"
         onChange={onChange}

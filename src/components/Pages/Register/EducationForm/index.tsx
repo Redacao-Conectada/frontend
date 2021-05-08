@@ -5,16 +5,18 @@ import {
   schoolYearOptionsList,
 } from '@definitions/Register/component';
 import { Form } from '@styles/publicRoutes';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const EducationForm: React.FC<EducationDataForm> = ({
   data,
   onChange,
   onChangeSelect,
   onSubmit,
+  toValidated,
 }) => {
-  const [validated, setValidated] = useState(false);
-  // TODO: Corrigir uso do validated
+  const [validated, setValidated] = useState(toValidated);
+
+  useEffect(() => setValidated(toValidated), [toValidated]);
 
   return (
     <Form onSubmit={onSubmit}>

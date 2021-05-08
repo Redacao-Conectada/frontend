@@ -26,8 +26,9 @@ const Input: React.FC<InputProps> = ({
   mask,
   maskChar = '_',
 }) => {
-  const { value, invalidity } = entity;
+  const { value, validation } = entity;
 
+  const [invalidity, setInvalidity] = useState(entity.invalidity);
   const [invalid, setInvalid] = useState(false);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,8 +36,10 @@ const Input: React.FC<InputProps> = ({
   };
 
   useEffect(() => {
-    setInvalid(Boolean(validated && invalidity));
-  }, [entity]);
+    const newInvalidity = validation(value);
+    setInvalidity(newInvalidity);
+    setInvalid(Boolean(validated && newInvalidity));
+  }, [entity, validated]);
 
   return (
     <Wrapper>
@@ -48,6 +51,7 @@ const Input: React.FC<InputProps> = ({
           placeholder={placeholder}
           onChange={handleChange}
           value={value}
+          error={invalid}
           mask={mask}
           maskPlaceholder={maskChar}
         />
@@ -56,9 +60,9 @@ const Input: React.FC<InputProps> = ({
           name={inputName}
           type={type}
           placeholder={placeholder}
-          error={invalid}
           onChange={handleChange}
           value={value}
+          error={invalid}
         />
       )}
 

@@ -84,18 +84,13 @@ const Register: React.FC = () => {
 
     if (errors.length) {
       errors.map((error) => toast.error(error));
-      console.log('aqui');
     } else {
+      console.log('data: ', FormMappers.userFormToUserApi(data));
       api
         .post('/users', FormMappers.userFormToUserApi(data))
         .then(() => toast.success('Cadastrado com sucesso'));
-
       api.get('/essays').then((res) => console.log(res.data));
     }
-
-    console.log('data: ', FormMappers.userFormToUserApi(data));
-
-    // TODO: Passar por todos os campos de data procurando algum invalidity, se houver, chamar um toast com error informando o campo inválido
   };
 
   const [activeTab, setActiveTab] = useState('Pessoal');
@@ -112,6 +107,7 @@ const Register: React.FC = () => {
         onChange={(event) => handleData(event, 'education')}
         onChangeSelect={handleSelect}
         onSubmit={() => handleSubmit}
+        toValidated={validated}
       />
     ),
   };
@@ -123,6 +119,7 @@ const Register: React.FC = () => {
         data={data.personal}
         onChange={(event) => handleData(event, 'personal')}
         nextPage={() => changeActiveTab(educationOption.name)}
+        toValidated={validated}
       />
     ),
   };
