@@ -6,8 +6,6 @@ import { privateRouteList, publicRouteList } from './routeList';
 const Routes: React.FC = () => {
   // TODO: Verificar a autenticação do usuário
 
-  const authenticated = false;
-
   const publicRouteComponents = publicRouteList.map(
     ({ component: Component, path, exact, title }) => {
       document.title = title;
@@ -28,24 +26,27 @@ const Routes: React.FC = () => {
       document.title = title;
 
       return (
-        <PrivateTemplate>
-          <Route
-            key={path}
-            path={path}
-            exact={exact}
-            render={(props) => <Component {...props} />}
-          />
-        </PrivateTemplate>
+        <Route
+          path={path}
+          exact={exact}
+          render={(props) => (
+            <PrivateTemplate>
+              <Component {...props} />
+            </PrivateTemplate>
+          )}
+        />
       );
     },
   );
+
+  const authenticated = true;
 
   return (
     <BrowserRouter>
       {authenticated ? (
         <Switch>
           {privateRouteComponents}
-          <Redirect to="/example" />
+          {/* <Redirect to="/example" /> */}
         </Switch>
       ) : (
         <Switch>

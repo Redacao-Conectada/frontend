@@ -11,6 +11,10 @@ export const MenuContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 64px;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
 `;
 
 interface MenuItemProps {
@@ -32,7 +36,7 @@ export const MenuItem = styled.div<MenuItemProps>`
     left: 50%;
     position: absolute;
     transform: translate(-50%, -50%);
-    padding-top: ${({ active }) => (active ? '4px' : '0')};
+    padding-top: ${({ active }) => (active ? '8px' : '0')};
 
     color: ${colors.primary};
     font-family: 'Comfortaa';
@@ -67,7 +71,7 @@ export const MenuItem = styled.div<MenuItemProps>`
     width: 6px;
     height: 6px;
     position: absolute;
-    top: 0px;
+    top: 2px;
     left: 50%;
     transform: translate(-50%, -50%);
   }
