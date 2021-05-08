@@ -1,7 +1,9 @@
 import { Button } from '@/components/General';
+import DetailedEssayCard from '@components/Pages/Essay/DetailedEssayCard';
 import EvaluationForm from '@components/Pages/Evaluate';
 import { initialEvaluation, EvaluationKeys } from '@definitions/evaluate';
 import { CenteredContainer, Header } from '@styles/general';
+import { mockedEssay } from '@utils/mocks';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { Form } from './styles';
@@ -44,7 +46,7 @@ const EvaluateEssay: React.FC = () => {
   return (
     <CenteredContainer>
       <Header>Avaliar redação</Header>
-      <div>Redação a ser avaliada</div>
+      <DetailedEssayCard essay={mockedEssay} />
       <Form onSubmit={handleSubmit}>
         <EvaluationForm
           data={data}
