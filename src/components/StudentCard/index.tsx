@@ -1,4 +1,4 @@
-import { Student } from '@/interfaces/general';
+import { Student } from '@/definitions/general';
 import React from 'react';
 import { StudentContainer } from './styles';
 

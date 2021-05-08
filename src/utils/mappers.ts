@@ -1,4 +1,4 @@
-import { Essay, EssayApi, User, UserApi } from '@/interfaces/general';
+import { Essay, EssayApi, User, UserApi } from '@/definitions/general';
 
 /**
  * Lembrar de buscar user author e passar o data do response pela propriedade

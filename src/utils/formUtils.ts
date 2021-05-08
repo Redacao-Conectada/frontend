@@ -1,5 +1,5 @@
+import { UserApi } from '@/definitions/general';
 import { RegisterData } from '@/definitions/Register/dataForm';
-import { UserApi } from '@/interfaces/general';
 
 const convertDateToISODate = (str: string) => {
   const [day, month, year] = str.split('/');

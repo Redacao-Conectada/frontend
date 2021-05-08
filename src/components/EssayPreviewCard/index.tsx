@@ -1,4 +1,4 @@
-import { Essay } from '@/interfaces/general';
+import { Essay } from '@/definitions/general';
 import DetailedEssayCard from '@components/DetailedEssayCard';
 import React from 'react';
 import {} from './styles';

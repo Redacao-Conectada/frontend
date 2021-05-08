@@ -3,7 +3,7 @@ import EssayPreviewCard from '@/components/EssayPreviewCard';
 import EvaluatorCard from '@/components/EvaluatorCard';
 import { TagSwitcher } from '@/components/General';
 import StudentCard from '@/components/StudentCard';
-import { User, Evaluator, Student } from '@/interfaces/general';
+import { User } from '@/definitions/general';
 import { icons } from '@assets/icons';
 import { TagOptionList } from '@definitions/tag';
 import { CenteredContainer } from '@styles/publicRoutes';
