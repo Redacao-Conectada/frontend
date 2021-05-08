@@ -8,7 +8,26 @@ interface RouteProps extends ReactDOMRouterProps {
   title: string;
 }
 
-export const privateRouteList: RouteProps[] = [];
+export const privateRouteList: RouteProps[] = [
+  {
+    path: '/example',
+    component: pages.Example,
+    exact: true,
+    title: 'Exemplo',
+  },
+  {
+    path: '/essay/:id',
+    component: pages.EssayMainPage,
+    exact: true,
+    title: 'Redação em Detalhes',
+  },
+  {
+    path: '/essays/create',
+    component: pages.CreateEssay,
+    exact: true,
+    title: 'Criar Redação',
+  },
+];
 
 export const publicRouteList: RouteProps[] = [
   {
@@ -18,22 +37,10 @@ export const publicRouteList: RouteProps[] = [
     title: 'Login',
   },
   {
-    path: '/essay/:id',
-    component: pages.EssayMainPage,
-    exact: true,
-    title: 'Redação em Detalhes',
-  },
-  {
     path: '/register',
     component: pages.Register,
     exact: true,
     title: 'Cadastro',
-  },
-  {
-    path: '/example',
-    component: pages.Example,
-    exact: true,
-    title: 'Exemplo',
   },
   {
     path: '/profile', // FIXME: deve ser /profile/id

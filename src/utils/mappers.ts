@@ -19,7 +19,7 @@ const essayApiToEssay = (essayApi: EssayApi, user: User): Essay => {
     date: 'faltando data',
     isStarred: false,
     numOfStars: essayApi.upVote,
-    numOfComments: 2398,
+    numOfComments: 0,
     total: 800,
   };
 
