@@ -1,6 +1,6 @@
 // import Evaluator from '@/components/Evaluator';
-import Evaluator from '@/components/EvaluatorCard';
-import RatingEssayCard from '@/components/RatingEssayCard';
+import RatingEssayCard from '@/components/Essay/RatingEssayCard';
+import Evaluator from '@/components/Profile/EvaluatorCard';
 import { RatingList } from '@/definitions/general';
 import { CenteredContainer } from '@styles/publicRoutes';
 import React from 'react';

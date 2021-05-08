@@ -1,8 +1,8 @@
-import { InteractiveStarIcon } from '@/assets/icons/InteractiveIcon';
+import { InteractiveStarIcon } from '@/components/InteractiveIcon';
 import { Essay } from '@/definitions/general';
 import { icons } from '@assets/icons';
 import React, { useState } from 'react';
-import ShowGrade from '../General/ShowGrade';
+import ShowGrade from '../../General/ShowGrade';
 import {
   AuthorContainer,
   DateContainer,
