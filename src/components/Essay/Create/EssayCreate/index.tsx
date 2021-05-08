@@ -1,26 +1,8 @@
-import { General } from '@/definitions';
-import { initialValue } from '@/definitions/general';
 import { Input, InputEssay, Button } from '@components/General';
-import { Essay } from '@pages/Essay/CreateEssay';
+import { Essay } from '@definitions/Essay/Create';
 import { Form } from '@styles/publicRoutes';
-import { validateText } from '@utils/validations';
-import React, { useState } from 'react';
+import React from 'react';
 
-// interface Data {
-//   title: General.Value;
-//   essay: General.Value;
-// }
-
-// const initialData: Data = {
-//   title: {
-//     ...General.initialValue,
-//     validation: (value: string) => validateText(value, 'Título'),
-//   },
-//   essay: {
-//     ...General.initialValue,
-//     validation: (value: string) => validateText(value, 'Redação'),
-//   },
-// };
 interface EssayCreateDataForm {
   nextPage: () => void;
   data: Essay;

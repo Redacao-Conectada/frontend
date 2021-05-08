@@ -1,4 +1,4 @@
-import { Evaluator } from '@/interfaces/general';
+import { Evaluator } from '@/definitions/general';
 import React from 'react';
 import { EvaluatorCard } from './styles';
 
@@ -12,7 +12,7 @@ const RatingEssayCard: React.FC<EvaluatorCardProps> = ({ evaluator }) => {
       <div>
         <img alt="avaliador" src={evaluator.avatar} />
         <div>{evaluator.name}</div>
-        <div>Corretorx</div>
+        <div>Corretor</div>
       </div>
     </EvaluatorCard>
   );

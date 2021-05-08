@@ -1,4 +1,4 @@
-import { RatingList, Rate } from '@/interfaces/general';
+import { RatingList, Rate } from '@/definitions/general';
 import React from 'react';
 import { RatingTable, RatingContainer, EmptyCommentary } from './styles';
 

@@ -1,51 +1,13 @@
 import { EssayConfigForm, EssayCreateForm } from '@components/Essay';
 import SwitchRouter, { SwitchOption } from '@components/General/SwitchRouter';
-import { General } from '@definitions';
-import { CenteredContainer, Header } from '@styles/publicRoutes';
-import { validateText } from '@utils/validations';
+import {
+  initialData,
+  Essay,
+  Config,
+  DataGroup,
+} from '@definitions/Essay/Create';
+import { CenteredContainer } from '@styles/publicRoutes';
 import React, { useState } from 'react';
-
-export interface Data {
-  essayCreate: Essay;
-  essayConfig: Config;
-}
-export interface Essay {
-  title: General.Value;
-  essay: General.Value;
-}
-
-export interface Config {
-  keyWords: General.Value;
-  hideName: boolean;
-  requestCorrection: boolean;
-}
-
-type DataGroup = keyof Data;
-
-const initialEssayCreate: Essay = {
-  title: {
-    ...General.initialValue,
-    validation: (value: string) => validateText(value, 'Título'),
-  },
-  essay: {
-    ...General.initialValue,
-    validation: (value: string) => validateText(value, 'Redação'),
-  },
-};
-
-const initialEssayConfig: Config = {
-  keyWords: {
-    ...General.initialValue,
-    validation: (value: string) => validateText(value, 'Palavras-chave'),
-  },
-  hideName: false,
-  requestCorrection: false,
-};
-
-const initialData: Data = {
-  essayCreate: initialEssayCreate,
-  essayConfig: initialEssayConfig,
-};
 
 const CreateEssay: React.FC = () => {
   const [data, setData] = useState(initialData);

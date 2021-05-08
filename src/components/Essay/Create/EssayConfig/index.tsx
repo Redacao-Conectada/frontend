@@ -1,5 +1,5 @@
 import { Input, Button, Switch } from '@components/General';
-import { Config } from '@pages/Essay/CreateEssay';
+import { Config } from '@definitions/Essay/Create';
 import { Form } from '@styles/publicRoutes';
 import React from 'react';
 

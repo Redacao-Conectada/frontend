@@ -1,4 +1,4 @@
-import { Commentary, Essay } from '@/interfaces/general';
+import { Commentary, Essay } from '@/definitions/general';
 import CommentaryList from '@components/Commentary';
 import DetailedEssayCard from '@components/DetailedEssayCard';
 import { commentariesList } from '@utils/mocks';
