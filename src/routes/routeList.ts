@@ -33,6 +33,12 @@ export const privateRouteList: RouteProps[] = [
     exact: true,
     title: 'Perfil',
   },
+  {
+    path: '/evaluate',
+    component: pages.EvaluateEssay,
+    exact: true,
+    title: 'Avaliar Redação',
+  },
 ];
 
 export const publicRouteList: RouteProps[] = [

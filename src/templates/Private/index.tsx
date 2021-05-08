@@ -9,7 +9,7 @@ const PrivateTemplate: React.FC<PrivateTemplateProps> = ({ children }) => {
   return (
     <>
       {children}
-      <Menu activeRole="student" />
+      <Menu activeRole="evaluator" />
     </>
   );
 };

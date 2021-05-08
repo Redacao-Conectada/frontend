@@ -1,21 +1,5 @@
 import styled from 'styled-components';
 
-export const CenteredContainer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 32px;
-  padding: 32px;
-
-  width: calc(100vw - 64px);
-  max-width: 500px;
-
-  h2 {
-    font-size: 1.5rem;
-  }
-
-  margin-bottom: 64px;
-`;
-
 export const LinksContainer = styled.div`
   display: flex;
   justify-content: space-between;

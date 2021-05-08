@@ -6,7 +6,7 @@ import {
   Config,
   DataGroup,
 } from '@definitions/Essay/Create';
-import { CenteredContainer } from '@styles/publicRoutes';
+import { CenteredContainer } from '@styles/general';
 import React, { useState } from 'react';
 
 const CreateEssay: React.FC = () => {

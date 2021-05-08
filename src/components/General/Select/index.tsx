@@ -1,5 +1,5 @@
 import { General } from '@/definitions';
-import { Wrapper } from '@styles/generalComponents';
+import { Wrapper } from '@styles/general';
 import React from 'react';
 import { SelectInput } from './styles';
 

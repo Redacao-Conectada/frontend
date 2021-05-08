@@ -2,7 +2,7 @@
 import RatingEssayCard from '@/components/Pages/Essay/RatingEssayCard';
 import Evaluator from '@/components/Pages/Profile/EvaluatorCard';
 import { RatingList } from '@/definitions/general';
-import { CenteredContainer } from '@styles/publicRoutes';
+import { CenteredContainer } from '@styles/general';
 import React from 'react';
 
 interface EssayRatingProps {

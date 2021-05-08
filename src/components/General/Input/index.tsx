@@ -1,5 +1,5 @@
 import { General, Input as InputInterface } from '@/definitions';
-import { Wrapper } from '@styles/generalComponents';
+import { Wrapper } from '@styles/general';
 import React, { useState, useEffect } from 'react';
 import { InputContainer, ErrorMessage } from './styles';
 

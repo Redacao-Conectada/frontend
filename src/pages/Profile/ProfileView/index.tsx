@@ -6,7 +6,7 @@ import StudentCard from '@/components/Pages/Profile/StudentCard';
 import { User } from '@/definitions/general';
 import { icons } from '@assets/icons';
 import { TagOptionList } from '@definitions/tag';
-import { CenteredContainer } from '@styles/publicRoutes';
+import { CenteredContainer } from '@styles/general';
 import { evaluator, student, essayList } from '@utils/mocks';
 import React, { useState } from 'react';
 

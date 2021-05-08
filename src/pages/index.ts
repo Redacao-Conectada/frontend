@@ -7,3 +7,4 @@ export { default as EssayKeywords } from './Essay/Subpages/Keywords';
 export { default as Example } from './Example';
 export { default as ProfileView } from './Profile/ProfileView';
 export { default as CreateEssay } from './Essay/CreateEssay';
+export { default as EvaluateEssay } from './Evaluate';

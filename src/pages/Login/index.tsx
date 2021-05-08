@@ -3,12 +3,8 @@ import { General } from '@/definitions';
 import api, { login } from '@/service/api';
 import Image from '@assets/loginImage.svg';
 import { ReactComponent as Logo } from '@assets/logo.svg';
-import {
-  CenteredContainer,
-  LinksContainer,
-  Form,
-  Header,
-} from '@styles/publicRoutes';
+import { CenteredContainer } from '@styles/general';
+import { LinksContainer, Form, Header } from '@styles/publicRoutes';
 import { validateEmail } from '@utils/validations';
 import qs from 'qs';
 import React, { useState } from 'react';

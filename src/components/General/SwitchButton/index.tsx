@@ -1,4 +1,4 @@
-import { HorizontalWrapper } from '@styles/generalComponents';
+import { HorizontalWrapper } from '@styles/general';
 import React, { useState } from 'react';
 
 import { SwitchButton } from './styles';

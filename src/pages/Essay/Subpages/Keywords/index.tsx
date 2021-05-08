@@ -1,6 +1,6 @@
 // import KeywordsListContainer from '@/components/KeywordsListContainer';
 import { icons } from '@assets/icons';
-import { CenteredContainer } from '@styles/publicRoutes';
+import { CenteredContainer } from '@styles/general';
 import React from 'react';
 import { KeywordsContainer } from './styles';
 
