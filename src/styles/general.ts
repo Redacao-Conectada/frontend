@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 
-interface ContainerProps {
-  bgColor: string;
-}
-
-export const Container = styled.div<ContainerProps>`
+export const Container = styled.div`
   background: #ffffff;
   border: 1px solid rgba(42, 70, 112, 0.1);
   box-sizing: border-box;
