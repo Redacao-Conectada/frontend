@@ -26,6 +26,24 @@ export const InputContainer = styled.input<InputContainerProps>`
   // TODO: Colocar sombra
 `;
 
+export const InputEssayContainer = styled.textarea<InputContainerProps>`
+  background-color: #fff;
+  padding-left: 12px;
+  border: ${({ error }) => (error ? errorBorder : normalBorder)};
+  border-radius: 15px;
+  overflow-wrap: break-word;
+  height: 300px;
+  resize: none;
+  padding-top: 12px;
+
+  transition: all 200ms ease-in-out;
+
+  :focus {
+    border: ${({ error }) => (error ? errorBorder : focusBorder)};
+    outline: none;
+  }
+`;
+
 interface ErrorMessageProps {
   show: boolean;
 }

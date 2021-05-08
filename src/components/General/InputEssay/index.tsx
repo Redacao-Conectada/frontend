@@ -1,11 +1,11 @@
 import { General, Input as InputInterface } from '@/definitions';
 import { Wrapper } from '@styles/generalComponents';
 import React, { useState, useEffect } from 'react';
-import { InputContainer, ErrorMessage } from './styles';
+import { InputContainer, ErrorMessage, InputEssayContainer } from './styles';
 
 interface InputProps {
   entity: General.Value;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
   label: string;
   type: InputInterface.InputTypes;
   validated?: boolean;
@@ -28,7 +28,7 @@ const InputEssay: React.FC<InputProps> = ({
 
   const [invalid, setInvalid] = useState(false);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (onChange) onChange(event);
   };
 
@@ -39,14 +39,16 @@ const InputEssay: React.FC<InputProps> = ({
   return (
     <Wrapper>
       {label}
-      <InputContainer
+      <InputEssayContainer
         name={inputName}
-        type={type}
+        // type={type}
         placeholder={placeholder}
         error={invalid}
         onChange={handleChange}
-        value={value}
-      />
+        // value={value}
+      >
+        {value}
+      </InputEssayContainer>
       <ErrorMessage show={invalid}>{invalidity}</ErrorMessage>
     </Wrapper>
   );

@@ -1,59 +1,88 @@
 import { General } from '@/definitions';
+import { initialValue } from '@/definitions/general';
 import { Input, InputEssay, Button } from '@components/General';
+import { Essay } from '@pages/Essay/CreateEssay';
 import { Form } from '@styles/publicRoutes';
 import { validateText } from '@utils/validations';
 import React, { useState } from 'react';
 
+// interface Data {
+//   title: General.Value;
+//   essay: General.Value;
+// }
+
+// const initialData: Data = {
+//   title: {
+//     ...General.initialValue,
+//     validation: (value: string) => validateText(value, 'Título'),
+//   },
+//   essay: {
+//     ...General.initialValue,
+//     validation: (value: string) => validateText(value, 'Redação'),
+//   },
+// };
 interface EssayCreateDataForm {
   nextPage: () => void;
+  data: Essay;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChangeTextArea: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
-const EssayCreateForm: React.FC<EssayCreateDataForm> = ({ nextPage }) => {
-  const [title, setTitle] = useState<General.Value>({
-    ...General.initialValue,
-    validation: (value: string) => validateText(value, 'Título'),
-  });
+const EssayCreateForm: React.FC<EssayCreateDataForm> = ({
+  nextPage,
+  data,
+  onChange,
+  onChangeTextArea,
+}) => {
+  // const [data, setData] = useState(initialData);
 
-  const handleTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
+  // const handleTitle = (newTitle: string) => {
+  //   const invalidity = data.title.validation(newTitle);
+  //   setData({ ...data, title: { ...data.title, value: newTitle, invalidity } });
+  // };
 
-    setTitle({ ...title, value });
-  };
+  // const handleEssay = (newEssay: string) => {
+  //   const invalidity = data.essay.validation(newEssay);
+  //   setData({ ...data, essay: { ...data.essay, value: newEssay, invalidity } });
+  // };
 
-  const [essay, setEssay] = useState<General.Value>({
-    ...General.initialValue,
-    validation: (value: string) => validateText(value, 'Redação'),
-  });
+  // const handleData = (
+  //   event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  // ) => {
+  //   const { value, name } = event.target;
 
-  const handleEssay = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
+  //   if (name === 'title') {
+  //     handleTitle(value);
+  //   } else {
+  //     handleEssay(value);
+  //   }
+  // };
 
-    setEssay({ ...essay, value });
-  };
+  // const handleSubmit = (event: React.FormEvent) => {
+  //   event.preventDefault();
+  // };
 
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-  };
+  // console.log(data);
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form>
       <Input
-        entity={title}
+        entity={data.title}
         name="title"
         label="Título"
         type="text"
         // validated={validated}
         placeholder="Seu título"
-        onChange={handleTitle}
+        onChange={onChange}
       />
       <InputEssay
-        entity={essay}
+        entity={data.essay}
         name="essay"
         label="Redação"
         type="text"
         // validated={validated}
         placeholder="Digite sua redação"
-        onChange={handleEssay}
+        onChange={onChangeTextArea}
       />
       <Button text="Próxima etapa" typeButton="button" onClick={nextPage} />
     </Form>
