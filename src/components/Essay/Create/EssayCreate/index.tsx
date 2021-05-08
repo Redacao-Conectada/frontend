@@ -34,36 +34,6 @@ const EssayCreateForm: React.FC<EssayCreateDataForm> = ({
   onChange,
   onChangeTextArea,
 }) => {
-  // const [data, setData] = useState(initialData);
-
-  // const handleTitle = (newTitle: string) => {
-  //   const invalidity = data.title.validation(newTitle);
-  //   setData({ ...data, title: { ...data.title, value: newTitle, invalidity } });
-  // };
-
-  // const handleEssay = (newEssay: string) => {
-  //   const invalidity = data.essay.validation(newEssay);
-  //   setData({ ...data, essay: { ...data.essay, value: newEssay, invalidity } });
-  // };
-
-  // const handleData = (
-  //   event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  // ) => {
-  //   const { value, name } = event.target;
-
-  //   if (name === 'title') {
-  //     handleTitle(value);
-  //   } else {
-  //     handleEssay(value);
-  //   }
-  // };
-
-  // const handleSubmit = (event: React.FormEvent) => {
-  //   event.preventDefault();
-  // };
-
-  // console.log(data);
-
   return (
     <Form>
       <Input
