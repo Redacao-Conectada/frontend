@@ -1,5 +1,6 @@
 import React from 'react';
 import { ReactComponent as Award } from './award.svg';
+import { ReactComponent as Book } from './book.svg';
 import { ReactComponent as Chat } from './chat.svg';
 import { ReactComponent as Chevron } from './chevron.svg';
 import { ReactComponent as Clipboard } from './clipboard.svg';
@@ -16,6 +17,7 @@ import { ReactComponent as Users } from './users.svg';
 
 export const icons = {
   award: <Award />,
+  book: <Book />,
   chat: <Chat />,
   chevron: <Chevron />,
   clipboard: <Clipboard />,
