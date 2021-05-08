@@ -19,13 +19,9 @@ const TagSwitcher: React.FC<TagSwitcherProps> = ({
   const [selectedTag, setSelectedTag] = useState(value);
 
   const handleChange = (tagName: string) => {
-    console.log({ tagName });
-
     onChange(name, tagName);
     setSelectedTag(tagName);
   };
-
-  console.log({ selectedTag });
 
   const renderTagOptions = () =>
     options.map(({ label, icon }) => (
