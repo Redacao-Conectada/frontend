@@ -27,6 +27,12 @@ export const privateRouteList: RouteProps[] = [
     exact: true,
     title: 'Criar Redação',
   },
+  {
+    path: '/profile',
+    component: pages.ProfileView,
+    exact: true,
+    title: 'Perfil',
+  },
 ];
 
 export const publicRouteList: RouteProps[] = [
@@ -46,6 +52,6 @@ export const publicRouteList: RouteProps[] = [
     path: '/profile',
     component: pages.ProfileView,
     exact: true,
-    title: 'Exemplo',
+    title: 'Perfil',
   },
 ];
