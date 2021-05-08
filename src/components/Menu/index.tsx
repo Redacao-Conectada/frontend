@@ -42,8 +42,8 @@ const Menu: React.FC<MenuProps> = ({ activeRole }) => {
     const isActive = path.replace('/', '') === activeOption;
 
     return (
-      <Link to={path}>
-        <MenuItem active={isActive} key={label}>
+      <Link to={path} key={label}>
+        <MenuItem active={isActive}>
           <span>{label}</span>
           {icon}
         </MenuItem>
