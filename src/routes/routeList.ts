@@ -57,6 +57,12 @@ export const privateRouteList = {
   student: studentRouteList,
 };
 
+export const privateRedirects = {
+  admin: '/users',
+  evaluator: '/essays',
+  student: '/essays',
+};
+
 export const publicRouteList: RouteProps[] = [
   {
     path: '/login',

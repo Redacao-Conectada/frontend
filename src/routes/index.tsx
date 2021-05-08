@@ -2,7 +2,11 @@ import { roles } from '@definitions/general';
 import PrivateTemplate from '@templates/Private';
 import React from 'react';
 import { Route, BrowserRouter, Switch, Redirect } from 'react-router-dom';
-import { privateRouteList, publicRouteList } from './routeList';
+import {
+  privateRedirects,
+  privateRouteList,
+  publicRouteList,
+} from './routeList';
 
 const Routes: React.FC = () => {
   const activeRole: roles = 'student';
@@ -48,7 +52,7 @@ const Routes: React.FC = () => {
       {authenticated ? (
         <Switch>
           {privateRouteComponents}
-          <Redirect to="/example" />
+          <Redirect to={privateRedirects[activeRole]} />
         </Switch>
       ) : (
         <Switch>
