@@ -1,3 +1,4 @@
+import { isLogged } from '@/service/api';
 import PrivateTemplate from '@templates/Private';
 import React from 'react';
 import { Route, BrowserRouter, Switch, Redirect } from 'react-router-dom';
@@ -40,7 +41,7 @@ const Routes: React.FC = () => {
     },
   );
 
-  const authenticated = false;
+  const authenticated = isLogged();
 
   return (
     <BrowserRouter>

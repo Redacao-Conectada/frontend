@@ -25,3 +25,10 @@ const userFormToUserApi = (userForm: RegisterData): UserApi => {
 export const FormMappers = {
   userFormToUserApi,
 };
+
+export const formatDate = (date: string): string => {
+  const [apiDate] = date.split('T');
+  const [year, month, day] = apiDate.split('-');
+
+  return `${day}/${month}/${year}`;
+};

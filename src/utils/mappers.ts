@@ -1,4 +1,12 @@
-import { Essay, EssayApi, User, UserApi } from '@/interfaces/general';
+import {
+  Commentary,
+  CommentaryApi,
+  Essay,
+  EssayApi,
+  User,
+  UserApi,
+} from '@/interfaces/general';
+import { formatDate } from './formUtils';
 
 /**
  * Lembrar de buscar user author e passar o data do response pela propriedade
@@ -9,18 +17,16 @@ import { Essay, EssayApi, User, UserApi } from '@/interfaces/general';
  */
 const essayApiToEssay = (essayApi: EssayApi, user: User): Essay => {
   // FIXME: retornar se o usuários curtiu a redação
-  // FIXME: retornar data de cadastro da redação
-
   const essay = {
     id: essayApi.id,
     text: essayApi.body,
-    title: 'faltando título',
+    title: essayApi.title,
     author: user,
-    date: 'faltando data',
+    date: formatDate(essayApi.createdAt),
     isStarred: false,
     numOfStars: essayApi.upVote,
     numOfComments: 0,
-    total: 800,
+    total: essayApi.grade,
   };
 
   return essay;
@@ -43,7 +49,25 @@ const userApiToUser = (userApi: UserApi): User => {
   return user;
 };
 
-// TODO: mapear Commentary/CommentaryApi
+export const commentaryApiToCommentary = (
+  commentaryApi: CommentaryApi,
+): Commentary => {
+  const commentary = {
+    id: commentaryApi.id,
+    author: {
+      id: commentaryApi.userInfo.id,
+      avatar: commentaryApi.userInfo.image
+        ? commentaryApi.userInfo.image
+        : `https://picsum.photos/200`,
+      name: commentaryApi.userInfo.name,
+    },
+    text: commentaryApi.body,
+    essayId: commentaryApi.essayId,
+  };
+
+  return commentary;
+};
+
 // TODO: mapear Correction/CorrectionApi
 
 const Mappers = {

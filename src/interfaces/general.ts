@@ -36,10 +36,28 @@ export interface Essay {
 }
 
 export interface Commentary {
-  id: string;
-  author: User;
+  id: number;
+  author: {
+    id: number;
+    avatar: any;
+    name: string;
+  };
   text: string;
   replies?: Array<Commentary>;
+  upVote?: number;
+  essayId?: number;
+}
+
+export interface CommentaryApi {
+  id: number;
+  essayId: number;
+  upVote: number;
+  body: string;
+  userInfo: {
+    id: number;
+    image: any;
+    name: string;
+  };
 }
 export interface RatingList {
   evaluator: User;
@@ -76,6 +94,9 @@ export interface EssayApi {
   isAnon: boolean;
   upVote: number;
   userId: number;
+  title?: string;
+  grade: number;
+  createdAt: string;
 }
 
 export enum UserRole {

@@ -65,9 +65,12 @@ const CommentaryList: React.FC<CommentaryListProps> = ({
     <Comment marginLeft={isReply ? '20%' : '0px'}>
       <div className="avatar-and-text">
         <img alt="#" src={commentary.author.avatar} />
-        <p>
-          <strong>{commentary.text}</strong>
-        </p>
+        <div>
+          <p>
+            <strong>{commentary.text}</strong>
+          </p>
+          <p className="commentary-author-name">{commentary.author.name}</p>
+        </div>
       </div>
       {isReply ? null : <div>{icons.reply}</div>}
     </Comment>
@@ -83,7 +86,7 @@ const CommentaryList: React.FC<CommentaryListProps> = ({
     );
   };
 
-  const commentaryItem = (key: string, commentary: Commentary) => (
+  const commentaryItem = (key: number, commentary: Commentary) => (
     <li key={key}>
       {comment(commentary, false)}
       {commentary.replies ? replyList(commentary.replies) : null}

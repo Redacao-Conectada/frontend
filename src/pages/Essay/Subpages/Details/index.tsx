@@ -1,5 +1,6 @@
-import { Commentary, Essay } from '@/interfaces/general';
+import { Commentary, CommentaryApi, Essay } from '@/interfaces/general';
 import api, { getLoggedUserId } from '@/service/api';
+import { commentaryApiToCommentary } from '@/utils/mappers';
 import CommentaryList from '@components/Commentary';
 import DetailedEssayCard from '@components/DetailedEssayCard';
 import { commentariesList } from '@utils/mocks';
@@ -17,29 +18,39 @@ const EssayDetails: React.FC<EssayDetailsProps> = ({ essay }) => {
   const [commentaries, setCommentaries] = useState<Commentary[]>([]);
 
   useEffect(() => {
-    api.get(`/essays/${essay.id}/comments`).then((res) => console.log(res));
+    api.get(`/essays/${essay.id}/comments`).then((res) => {
+      const comments = res.data.map((comment: CommentaryApi) =>
+        commentaryApiToCommentary(comment),
+      );
+      console.log(comments);
+      setCommentaries(comments);
+    });
   }, []);
 
   const handleShowCommentaries = () => {
     console.log('carrega comentários');
-    setCommentaries(commentariesList);
-    // TODO: fazer requisição para buscar comentários da redação
-    // TODO: fazer loading
   };
 
   const handleCommentSubmit = (text: string) => {
     // TODO: fazer requisição de cadastrar comentário
     // TODO: atualizar listagem de comentários
     api
-      .post('/user/comment', {
+      .post('/users/comment', {
         body: text,
         idEssay: essay.id,
         idUser: getLoggedUserId(),
+        upVote: 0,
       })
       .then((res) => {
         toast.success('Comentário adicionado!');
 
-        // TODO: atualizar comentarios
+        api.get(`/essays/${essay.id}/comments`).then((response) => {
+          const comments = response.data.map((comment: CommentaryApi) =>
+            commentaryApiToCommentary(comment),
+          );
+
+          setCommentaries(comments);
+        });
       });
   };
 
@@ -49,7 +60,11 @@ const EssayDetails: React.FC<EssayDetailsProps> = ({ essay }) => {
       <CommentBox>
         <CommentaryList
           onCommentSubmit={handleCommentSubmit}
-          authorAvatar={essay.author.avatar}
+          authorAvatar={
+            essay.author.avatar
+              ? essay.author.avatar
+              : 'https://picsum.photos/40'
+          }
           commentaries={commentaries}
           onShowCommentaries={handleShowCommentaries}
         />
