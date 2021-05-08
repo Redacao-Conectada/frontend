@@ -32,6 +32,16 @@ export const colors = {
   menuShadow: 'rgba(24, 50, 115, 0.03)',
 };
 
+export const gradeColors = {
+  plus900: '#008D64',
+  plus800: '#169E94',
+  plus700: '#2796B0',
+  plus600: '#398ECC',
+  plus500: '#4A86E8',
+  minus500: '#EE6352',
+  noGrade: '#bdbdbd',
+};
+
 export const colorWithTransparency = (
   color: string,
   transparency: number,

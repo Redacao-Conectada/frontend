@@ -4,6 +4,7 @@ import { ReactComponent as Book } from './book.svg';
 import { ReactComponent as Chat } from './chat.svg';
 import { ReactComponent as Chevron } from './chevron.svg';
 import { ReactComponent as Clipboard } from './clipboard.svg';
+import { ReactComponent as Comments } from './comments.svg';
 import { ReactComponent as EmptyStar } from './emptyStar.svg';
 import { ReactComponent as Home } from './home.svg';
 import { ReactComponent as Pen } from './pen.svg';
@@ -21,6 +22,7 @@ export const icons = {
   chat: <Chat />,
   chevron: <Chevron />,
   clipboard: <Clipboard />,
+  comments: <Comments />,
   emptyStar: <EmptyStar />,
   home: <Home />,
   pen: <Pen />,
