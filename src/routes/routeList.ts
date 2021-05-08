@@ -22,7 +22,7 @@ export const privateRouteList: RouteProps[] = [
     title: 'Redação em Detalhes',
   },
   {
-    path: '/essays/create',
+    path: '/create',
     component: pages.CreateEssay,
     exact: true,
     title: 'Criar Redação',
