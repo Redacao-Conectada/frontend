@@ -11,6 +11,7 @@ import {
   HeaderContainer,
   MoreInfoContainer,
   StarsCounter,
+  IconsContainer,
 } from './styles';
 
 interface DetailedEssayCardProps {
@@ -62,13 +63,18 @@ const DetailedEssayCard: React.FC<DetailedEssayCardProps> = ({
       </div>
       <FooterContainer>
         <StarsCounter>
-          <InteractiveStarIcon onClick={handleStarClick} isFilled={isStarred} />
-          <a>{essay.numOfStars}</a>
+          <IconsContainer>
+            <InteractiveStarIcon
+              onClick={handleStarClick}
+              isFilled={isStarred}
+            />
+            <span>{essay.numOfStars}</span>
+          </IconsContainer>
           {preview && (
-            <span>
+            <IconsContainer>
               {icons.comments}
-              <a>{essay.numOfComments}</a>
-            </span>
+              <span>{essay.numOfComments}</span>
+            </IconsContainer>
           )}
         </StarsCounter>
         <MoreInfoContainer>

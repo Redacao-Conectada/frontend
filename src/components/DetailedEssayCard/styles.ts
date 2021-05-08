@@ -28,9 +28,16 @@ export const EssayCardContainer = styled.div`
   }
 `;
 
+export const IconsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`;
+
 export const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-bottom: 6px;
 `;
 
 export const DateContainer = styled.div`
@@ -50,20 +57,15 @@ export const FooterContainer = styled.div`
   margin-top: 5px;
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
 `;
 
 export const StarsCounter = styled.div`
   display: flex;
   align-items: center;
+  gap: 16px;
 
   span {
-    margin-left: 8px;
-    display: flex;
-    align-items: center;
-  }
-
-  a {
-    margin-left: 8px;
     cursor: default;
     font-size: 12px;
     font-weight: 600;
