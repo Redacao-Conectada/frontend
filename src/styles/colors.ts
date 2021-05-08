@@ -12,6 +12,7 @@ export const colors = {
   white: '#FFF',
   offWhite: '#EEE',
   darkGrey: '#888997',
+  lightGrey: '#f0f1f5',
 
   // Switch
   switchBackground: '#04A777',

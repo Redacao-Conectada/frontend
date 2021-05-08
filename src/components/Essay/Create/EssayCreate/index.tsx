@@ -1,59 +1,40 @@
-import { General } from '@/definitions';
 import { Input, InputEssay, Button } from '@components/General';
+import { Essay } from '@definitions/Essay/Create';
 import { Form } from '@styles/publicRoutes';
-import { validateText } from '@utils/validations';
-import React, { useState } from 'react';
+import React from 'react';
 
 interface EssayCreateDataForm {
   nextPage: () => void;
+  data: Essay;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChangeTextArea: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
-const EssayCreateForm: React.FC<EssayCreateDataForm> = ({ nextPage }) => {
-  const [title, setTitle] = useState<General.Value>({
-    ...General.initialValue,
-    validation: (value: string) => validateText(value, 'Título'),
-  });
-
-  const handleTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-
-    setTitle({ ...title, value });
-  };
-
-  const [essay, setEssay] = useState<General.Value>({
-    ...General.initialValue,
-    validation: (value: string) => validateText(value, 'Redação'),
-  });
-
-  const handleEssay = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-
-    setEssay({ ...essay, value });
-  };
-
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-  };
-
+const EssayCreateForm: React.FC<EssayCreateDataForm> = ({
+  nextPage,
+  data,
+  onChange,
+  onChangeTextArea,
+}) => {
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form>
       <Input
-        entity={title}
+        entity={data.title}
         name="title"
         label="Título"
         type="text"
         // validated={validated}
         placeholder="Seu título"
-        onChange={handleTitle}
+        onChange={onChange}
       />
       <InputEssay
-        entity={essay}
+        entity={data.essay}
         name="essay"
         label="Redação"
         type="text"
         // validated={validated}
         placeholder="Digite sua redação"
-        onChange={handleEssay}
+        onChange={onChangeTextArea}
       />
       <Button text="Próxima etapa" typeButton="button" onClick={nextPage} />
     </Form>

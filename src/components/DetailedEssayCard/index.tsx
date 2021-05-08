@@ -1,5 +1,5 @@
 import { InteractiveStarIcon } from '@/assets/icons/InteractiveIcon';
-import { Essay } from '@/interfaces/general';
+import { Essay } from '@/definitions/general';
 import { icons } from '@assets/icons';
 import React, { useState } from 'react';
 import ShowGrade from '../General/ShowGrade';

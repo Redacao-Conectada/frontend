@@ -1,4 +1,4 @@
-import { Evaluator } from '@/interfaces/general';
+import { Evaluator } from '@/definitions/general';
 import React from 'react';
 import { EvaluatorContainer } from './styles';
 
