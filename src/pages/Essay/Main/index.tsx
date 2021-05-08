@@ -27,11 +27,11 @@ const EssayMain: React.FC<EssayMainProps> = (props) => {
     // TODO: request da redação pelo id do path
     api.get(`/essays/${props.match.params.id}`).then((res) => {
       const essayApi = res.data;
-      const { userId } = essayApi;
-
+      const authorId = essayApi.author;
+      console.log(essayApi);
       // TODO: esperando correction_id em essayApi
 
-      api.get(`/users/${userId}`).then((r) => {
+      api.get(`/users/${authorId}`).then((r) => {
         const author = Mappers.userApiToUser(r.data);
         setEssay(Mappers.essayApiToEssay(essayApi, author));
       });

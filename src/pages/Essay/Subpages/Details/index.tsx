@@ -1,9 +1,10 @@
 import { Commentary, Essay } from '@/interfaces/general';
-import api from '@/service/api';
+import api, { getLoggedUserId } from '@/service/api';
 import CommentaryList from '@components/Commentary';
 import DetailedEssayCard from '@components/DetailedEssayCard';
 import { commentariesList } from '@utils/mocks';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { CommentBox, DetailsContainer } from './styles';
 
 interface EssayDetailsProps {
@@ -15,6 +16,10 @@ const EssayDetails: React.FC<EssayDetailsProps> = ({ essay }) => {
 
   const [commentaries, setCommentaries] = useState<Commentary[]>([]);
 
+  useEffect(() => {
+    api.get(`/essays/${essay.id}/comments`).then((res) => console.log(res));
+  }, []);
+
   const handleShowCommentaries = () => {
     console.log('carrega comentários');
     setCommentaries(commentariesList);
@@ -25,8 +30,17 @@ const EssayDetails: React.FC<EssayDetailsProps> = ({ essay }) => {
   const handleCommentSubmit = (text: string) => {
     // TODO: fazer requisição de cadastrar comentário
     // TODO: atualizar listagem de comentários
-    api.post('/');
-    console.log(text);
+    api
+      .post('/user/comment', {
+        body: text,
+        idEssay: essay.id,
+        idUser: getLoggedUserId(),
+      })
+      .then((res) => {
+        toast.success('Comentário adicionado!');
+
+        // TODO: atualizar comentarios
+      });
   };
 
   return (
