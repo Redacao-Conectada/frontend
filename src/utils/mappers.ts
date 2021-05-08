@@ -27,6 +27,7 @@ const essayApiToEssay = (essayApi: EssayApi, user: User): Essay => {
     numOfStars: essayApi.upVote,
     numOfComments: 0,
     total: essayApi.grade,
+    correctionId: essayApi.correctionId,
   };
 
   return essay;

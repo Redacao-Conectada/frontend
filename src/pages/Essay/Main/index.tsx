@@ -1,9 +1,10 @@
-import { Essay } from '@/interfaces/general';
+import { Correction, Essay } from '@/interfaces/general';
 import api from '@/service/api';
 import Mappers from '@/utils/mappers';
 import PageStepper from '@components/PageStepper';
 import { ratingList } from '@utils/mocks';
 import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import EssayDetails from '../Subpages/Details';
 import EssayKeywords from '../Subpages/Keywords';
 import EssayRating from '../Subpages/Rating';
@@ -20,33 +21,38 @@ const EssayMain: React.FC<EssayMainProps> = (props) => {
   const [activePage, setActivePage] = useState(0);
 
   const [essay, setEssay] = useState<Essay>();
+  const [correction, setCorrection] = useState<Correction>();
   // const [correction, setCorrection] = useState<>();
 
   useEffect(() => {
     // TODO: implementa requests em busca de comentários, redação, ratings e keywords
     // TODO: request da redação pelo id do path
-    api.get(`/essays/${props.match.params.id}`).then((res) => {
-      const essayApi = res.data;
-      const authorId = essayApi.author;
-      console.log(essayApi);
-      // TODO: esperando correction_id em essayApi
 
-      api.get(`/users/${authorId}`).then((r) => {
-        const author = Mappers.userApiToUser(r.data);
-        setEssay(Mappers.essayApiToEssay(essayApi, author));
-      });
-    });
+    // Busca por essay
+    api
+      .get(`/essays/${props.match.params.id}`)
+      .then((res) => {
+        const essayApi = res.data;
+        const authorId = essayApi.author;
+        const { correctionId } = essayApi;
+        console.log(essayApi);
 
-    // TODO: implementa request de busca de comentarios
-    // TODO: implementa request em busca de correções via id da essay
-    // TODO: implementa request em busca de keywords da redação
+        // Busca autor da essay
+        api.get(`/users/${authorId}`).then((r) => {
+          const author = Mappers.userApiToUser(r.data);
+          setEssay(Mappers.essayApiToEssay(essayApi, author));
+        });
+
+        // Busca correction da essay
+        if (correctionId) {
+          api.get(`/corrections/${correctionId}`).then((response) => {
+            console.log(response.data);
+          });
+        }
+      })
+      .catch(() => toast.error('Redação inexistente'));
 
     // Utilizar props.match.params.id para pegar id do path
-    console.log('id do path: ', props.match.params.id);
-
-    console.log(
-      'faz request em busca de redação, comentários, ratingList e keywords',
-    );
   }, []);
 
   const handlePageChange = (newPageIndex: number) => {

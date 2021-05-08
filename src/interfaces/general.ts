@@ -32,6 +32,7 @@ export interface Essay {
   numOfStars: number;
   numOfComments: number;
   total: number;
+  correctionId?: number;
   ratingList?: RatingList;
 }
 
@@ -70,7 +71,7 @@ export interface RatingList {
 }
 
 export interface Rate {
-  rate: string;
+  rate: number;
   commentary: string;
 }
 
@@ -97,11 +98,45 @@ export interface EssayApi {
   title?: string;
   grade: number;
   createdAt: string;
+  correctionId?: number;
 }
 
 export enum UserRole {
   ROLE_STUDENT = 'ROLE_STUDENT',
   ROLE_TEACHER = 'ROLE_TEACHER',
+}
+
+export interface CorrectionApi {
+  competences: {
+    competence1Comments: string;
+    competence1Grade: number;
+    competence2Comments: string;
+    competence2Grade: number;
+    competence3Comments: string;
+    competence3Grade: number;
+    competence4Comments: string;
+    competence4Grade: number;
+    competence5Comments: string;
+    competence6Grade: number;
+    gradesSum: number;
+  };
+  correctionGrade: number;
+  createdDate: string;
+  essayId: number;
+  id: number;
+  teacherId: number;
+}
+
+export interface Correction {
+  teacher: User;
+  rate1: Rate;
+  rate2: Rate;
+  rate3: Rate;
+  rate4: Rate;
+  rate5: Rate;
+  total: number;
+  essayId: number;
+  id: number;
 }
 
 // TODO: criar interface para Correction e CorrectionApi

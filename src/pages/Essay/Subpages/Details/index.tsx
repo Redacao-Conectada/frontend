@@ -3,7 +3,6 @@ import api, { getLoggedUserId } from '@/service/api';
 import { commentaryApiToCommentary } from '@/utils/mappers';
 import CommentaryList from '@components/Commentary';
 import DetailedEssayCard from '@components/DetailedEssayCard';
-import { commentariesList } from '@utils/mocks';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { CommentBox, DetailsContainer } from './styles';
@@ -18,13 +17,21 @@ const EssayDetails: React.FC<EssayDetailsProps> = ({ essay }) => {
   const [commentaries, setCommentaries] = useState<Commentary[]>([]);
 
   useEffect(() => {
+    console.log(essay);
     api.get(`/essays/${essay.id}/comments`).then((res) => {
       const comments = res.data.map((comment: CommentaryApi) =>
         commentaryApiToCommentary(comment),
       );
-      console.log(comments);
+
       setCommentaries(comments);
     });
+
+    // FIXME: bloquear opção de correção para redação não corrigida
+    if (essay.correctionId) {
+      api.get(`/corrections/${essay.correctionId}`).then((res) => {
+        console.log(res);
+      });
+    }
   }, []);
 
   const handleShowCommentaries = () => {
