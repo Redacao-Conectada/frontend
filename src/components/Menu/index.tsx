@@ -1,3 +1,4 @@
+import { roles } from '@definitions/general';
 import {
   adminOptions,
   evaluatorOptions,
@@ -8,8 +9,6 @@ import React, { useState, useEffect } from 'react';
 
 import { useHistory, Link } from 'react-router-dom';
 import { MenuContainer, MenuItem } from './styles';
-
-type roles = 'admin' | 'evaluator' | 'student';
 
 interface Options {
   [index: string]: MenuOption[];

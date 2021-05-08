@@ -10,6 +10,8 @@ export const initialValue = {
   validation: () => '',
 };
 
+export type roles = 'admin' | 'evaluator' | 'student';
+
 export interface User {
   id?: number;
   name: string;

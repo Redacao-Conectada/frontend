@@ -8,25 +8,9 @@ interface RouteProps extends ReactDOMRouterProps {
   title: string;
 }
 
-export const privateRouteList: RouteProps[] = [
-  {
-    path: '/example',
-    component: pages.Example,
-    exact: true,
-    title: 'Exemplo',
-  },
-  {
-    path: '/essays', // FIXME: deve ser /essay/${id}
-    component: pages.EssayMainPage,
-    exact: true,
-    title: 'Redação em Detalhes',
-  },
-  {
-    path: '/create',
-    component: pages.CreateEssay,
-    exact: true,
-    title: 'Criar Redação',
-  },
+const adminRouteList: RouteProps[] = [];
+
+const evaluatorRouteList: RouteProps[] = [
   {
     path: '/profile',
     component: pages.ProfileView,
@@ -39,7 +23,39 @@ export const privateRouteList: RouteProps[] = [
     exact: true,
     title: 'Avaliar Redação',
   },
+  {
+    path: '/essays', // FIXME: deve ser /essay/${id}
+    component: pages.EssayMainPage,
+    exact: true,
+    title: 'Redação em Detalhes',
+  },
 ];
+const studentRouteList: RouteProps[] = [
+  {
+    path: '/profile',
+    component: pages.ProfileView,
+    exact: true,
+    title: 'Perfil',
+  },
+  {
+    path: '/create',
+    component: pages.CreateEssay,
+    exact: true,
+    title: 'Criar Redação',
+  },
+  {
+    path: '/essays', // FIXME: deve ser /essay/${id}
+    component: pages.EssayMainPage,
+    exact: true,
+    title: 'Redação em Detalhes',
+  },
+];
+
+export const privateRouteList = {
+  admin: adminRouteList,
+  evaluator: evaluatorRouteList,
+  student: studentRouteList,
+};
 
 export const publicRouteList: RouteProps[] = [
   {
