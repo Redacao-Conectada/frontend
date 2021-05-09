@@ -16,7 +16,6 @@ interface CommentaryListProps {
   authorAvatar: string;
   commentaries: Commentary[];
   onCommentSubmit: (text: string) => void;
-  onShowCommentaries: () => void;
 }
 
 interface ShowCommentaryBoxProps {
@@ -27,7 +26,6 @@ const CommentaryList: React.FC<CommentaryListProps> = ({
   onCommentSubmit,
   authorAvatar,
   commentaries,
-  onShowCommentaries,
 }) => {
   const [commentText, setCommentText] = useState<General.Value>({
     ...General.initialValue,
@@ -57,7 +55,6 @@ const CommentaryList: React.FC<CommentaryListProps> = ({
 
   const handleShowCommentariesClick = () => {
     setShowCommentaries(true);
-    onShowCommentaries();
   };
 
   const comment = (commentary: Commentary, isReply: boolean) => (

@@ -26,10 +26,6 @@ const EssayDetails: React.FC<EssayDetailsProps> = ({ essay }) => {
     });
   }, []);
 
-  const handleShowCommentaries = () => {
-    console.log('carrega comentários');
-  };
-
   const handleCommentSubmit = (text: string) => {
     // TODO: fazer requisição de cadastrar comentário
     // TODO: atualizar listagem de comentários
@@ -65,7 +61,6 @@ const EssayDetails: React.FC<EssayDetailsProps> = ({ essay }) => {
               : 'https://picsum.photos/42'
           }
           commentaries={commentaries}
-          onShowCommentaries={handleShowCommentaries}
         />
       </CommentBox>
     </>
