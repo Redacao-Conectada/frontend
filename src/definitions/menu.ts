@@ -12,7 +12,7 @@ export const studentsOptions: MenuOption[] = [
   {
     label: 'Redações',
     icon: icons.book,
-    path: '/feed',
+    path: '/essays',
   },
   {
     label: 'Perfil',
