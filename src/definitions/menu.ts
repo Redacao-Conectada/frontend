@@ -1,12 +1,21 @@
-import { getLoggedUserId } from '@/service/api';
+import { getLoggedUserId } from '@/services/api';
 import { icons } from '@assets/icons';
+import { logout } from '@services/api';
 import { ReactNode } from 'react';
 
 export interface MenuOption {
   label: string;
   icon: ReactNode;
   path: string;
+  action?: () => void;
 }
+
+const logoutOption: MenuOption = {
+  label: 'Logout',
+  icon: icons.power,
+  path: '',
+  action: logout,
+};
 
 export const studentsOptions: MenuOption[] = [
   {
@@ -24,6 +33,7 @@ export const studentsOptions: MenuOption[] = [
     icon: icons.plusFile,
     path: '/create',
   },
+  logoutOption,
 ];
 
 export const evaluatorOptions: MenuOption[] = [
@@ -42,6 +52,7 @@ export const evaluatorOptions: MenuOption[] = [
     icon: icons.clipboard,
     path: '/evaluate',
   },
+  logoutOption,
 ];
 
 export const adminOptions: MenuOption[] = [
@@ -55,4 +66,5 @@ export const adminOptions: MenuOption[] = [
     icon: icons.textFile,
     path: '/requests',
   },
+  logoutOption,
 ];
