@@ -48,7 +48,7 @@ export interface Essay {
   date?: string;
   isStarred: boolean;
   numOfStars: number;
-  numOfComments: number;
+  totalComments: number;
   total: number;
   correctionId?: number;
   ratingList?: RatingList;
@@ -115,6 +115,7 @@ export interface EssayApi {
   authorName?: string;
   author?: number;
   hasUserUpVoted?: boolean;
+  totalComments: number;
 }
 
 export enum UserRole {

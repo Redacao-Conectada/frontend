@@ -21,7 +21,7 @@ const EssayPreviewCard: React.FC<EssayPreviewCardProps> = ({
     Votos: (essay1: Essay, essay2: Essay) =>
       essay1.numOfStars < essay2.numOfStars ? 1 : -1,
     Comentários: (essay1: Essay, essay2: Essay) =>
-      essay1.numOfComments < essay2.numOfComments ? 1 : -1,
+      essay1.totalComments < essay2.totalComments ? 1 : -1,
     Nota: (essay1: Essay, essay2: Essay) =>
       essay1.total < essay2.total ? 1 : -1,
   };

@@ -110,7 +110,7 @@ const DetailedEssayCard: React.FC<DetailedEssayCardProps> = ({
             {preview && (
               <IconsContainer>
                 {icons.comments}
-                <span>{essay.numOfComments}</span>
+                <span>{essay.totalComments}</span>
               </IconsContainer>
             )}
           </StarsCounter>

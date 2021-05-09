@@ -5,6 +5,7 @@ import Mappers from '@/utils/mappers';
 import { CenteredContainer } from '@styles/general';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+import Skeleton from 'react-loading-skeleton';
 import EssayDetails from '../Subpages/Details';
 import EssayKeywords from '../Subpages/Keywords';
 import EssayRating from '../Subpages/Rating';
@@ -79,9 +80,11 @@ const EssayMain: React.FC<EssayMainProps> = (props) => {
     return [];
   };
 
+  const skeleton = <Skeleton height="300px" />;
+
   const essayComponents: essayComponentsProps = {
-    0: essay ? <EssayDetails essay={essay} /> : <p>Loading...</p>,
-    1: correction ? <EssayRating ratingList={correction} /> : <p>Loading...</p>,
+    0: essay ? <EssayDetails essay={essay} /> : skeleton,
+    1: correction ? <EssayRating ratingList={correction} /> : skeleton,
     2: <EssayKeywords keywords={getKeywords()} />,
   };
 

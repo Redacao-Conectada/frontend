@@ -27,7 +27,7 @@ const essayApiToEssay = (essayApi: EssayApi, user: User): Essay => {
     date: formatDate(essayApi.createdAt),
     isStarred: false,
     numOfStars: essayApi.upVote,
-    numOfComments: 0,
+    totalComments: essayApi.totalComments,
     total: essayApi.grade,
     correctionId: essayApi.correctionId,
     hasUserUpVoted: essayApi.hasUserUpVoted,
@@ -100,7 +100,7 @@ const correctionApiToCorrection = (
     },
     total: correctionApi.correctionGrade,
     essayId: correctionApi.essayId,
-    id: correctionApi.id,
+    id: correctionApi.id || 0,
     createdDate: formatDate(correctionApi.createdDate),
   };
   return correction;

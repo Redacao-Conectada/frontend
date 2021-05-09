@@ -71,7 +71,6 @@ const CommentaryList: React.FC<CommentaryListProps> = ({
           <p className="commentary-author-name">{commentary.author.name}</p>
         </div>
       </div>
-      {isReply ? null : <div>{icons.reply}</div>}
     </Comment>
   );
 
