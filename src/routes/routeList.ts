@@ -33,6 +33,12 @@ const adminRouteList: RouteProps[] = [
 
 const evaluatorRouteList: RouteProps[] = [
   {
+    path: '/profile/update',
+    component: pages.UpdateProfile,
+    exact: true,
+    title: 'Atualizar Perfil',
+  },
+  {
     path: '/profile/:id',
     component: pages.ProfileView,
     exact: true,

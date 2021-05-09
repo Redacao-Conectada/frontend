@@ -1,9 +1,12 @@
 import { User } from '@/definitions/general';
 import { getSchoolYearNameFromValue } from '@/definitions/Register/component';
+import { icons } from '@assets/icons/index';
 import React from 'react';
-import { StudentContainer } from './styles';
+import { Link } from 'react-router-dom';
+import { PenSVG, StudentContainer } from './styles';
 
 interface EvaluatorCardProps {
+  isOwner?: boolean;
   student: User;
   writtenEssays?: number;
 }
@@ -11,6 +14,7 @@ interface EvaluatorCardProps {
 const StudentCard: React.FC<EvaluatorCardProps> = ({
   student,
   writtenEssays,
+  isOwner,
 }) => {
   const showStudentHeader = () => {
     if (writtenEssays !== undefined) {
@@ -35,9 +39,15 @@ const StudentCard: React.FC<EvaluatorCardProps> = ({
   return (
     <StudentContainer>
       <img
-        alt="avaliador"
+        alt="estudante"
         src={student.avatar ? student.avatar : 'https://picsum.photos/50'}
       />
+      {isOwner && (
+        <Link to="/profile/update">
+          <PenSVG>{icons.pen}</PenSVG>
+        </Link>
+      )}
+
       {showStudentHeader()}
     </StudentContainer>
   );
