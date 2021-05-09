@@ -2,6 +2,7 @@ import PageStepper from '@/components/Pages/Essay/PageStepper';
 import { Correction, Essay } from '@/definitions/general';
 import api from '@/services/api';
 import Mappers from '@/utils/mappers';
+import { CenteredContainer } from '@styles/general';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import EssayDetails from '../Subpages/Details';
@@ -87,14 +88,14 @@ const EssayMain: React.FC<EssayMainProps> = (props) => {
   const getActivePage = () => essayComponents[activePage];
 
   return (
-    <>
+    <CenteredContainer>
       <PageStepper
         steps={steps}
         activeStep={activePage}
         onStepClick={handlePageChange}
       />
       <>{getActivePage()}</>
-    </>
+    </CenteredContainer>
   );
 };
 

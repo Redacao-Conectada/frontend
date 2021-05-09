@@ -23,8 +23,3 @@ export const ShowCommentariesBox = styled.div`
     color: ${colors.link};
   }
 `;
-
-export const DetailsContainer = styled.div`
-  width: calc(100vw - 64px);
-  max-width: 500px;
-`;

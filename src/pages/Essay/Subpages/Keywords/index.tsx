@@ -1,6 +1,5 @@
 // import KeywordsListContainer from '@/components/KeywordsListContainer';
 import { icons } from '@assets/icons';
-import { CenteredContainer } from '@styles/general';
 import React from 'react';
 import { KeywordsContainer } from './styles';
 
@@ -17,11 +16,11 @@ const EssayKeywords: React.FC<EssayKeywordsProps> = ({ keywords }) => {
   ));
 
   return (
-    <CenteredContainer>
+    <>
       <KeywordsContainer>
         <ul className="bolinha">{getKeywords}</ul>
       </KeywordsContainer>
-    </CenteredContainer>
+    </>
   );
 };
 
