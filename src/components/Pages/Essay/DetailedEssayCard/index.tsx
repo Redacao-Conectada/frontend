@@ -4,7 +4,7 @@ import api from '@/services/api';
 import { icons } from '@assets/icons';
 import ShowGrade from '@components/Pages/Essay/ShowGrade';
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {
   AuthorContainer,
   DateContainer,
@@ -21,14 +21,15 @@ interface DetailedEssayCardProps {
   preview?: boolean;
   comments?: boolean;
   essay: Essay;
+  evaluateMode?: boolean;
 }
 
-const defaultAvatar =
-  'https://www.ecp.org.br/wp-content/uploads/2017/12/default-avatar-1-300x300.png';
+const defaultAvatar = 'https://picsum.photos/50';
 
 const DetailedEssayCard: React.FC<DetailedEssayCardProps> = ({
   essay,
   preview,
+  evaluateMode,
 }) => {
   // TODO: fazer estrela ficar amarela quando curtido.
   // TODO: fazer gerenciamento de estado
@@ -84,37 +85,39 @@ const DetailedEssayCard: React.FC<DetailedEssayCardProps> = ({
           </div>
         </>
       )}
-      <FooterContainer>
-        <StarsCounter>
-          <IconsContainer>
-            <InteractiveStarIcon
-              onClick={handleStarClick}
-              isFilled={isStarred}
-            />
-            <span>{numOfStars}</span>
-          </IconsContainer>
-          {preview && (
+      {evaluateMode ? null : (
+        <FooterContainer>
+          <StarsCounter>
             <IconsContainer>
-              {icons.comments}
-              <span>{essay.numOfComments}</span>
+              <InteractiveStarIcon
+                onClick={handleStarClick}
+                isFilled={isStarred}
+              />
+              <span>{numOfStars}</span>
             </IconsContainer>
-          )}
-        </StarsCounter>
-        <MoreInfoContainer>
-          <DateContainer>
-            <p>
-              em <b>{essay.date}</b>
-            </p>
-          </DateContainer>
-          <AuthorContainer>
-            <b>{essay.author?.name}</b>
-            <img
-              alt={essay.author?.name}
-              src={essay.author?.avatar ? essay.author.avatar : defaultAvatar}
-            />
-          </AuthorContainer>
-        </MoreInfoContainer>
-      </FooterContainer>
+            {preview && (
+              <IconsContainer>
+                {icons.comments}
+                <span>{essay.numOfComments}</span>
+              </IconsContainer>
+            )}
+          </StarsCounter>
+          <MoreInfoContainer>
+            <DateContainer>
+              <p>
+                em <b>{essay.date}</b>
+              </p>
+            </DateContainer>
+            <AuthorContainer>
+              <b>{essay.author?.name}</b>
+              <img
+                alt={essay.author?.name}
+                src={essay.author?.avatar ? essay.author.avatar : defaultAvatar}
+              />
+            </AuthorContainer>
+          </MoreInfoContainer>
+        </FooterContainer>
+      )}
     </EssayCardContainer>
   );
 };
