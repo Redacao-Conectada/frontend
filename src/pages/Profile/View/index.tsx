@@ -11,6 +11,7 @@ import { TagOptionList } from '@definitions/tag';
 import { CenteredContainer, Header } from '@styles/general';
 import { evaluator } from '@utils/mocks';
 import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 
 const tagOptions: TagOptionList = [
   { label: 'Votos', icon: icons.emptyStar },
@@ -39,7 +40,6 @@ const ProfileView: React.FC<ProfileViewProps> = (props) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Busca Usuário pelo id do path
     api
       .get(`/users/${props.match.params.id}`)
       .then((res) => {
@@ -47,15 +47,18 @@ const ProfileView: React.FC<ProfileViewProps> = (props) => {
         const user = Mappers.userApiToUser(userApi);
         setUserProfile(user);
 
-        // Busca Essays do usuário pelo id do path
-        api.get(`/essays/users/${props.match.params.id}`).then((r) => {
-          const essaysApi = r.data;
-          const userEssays = essaysApi.map((es: EssayApi) =>
-            Mappers.essayApiToEssay(es, user),
-          );
-          setEssays(userEssays);
-        });
+        api
+          .get(`/essays/users/${props.match.params.id}`)
+          .then((r) => {
+            const essaysApi = r.data;
+            const userEssays = essaysApi.map((es: EssayApi) =>
+              Mappers.essayApiToEssay(es, user),
+            );
+            setEssays(userEssays);
+          })
+          .catch(() => toast.error('Erro ao buscar redações do usuário'));
       })
+      .catch(() => toast.error('Erro ao buscar usuário'))
       .finally(() => setIsLoading(false));
   }, []);
 

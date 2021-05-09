@@ -12,23 +12,22 @@ interface EssayDetailsProps {
 }
 
 const EssayDetails: React.FC<EssayDetailsProps> = ({ essay }) => {
-  // TODO: adicionar state para guardar comentários
-
   const [commentaries, setCommentaries] = useState<Commentary[]>([]);
 
   useEffect(() => {
-    api.get(`/essays/${essay.id}/comments`).then((res) => {
-      const comments = res.data.map((comment: CommentaryApi) =>
-        commentaryApiToCommentary(comment),
-      );
+    api
+      .get(`/essays/${essay.id}/comments`)
+      .then((res) => {
+        const comments = res.data.map((comment: CommentaryApi) =>
+          commentaryApiToCommentary(comment),
+        );
 
-      setCommentaries(comments);
-    });
+        setCommentaries(comments);
+      })
+      .catch((err) => toast.error('Erro ao carregar comentários'));
   }, []);
 
   const handleCommentSubmit = (text: string) => {
-    // TODO: fazer requisição de cadastrar comentário
-    // TODO: atualizar listagem de comentários
     api
       .post('/users/comment', {
         body: text,
@@ -46,7 +45,8 @@ const EssayDetails: React.FC<EssayDetailsProps> = ({ essay }) => {
 
           setCommentaries(comments);
         });
-      });
+      })
+      .catch((err) => toast.error('Erro ao adicionar comentário'));
   };
 
   return (
