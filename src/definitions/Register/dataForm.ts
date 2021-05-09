@@ -36,7 +36,7 @@ export interface UpdateEducation {
   function: Value;
   school: Value;
   schoolYear: Value;
-  schoolId?: Value;
+  schoolId: Value;
 }
 
 // export interface UpdateEvaluator extends UpdateEducation {
@@ -149,6 +149,9 @@ export const initialUpdateData: UpdateData = {
     schoolYear: {
       ...initialValue,
       // TODO: Verificar se vai precisar validar o select e talvez criar o input de select
+    },
+    schoolId: {
+      ...initialValue,
     },
   },
 };

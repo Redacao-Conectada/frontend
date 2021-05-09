@@ -89,9 +89,13 @@ const UpdateProfile: React.FC = () => {
           value: schoolYear,
           // TODO: Verificar se vai precisar validar o select e talvez criar o input de select
         },
+        schoolId: {
+          ...data.education.schoolId,
+        },
       },
     });
   }, []);
+
   const handlePersonalData = (name: UpdatePersonalFields, value: any) => {
     const invalidity = data.personal[name].validation(value);
 
@@ -131,6 +135,11 @@ const UpdateProfile: React.FC = () => {
 
     handleEducationData(name as UpdateEducationFields, value);
   };
+
+  const handleRadio = (name: string, value: string) => {
+    handleEducationData(name as UpdateEducationFields, value);
+  };
+
   const handleSelectPersonal = (event: React.FormEvent<HTMLSelectElement>) => {
     const { value, name } = event.currentTarget;
 
@@ -186,6 +195,7 @@ const UpdateProfile: React.FC = () => {
         data={data.education}
         onChange={(event) => handleData(event, 'education')}
         onChangeSelect={handleSelectEducation}
+        onChangeRadio={handleRadio}
         onSubmit={() => handleSubmit}
       />
     ),
