@@ -6,6 +6,13 @@ import { ButtonsContainer } from './styles';
 const Request: React.FC = () => {
   // TODO: criar modal caso o admin recuse
 
+  const handleAccept = () => {
+    console.log('Aceitou');
+  };
+  const handleDecline = () => {
+    console.log('Rejeitou');
+  };
+
   return (
     <CenteredContainer gapSize="16px">
       <Header>Análise de solicitação</Header>
@@ -18,8 +25,8 @@ const Request: React.FC = () => {
       <ReadOnlyInput label="Escola atual">Colégio do Céu Alado </ReadOnlyInput>
       <ReadOnlyInput label="Matrícula escolar">348905543</ReadOnlyInput>
       <ButtonsContainer>
-        <Button text="Aceitar solicitação" />
-        <Button text="Recusar solicitação" decline />
+        <Button text="Aceitar solicitação" onClick={handleAccept} />
+        <Button text="Recusar solicitação" onClick={handleDecline} decline />
       </ButtonsContainer>
     </CenteredContainer>
   );
