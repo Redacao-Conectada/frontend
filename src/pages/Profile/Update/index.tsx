@@ -4,7 +4,7 @@ import {
   UpdatePersonalFields,
   UpdateEducationFields,
 } from '@/definitions/Register/dataForm';
-import api from '@/service/api';
+import api from '@/services/api';
 import { FormMappers } from '@/utils/formUtils';
 import SwitchRouter, { SwitchOption } from '@components/General/SwitchRouter';
 import { PersonalForm, EducationForm } from '@components/Pages/Profile/Update';

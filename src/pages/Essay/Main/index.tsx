@@ -1,6 +1,6 @@
 import PageStepper from '@/components/Pages/Essay/PageStepper';
 import { Correction, Essay } from '@/definitions/general';
-import api from '@/service/api';
+import api from '@/services/api';
 import Mappers from '@/utils/mappers';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';

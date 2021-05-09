@@ -80,6 +80,7 @@ export const logout = (): void => {
   localStorage.removeItem(USER_ROLES);
   localStorage.removeItem(USER_USERNAME);
   localStorage.removeItem(USER_ID);
+
   toast.success('Bons estudos, volte sempre!');
 };
 

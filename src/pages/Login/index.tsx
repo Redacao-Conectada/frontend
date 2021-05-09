@@ -1,6 +1,6 @@
 import { Button, Input, Link } from '@/components/General';
 import { General } from '@/definitions';
-import { login } from '@/service/api';
+import { login } from '@/services/api';
 import Image from '@assets/loginImage.svg';
 import { ReactComponent as Logo } from '@assets/logo.svg';
 import {

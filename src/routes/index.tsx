@@ -1,4 +1,4 @@
-import { isLogged } from '@/service/api';
+import { isLogged } from '@/services/api';
 import { roles } from '@definitions/general';
 import PrivateTemplate from '@templates/Private';
 import React from 'react';
