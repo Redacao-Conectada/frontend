@@ -137,8 +137,9 @@ export interface CorrectionApi {
   correctionGrade: number;
   createdDate: string;
   essayId: number;
-  id: number;
-  teacherId: number;
+  id?: number;
+  teacherId?: number;
+  idTeacherUser?: number;
 }
 
 export interface Correction {
