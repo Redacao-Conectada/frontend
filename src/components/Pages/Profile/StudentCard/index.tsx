@@ -1,4 +1,5 @@
 import { User } from '@/definitions/general';
+import { getSchoolYearNameFromValue } from '@/definitions/Register/component';
 import React from 'react';
 import { StudentContainer } from './styles';
 
@@ -16,7 +17,7 @@ const StudentCard: React.FC<EvaluatorCardProps> = ({
       return (
         <div className="divContainer">
           <div>{student.name}</div>
-          <div>{student.schoolYear}</div>
+          <div>{getSchoolYearNameFromValue(student.schoolYear)}</div>
           <div className="publishedEssaysText"> Redações publicadas </div>
           <div className="center gradedEssays">{writtenEssays}</div>
         </div>

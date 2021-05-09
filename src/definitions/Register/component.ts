@@ -83,3 +83,11 @@ export const schoolYearOptionsList: OptionsList = [
   { name: 'Curso / Pré-Vestibular', value: 'course' },
   { name: 'Outro', value: 'other' },
 ];
+
+export const getSchoolYearNameFromValue = (
+  value: string | undefined,
+): string => {
+  if (!value) return '';
+  const [schoolYear] = schoolYearOptionsList.filter((sy) => sy.value === value);
+  return schoolYear ? schoolYear.name : '';
+};

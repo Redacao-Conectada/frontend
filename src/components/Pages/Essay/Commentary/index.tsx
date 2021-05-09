@@ -107,7 +107,9 @@ const CommentaryList: React.FC<CommentaryListProps> = ({
                 validated={validated}
                 name="commentField"
               />
-              <Button text="->" typeButton="submit" />
+              <Button text="->" typeButton="submit">
+                {icons.sendMessage}
+              </Button>
             </Form>
           </WriteCommentaryContainer>
           <ul>{commentaries.map((c) => commentaryItem(c.id, c))}</ul>

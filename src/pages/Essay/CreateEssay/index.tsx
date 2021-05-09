@@ -1,3 +1,4 @@
+import api, { getLoggedUserId } from '@/services/api';
 import SwitchRouter, { SwitchOption } from '@components/General/SwitchRouter';
 import { EssayConfigForm, EssayCreateForm } from '@components/Pages/Essay';
 import {
@@ -8,11 +9,15 @@ import {
 } from '@definitions/Essay/Create';
 import { CenteredContainer } from '@styles/general';
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
+import { useHistory } from 'react-router-dom';
 
 const CreateEssay: React.FC = () => {
   const [data, setData] = useState(initialData);
 
   const [activeTab, setActiveTab] = useState('Redação');
+
+  const history = useHistory();
 
   const changeActiveTab = (tabName: string) => {
     setActiveTab(tabName);
@@ -69,6 +74,25 @@ const CreateEssay: React.FC = () => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
+
+    api
+      .post('/essays', {
+        body: data.essayCreate.essay.value,
+        idUser: getLoggedUserId(),
+        isAnon: data.essayConfig.hideName,
+        title: data.essayCreate.title.value,
+        keywords: data.essayConfig.keyWords.value,
+        requestCorrection: data.essayConfig.requestCorrection,
+      })
+      .then(() => {
+        toast.success('Redação enviada com sucesso!');
+        history.push('/feed');
+      })
+      .catch(() => {
+        toast.error(
+          'Algum problema aconteceu e não pudemos enviar sua redação... :(',
+        );
+      });
   };
 
   const configOption: SwitchOption = {

@@ -73,16 +73,23 @@ export const WriteCommentaryContainer = styled.div`
   }
 
   form {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 30px;
+
+    width: 100%;
+
     margin-right: 8px;
+
+    align-items: center;
+
+    margin-bottom: 8px;
   }
 
-  form div {
-    align-self: center;
+  form > div {
     gap: 0px;
   }
 
-  input {
+  form input {
     height: 30px;
   }
 

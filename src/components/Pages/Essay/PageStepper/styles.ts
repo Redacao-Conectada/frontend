@@ -9,6 +9,8 @@ export const OptionsContainer = styled.ul`
   display: flex;
   justify-content: space-evenly;
 
+  min-width: 300px;
+
   padding: 12px 4px 12px 4px;
   margin: 6px 0 6px 0;
 

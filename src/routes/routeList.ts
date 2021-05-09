@@ -33,7 +33,7 @@ const adminRouteList: RouteProps[] = [
 
 const evaluatorRouteList: RouteProps[] = [
   {
-    path: '/profile',
+    path: '/profile/:id',
     component: pages.ProfileView,
     exact: true,
     title: 'Perfil',
@@ -71,16 +71,16 @@ const studentRouteList: RouteProps[] = [
     title: 'Criar Redação',
   },
   {
-    path: '/profile/:id',
-    component: pages.ProfileView,
-    exact: true,
-    title: 'Exemplo',
-  },
-  {
     path: '/profile/update',
     component: pages.UpdateProfile,
     exact: true,
     title: 'Atualizar Perfil',
+  },
+  {
+    path: '/profile/:id',
+    component: pages.ProfileView,
+    exact: true,
+    title: 'Exemplo',
   },
   {
     path: '/essays/:id',

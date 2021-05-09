@@ -7,6 +7,7 @@ interface ButtonProps {
   typeButton?: 'button' | 'reset' | 'submit';
   onClick?: () => void;
   decline?: boolean;
+  children?: any;
   isLoading?: boolean;
 }
 
@@ -14,6 +15,7 @@ const Button: React.FC<ButtonProps> = ({
   text,
   typeButton = 'button',
   onClick,
+  children,
   decline = false,
   isLoading = false,
 }) => {
@@ -25,7 +27,7 @@ const Button: React.FC<ButtonProps> = ({
       disabled={isLoading}
       isDisabled={isLoading}
     >
-      {isLoading ? <PulseLoader color="#fff" size={10} /> : text}
+      {isLoading ? <PulseLoader color="#fff" size={10} /> : children || text}
     </ButtonContainer>
   );
 };
