@@ -174,7 +174,7 @@ const UpdateProfile: React.FC = () => {
     if (errors.length) {
       errors.map((error) => toast.error(error));
     } else {
-      api.post('/users', FormMappers.userUpdateFormToUserApi(data)).then(() => {
+      api.put('/users', FormMappers.userUpdateFormToUserApi(data)).then(() => {
         toast.success('Atualizado com sucesso');
         history.push('/profile/update');
       });
