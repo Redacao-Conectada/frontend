@@ -92,10 +92,10 @@ const Register: React.FC = () => {
 
     setIsLoading(true);
     try {
-      await api.post('/users', FormMappers.userFormToUserApi(data)).then(() => {
-        toast.success('Cadastrado com sucesso');
-        history.push('/login');
-      });
+      await api.post('/users', FormMappers.userFormToUserApi(data));
+
+      toast.success('Cadastrado com sucesso');
+      history.push('/login');
     } catch (err) {
       toast.error('Falha ao realizar cadastro, tente um email diferente');
     } finally {
