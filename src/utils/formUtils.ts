@@ -27,6 +27,7 @@ export const FormMappers = {
 };
 
 export const formatDate = (date: string): string => {
+  if (!date) return '';
   const [apiDate] = date.split('T');
   const [year, month, day] = apiDate.split('-');
 

@@ -1,8 +1,11 @@
 import {
   Commentary,
   CommentaryApi,
+  Correction,
+  CorrectionApi,
   Essay,
   EssayApi,
+  Rate,
   User,
   UserApi,
 } from '@/interfaces/general';
@@ -59,7 +62,7 @@ export const commentaryApiToCommentary = (
       id: commentaryApi.userInfo.id,
       avatar: commentaryApi.userInfo.image
         ? commentaryApi.userInfo.image
-        : `https://picsum.photos/200`,
+        : `https://picsum.photos/38`,
       name: commentaryApi.userInfo.name,
     },
     text: commentaryApi.body,
@@ -69,11 +72,46 @@ export const commentaryApiToCommentary = (
   return commentary;
 };
 
+const correctionApiToCorrection = (
+  correctionApi: CorrectionApi,
+  evaluator: User,
+): Correction => {
+  const correction = {
+    evaluator,
+    rate1: {
+      rate: correctionApi.competences.competence1Grade,
+      commentary: correctionApi.competences.competence1Comments,
+    },
+    rate2: {
+      rate: correctionApi.competences.competence2Grade,
+      commentary: correctionApi.competences.competence2Comments,
+    },
+    rate3: {
+      rate: correctionApi.competences.competence3Grade,
+      commentary: correctionApi.competences.competence3Comments,
+    },
+    rate4: {
+      rate: correctionApi.competences.competence4Grade,
+      commentary: correctionApi.competences.competence4Comments,
+    },
+    rate5: {
+      rate: correctionApi.competences.competence5Grade,
+      commentary: correctionApi.competences.competence5Comments,
+    },
+    total: correctionApi.correctionGrade,
+    essayId: correctionApi.essayId,
+    id: correctionApi.id,
+    createdDate: formatDate(correctionApi.createdDate),
+  };
+  return correction;
+};
+
 // TODO: mapear Correction/CorrectionApi
 
 const Mappers = {
   essayApiToEssay,
   userApiToUser,
+  correctionApiToCorrection,
 };
 
 export default Mappers;

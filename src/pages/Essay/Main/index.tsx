@@ -2,7 +2,6 @@ import { Correction, Essay } from '@/interfaces/general';
 import api from '@/service/api';
 import Mappers from '@/utils/mappers';
 import PageStepper from '@components/PageStepper';
-import { ratingList } from '@utils/mocks';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import EssayDetails from '../Subpages/Details';
@@ -35,7 +34,6 @@ const EssayMain: React.FC<EssayMainProps> = (props) => {
         const essayApi = res.data;
         const authorId = essayApi.author;
         const { correctionId } = essayApi;
-        console.log(essayApi);
 
         // Busca autor da essay
         api.get(`/users/${authorId}`).then((r) => {
@@ -44,15 +42,26 @@ const EssayMain: React.FC<EssayMainProps> = (props) => {
         });
 
         // Busca correction da essay
+
+        // FIXME: bloquear opção de correção para redação não corrigida
         if (correctionId) {
           api.get(`/corrections/${correctionId}`).then((response) => {
-            console.log(response.data);
+            const correctionApi = response.data;
+            const { teacherId } = correctionApi;
+
+            api.get(`/users/${teacherId}`).then((r) => {
+              const evaluator = Mappers.userApiToUser(r.data);
+
+              const correctionWithEvaluator = Mappers.correctionApiToCorrection(
+                correctionApi,
+                evaluator,
+              );
+              setCorrection(correctionWithEvaluator);
+            });
           });
         }
       })
       .catch(() => toast.error('Redação inexistente'));
-
-    // Utilizar props.match.params.id para pegar id do path
   }, []);
 
   const handlePageChange = (newPageIndex: number) => {
@@ -71,7 +80,7 @@ const EssayMain: React.FC<EssayMainProps> = (props) => {
 
   const essayComponents: essayComponentsProps = {
     0: essay ? <EssayDetails essay={essay} /> : <p>Loading...</p>,
-    1: <EssayRating ratingList={ratingList} />,
+    1: correction ? <EssayRating ratingList={correction} /> : <p>Loading...</p>,
     2: <EssayKeywords keywords={getKeywords()} />,
   };
 

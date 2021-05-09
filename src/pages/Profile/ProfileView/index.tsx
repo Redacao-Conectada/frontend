@@ -3,7 +3,7 @@ import EssayPreviewCard from '@/components/EssayPreviewCard';
 import EvaluatorCard from '@/components/EvaluatorCard';
 import { TagSwitcher } from '@/components/General';
 import StudentCard from '@/components/StudentCard';
-import { EssayApi, UserRole } from '@/interfaces/general';
+import { Essay, EssayApi, User, UserRole } from '@/interfaces/general';
 import api, { hasAuthority } from '@/service/api';
 import Mappers from '@/utils/mappers';
 import { icons } from '@assets/icons';
@@ -22,27 +22,35 @@ interface Data {
   activeOption: string;
 }
 
+interface ProfileViewProps {
+  match: any;
+}
+
 const initialData: Data = {
   activeOption: tagOptions[0].label,
 };
 
-const ProfileView: React.FC = () => {
+const ProfileView: React.FC<ProfileViewProps> = (props) => {
   const [data, setData] = useState(initialData);
 
-  const [essays, setEssays] = useState();
+  const [userProfile, setUserProfile] = useState<User>();
+  const [essays, setEssays] = useState<Essay[]>();
 
   useEffect(() => {
-    api.get('/essays').then((res) => {
-      const essaysApi = res.data.content;
-      console.log(essaysApi);
+    // Busca Usuário pelo id do path
+    api.get(`/users/${props.match.params.id}`).then((res) => {
+      const userApi = res.data;
+      const user = Mappers.userApiToUser(userApi);
+      setUserProfile(user);
 
-      // TODO: esperando backend trazer author junto com essay
-
-      // const essaysList: Essay[] = [];
-      /* essaysApi.map((essayApi: EssayApi) => {
-        // TODO: fazer request em busca do user para associar às Essays
-        essaysList = [...essaysList, Mappers.essayApiToEssay(essayApi)];
-      }); */
+      // Busca Essays do usuário pelo id do path
+      api.get(`/essays/users/${props.match.params.id}`).then((r) => {
+        const essaysApi = r.data;
+        const userEssays = essaysApi.map((es: EssayApi) =>
+          Mappers.essayApiToEssay(es, user),
+        );
+        setEssays(userEssays);
+      });
     });
   }, []);
 
@@ -55,15 +63,18 @@ const ProfileView: React.FC = () => {
   console.log(data);
   return (
     <CenteredContainer>
-      {hasAuthority(UserRole.ROLE_TEACHER) && (
+      {hasAuthority(UserRole.ROLE_TEACHER) && userProfile && (
         <EvaluatorCard
-          evaluator={evaluator}
+          evaluator={userProfile}
           ratedEssays={evaluator.ratedEssays}
         />
       )}
 
-      {hasAuthority(UserRole.ROLE_STUDENT) && (
-        <StudentCard student={student} writtenEssays={student.writtenEssays} />
+      {hasAuthority(UserRole.ROLE_STUDENT) && userProfile && (
+        <StudentCard
+          student={userProfile}
+          writtenEssays={essays ? essays.length : 0}
+        />
       )}
 
       <TagSwitcher
@@ -72,7 +83,7 @@ const ProfileView: React.FC = () => {
         name="activeOption"
         value={data.activeOption}
       />
-      <EssayPreviewCard sort={data.activeOption} essayList={essayList.list} />
+      <EssayPreviewCard sort={data.activeOption} essayList={essays || []} />
     </CenteredContainer>
   );
 };

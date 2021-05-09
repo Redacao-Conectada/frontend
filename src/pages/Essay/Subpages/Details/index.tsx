@@ -1,6 +1,6 @@
 import { Commentary, CommentaryApi, Essay } from '@/interfaces/general';
 import api, { getLoggedUserId } from '@/service/api';
-import { commentaryApiToCommentary } from '@/utils/mappers';
+import Mappers, { commentaryApiToCommentary } from '@/utils/mappers';
 import CommentaryList from '@components/Commentary';
 import DetailedEssayCard from '@components/DetailedEssayCard';
 import React, { useEffect, useState } from 'react';
@@ -17,7 +17,6 @@ const EssayDetails: React.FC<EssayDetailsProps> = ({ essay }) => {
   const [commentaries, setCommentaries] = useState<Commentary[]>([]);
 
   useEffect(() => {
-    console.log(essay);
     api.get(`/essays/${essay.id}/comments`).then((res) => {
       const comments = res.data.map((comment: CommentaryApi) =>
         commentaryApiToCommentary(comment),
@@ -25,13 +24,6 @@ const EssayDetails: React.FC<EssayDetailsProps> = ({ essay }) => {
 
       setCommentaries(comments);
     });
-
-    // FIXME: bloquear opção de correção para redação não corrigida
-    if (essay.correctionId) {
-      api.get(`/corrections/${essay.correctionId}`).then((res) => {
-        console.log(res);
-      });
-    }
   }, []);
 
   const handleShowCommentaries = () => {
@@ -70,7 +62,7 @@ const EssayDetails: React.FC<EssayDetailsProps> = ({ essay }) => {
           authorAvatar={
             essay.author.avatar
               ? essay.author.avatar
-              : 'https://picsum.photos/40'
+              : 'https://picsum.photos/42'
           }
           commentaries={commentaries}
           onShowCommentaries={handleShowCommentaries}

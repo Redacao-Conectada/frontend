@@ -16,6 +16,12 @@ export const privateRouteList: RouteProps[] = [
     title: 'Exemplo',
   },
   {
+    path: '/feed',
+    component: pages.Feed,
+    exact: true,
+    title: 'Feed',
+  },
+  {
     path: '/essay/:id',
     component: pages.EssayMainPage,
     exact: true,
@@ -26,6 +32,12 @@ export const privateRouteList: RouteProps[] = [
     component: pages.CreateEssay,
     exact: true,
     title: 'Criar Redação',
+  },
+  {
+    path: '/profile/:id', // FIXME: deve ser /profile/id
+    component: pages.ProfileView,
+    exact: true,
+    title: 'Exemplo',
   },
 ];
 
@@ -41,11 +53,5 @@ export const publicRouteList: RouteProps[] = [
     component: pages.Register,
     exact: true,
     title: 'Cadastro',
-  },
-  {
-    path: '/profile', // FIXME: deve ser /profile/id
-    component: pages.ProfileView,
-    exact: true,
-    title: 'Exemplo',
   },
 ];

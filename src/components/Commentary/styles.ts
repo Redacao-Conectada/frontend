@@ -108,5 +108,6 @@ export const ShowCommentariesBox = styled.div`
   a {
     text-decoration: underline;
     color: ${colors.link};
+    cursor: pointer;
   }
 `;

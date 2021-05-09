@@ -33,7 +33,10 @@ const StudentCard: React.FC<EvaluatorCardProps> = ({
 
   return (
     <StudentContainer>
-      <img alt="avaliador" src={student.avatar} />
+      <img
+        alt="avaliador"
+        src={student.avatar ? student.avatar : 'https://picsum.photos/50'}
+      />
       {showStudentHeader()}
     </StudentContainer>
   );

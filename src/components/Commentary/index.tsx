@@ -93,34 +93,26 @@ const CommentaryList: React.FC<CommentaryListProps> = ({
     </li>
   );
 
-  const writeCommentary = () => (
-    <WriteCommentaryContainer>
-      <img alt="#" src={authorAvatar} />
-      <Form onSubmit={handleSubmit}>
-        <Input
-          type="text"
-          entity={commentText}
-          placeholder="Deixe seu comentário"
-          onChange={handleComment}
-          validated={validated}
-          name="commentField"
-        />
-        <Button text="->" typeButton="submit" />
-      </Form>
-    </WriteCommentaryContainer>
-  );
-
-  const ComentariesList = () => (
-    <CommentaryListContainer>
-      {writeCommentary()}
-      <ul>{commentaries.map((c) => commentaryItem(c.id, c))}</ul>
-    </CommentaryListContainer>
-  );
-
   return (
     <>
       {showCommentaries ? (
-        <ComentariesList />
+        <CommentaryListContainer>
+          <WriteCommentaryContainer>
+            <img alt="#" src={authorAvatar} />
+            <Form onSubmit={handleSubmit}>
+              <Input
+                type="text"
+                entity={commentText}
+                placeholder="Deixe seu comentário"
+                onChange={handleComment}
+                validated={validated}
+                name="commentField"
+              />
+              <Button text="->" typeButton="submit" />
+            </Form>
+          </WriteCommentaryContainer>
+          <ul>{commentaries.map((c) => commentaryItem(c.id, c))}</ul>
+        </CommentaryListContainer>
       ) : (
         <ShowCommentariesLabel onClick={handleShowCommentariesClick} />
       )}

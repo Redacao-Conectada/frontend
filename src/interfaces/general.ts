@@ -12,12 +12,12 @@ export interface User {
   birthDate?: string;
   city?: string;
   cpf?: string;
-  email: string;
+  email?: string;
   roles?: UserRole[];
   roleId?: number;
   school?: string;
   schoolYear?: string;
-  state: string;
+  state?: string;
   writtenEssays?: number;
   ratedEssays?: number;
 }
@@ -99,6 +99,9 @@ export interface EssayApi {
   grade: number;
   createdAt: string;
   correctionId?: number;
+  authorImage?: any;
+  authorName?: string;
+  author?: number;
 }
 
 export enum UserRole {
@@ -117,7 +120,7 @@ export interface CorrectionApi {
     competence4Comments: string;
     competence4Grade: number;
     competence5Comments: string;
-    competence6Grade: number;
+    competence5Grade: number;
     gradesSum: number;
   };
   correctionGrade: number;
@@ -128,7 +131,7 @@ export interface CorrectionApi {
 }
 
 export interface Correction {
-  teacher: User;
+  evaluator: User;
   rate1: Rate;
   rate2: Rate;
   rate3: Rate;

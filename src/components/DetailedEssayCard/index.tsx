@@ -1,5 +1,6 @@
 import { InteractiveStarIcon } from '@/assets/icons/InteractiveIcon';
 import { Essay } from '@/interfaces/general';
+import api from '@/service/api';
 import { icons } from '@assets/icons';
 import React, { useState } from 'react';
 import ShowGrade from '../General/ShowGrade';
@@ -31,16 +32,23 @@ const DetailedEssayCard: React.FC<DetailedEssayCardProps> = ({
   // TODO: fazer gerenciamento de estado
 
   const [isStarred, setIsStarred] = useState(essay.isStarred);
+  const [numOfStars, setNumOfStars] = useState(essay.numOfStars);
 
   const handleStarClick = () => {
-    setIsStarred(!isStarred);
-    // TODO: lança requisição para dar ou retirar estrela
+    console.log(isStarred);
+    if (isStarred) {
+      api.put(`/essays/${essay.id}/downvote`).then(() => setIsStarred(false));
+      setNumOfStars(numOfStars - 1);
+    } else {
+      api.put(`/essays/${essay.id}/upvote`).then(() => setIsStarred(true));
+      setNumOfStars(numOfStars + 1);
+    }
   };
 
   type Grades = '+900' | '+800' | '+700' | '+600' | '+500' | '-500' | 'noGrade';
 
   const getGrade = (): Grades => {
-    const grade = essay.numOfStars;
+    const grade = essay.total;
     if (!grade) {
       return 'noGrade';
     }
@@ -62,11 +70,8 @@ const DetailedEssayCard: React.FC<DetailedEssayCardProps> = ({
       </div>
       <FooterContainer>
         <StarsCounter>
-          <InteractiveStarIcon
-            onClick={handleStarClick}
-            isFilled={isStarred || false}
-          />
-          <a>{essay.numOfStars}</a>
+          <InteractiveStarIcon onClick={handleStarClick} isFilled={isStarred} />
+          <a>{numOfStars}</a>
           {preview && (
             <span>
               {icons.comments}
