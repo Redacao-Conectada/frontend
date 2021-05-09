@@ -44,8 +44,8 @@ api.interceptors.response.use(
   },
 );
 
-export const login = (email: string, password: string): void => {
-  api
+export const login = (email: string, password: string): Promise<any> => {
+  return api
     .post(
       '/oauth/token',
       qs.stringify({
@@ -71,8 +71,8 @@ export const login = (email: string, password: string): void => {
       localStorage.setItem(USER_ROLES, user.authorities);
       localStorage.setItem(USER_USERNAME, user.user_name);
       localStorage.setItem(USER_ID, userId);
-    })
-    .catch(() => toast.error('Usuário ou senha inválidos'));
+      return res;
+    });
 };
 
 export const logout = (): void => {
