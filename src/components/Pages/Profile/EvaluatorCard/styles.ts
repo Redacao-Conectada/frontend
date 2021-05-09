@@ -50,3 +50,10 @@ export const EvaluatorContainer = styled.div`
     /* font-weight: 700; */
   }
 `;
+
+export const PenSVG = styled.div`
+  position: absolute;
+  right: 6px;
+  top: 6px;
+  cursor: pointer;
+`;
