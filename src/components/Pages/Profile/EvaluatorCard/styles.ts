@@ -5,6 +5,7 @@ import styled from 'styled-components';
 export const EvaluatorContainer = styled.div`
   background-color: #ffffff;
   padding: 8px;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
