@@ -1,4 +1,5 @@
-import { UserApi } from '@/definitions/general';
+import { Evaluation } from '@/definitions/evaluate';
+import { CorrectionApi, UserApi } from '@/definitions/general';
 import {
   initialUpdateData,
   RegisterData,
@@ -77,7 +78,44 @@ export const userApiToUserUpdateForm = (userApi: UserApi): UpdateData => {
   return formData;
 };
 
+const correctionFormToCorrectionApi = (
+  correctionForm: Evaluation,
+  essayId: number,
+  idTeacherUser: number,
+): CorrectionApi => {
+  const { i, ii, iii, iv, v } = correctionForm;
+
+  const total =
+    Number(i.grade.valueOf()) +
+    Number(ii.grade.valueOf()) +
+    Number(iii.grade.valueOf()) +
+    Number(iv.grade.valueOf()) +
+    Number(v.grade.valueOf());
+
+  const correctionApi = {
+    competences: {
+      competence1Comments: correctionForm.i.commentary.value,
+      competence1Grade: Number(correctionForm.i.grade.valueOf()),
+      competence2Comments: correctionForm.ii.commentary.value,
+      competence2Grade: Number(correctionForm.ii.grade.valueOf()),
+      competence3Comments: correctionForm.iii.commentary.value,
+      competence3Grade: Number(correctionForm.iii.grade.valueOf()),
+      competence4Comments: correctionForm.iv.commentary.value,
+      competence4Grade: Number(correctionForm.iv.grade.valueOf()),
+      competence5Comments: correctionForm.v.commentary.value,
+      competence5Grade: Number(correctionForm.v.grade.valueOf()),
+      gradesSum: total,
+    },
+    createdDate: new Date().toISOString(),
+    correctionGrade: total,
+    essayId,
+    idTeacherUser,
+  };
+  return correctionApi;
+};
+
 export const FormMappers = {
   userFormToUserApi,
   userUpdateFormToUserApi,
+  correctionFormToCorrectionApi,
 };

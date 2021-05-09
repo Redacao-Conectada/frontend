@@ -1,12 +1,12 @@
 import { Button } from '@/components/General';
 import { Essay } from '@/definitions/general';
-import api from '@/services/api';
+import api, { getLoggedUserId } from '@/services/api';
+import { FormMappers } from '@/utils/formUtils';
 import Mappers from '@/utils/mappers';
 import DetailedEssayCard from '@components/Pages/Essay/DetailedEssayCard';
 import EvaluationForm from '@components/Pages/Evaluate';
 import { initialEvaluation, EvaluationKeys } from '@definitions/evaluate';
 import { CenteredContainer, Header } from '@styles/general';
-import { mockedEssay } from '@utils/mocks';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import Skeleton from 'react-loading-skeleton';
@@ -16,12 +16,11 @@ const EvaluateEssay: React.FC = () => {
   const [essay, setEssay] = useState<Essay>();
   const [data, setData] = useState(initialEvaluation);
   const [loading, setLoading] = useState(true);
+  const [buttonLoading, setButtonLoading] = useState(false);
 
   useEffect(() => {
-    // TODO: faz requisição em busca de essay a corrigir
-    // TODO: carrega essay em form
     api
-      .get('/urlAVir')
+      .get('/essays/correction')
       .then((res) => {
         const essayApi = res.data;
         const authorId = essayApi.author;
@@ -40,7 +39,6 @@ const EvaluateEssay: React.FC = () => {
 
   const handleSelect = (event: React.FormEvent<HTMLSelectElement>) => {
     const { value, name } = event.currentTarget;
-    console.log({ value, name });
 
     setData({
       ...data,
@@ -65,28 +63,43 @@ const EvaluateEssay: React.FC = () => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
+    setButtonLoading(true);
 
-    // TODO: faz a requisição para criar correction
-    // api.post('/corrections', Mappers.)
-
-    toast.success('Correção salva!');
+    const correctionApi = FormMappers.correctionFormToCorrectionApi(
+      data,
+      essay ? essay.id : -1,
+      getLoggedUserId(),
+    );
+    api
+      .post('/corrections', correctionApi)
+      .then(() => {
+        toast.success('Correção salva!');
+      })
+      .catch(() => {
+        toast.error('Algo deu errado! :(');
+      })
+      .finally(() => setButtonLoading(false));
   };
 
   return (
     <CenteredContainer>
       <Header>Avaliar redação</Header>
-      {loading ? (
-        <Skeleton height="30%" />
+      {loading || !essay ? (
+        <Skeleton height="30vh" />
       ) : (
         <>
-          <DetailedEssayCard essay={mockedEssay} evaluateMode />
+          <DetailedEssayCard essay={essay} evaluateMode />
           <Form onSubmit={handleSubmit}>
             <EvaluationForm
               data={data}
               onChangeSelect={handleSelect}
               onChangeCommentary={handleCommentary}
             />
-            <Button text="Concluir correção" typeButton="submit" />
+            <Button
+              isLoading={buttonLoading}
+              text="Concluir correção"
+              typeButton="submit"
+            />
           </Form>
         </>
       )}
