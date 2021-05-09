@@ -11,6 +11,7 @@ import { TagOptionList } from '@definitions/tag';
 import { CenteredContainer, Header } from '@styles/general';
 import { evaluator } from '@utils/mocks';
 import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 
 const tagOptions: TagOptionList = [
   { label: 'Votos', icon: icons.emptyStar },
@@ -36,22 +37,29 @@ const ProfileView: React.FC<ProfileViewProps> = ({ match }) => {
   const [userProfile, setUserProfile] = useState<User>();
   const [essays, setEssays] = useState<Essay[]>();
 
-  useEffect(() => {
-    // Busca Usuário pelo id do path
-    api.get(`/users/${paramsId}`).then((res) => {
-      const userApi = res.data;
-      const user = Mappers.userApiToUser(userApi);
-      setUserProfile(user);
+  const [isLoading, setIsLoading] = useState(true);
 
-      // Busca Essays do usuário pelo id do path
-      api.get(`/essays/users/${paramsId}`).then((r) => {
-        const essaysApi = r.data;
-        const userEssays = essaysApi.map((es: EssayApi) =>
-          Mappers.essayApiToEssay(es, user),
-        );
-        setEssays(userEssays);
-      });
-    });
+  useEffect(() => {
+    api
+      .get(`/users/${paramsId}`)
+      .then((res) => {
+        const userApi = res.data;
+        const user = Mappers.userApiToUser(userApi);
+        setUserProfile(user);
+
+        api
+          .get(`/essays/users/${paramsId}`)
+          .then((r) => {
+            const essaysApi = r.data;
+            const userEssays = essaysApi.map((es: EssayApi) =>
+              Mappers.essayApiToEssay(es, user),
+            );
+            setEssays(userEssays);
+          })
+          .catch(() => toast.error('Erro ao buscar redações do usuário'));
+      })
+      .catch(() => toast.error('Erro ao buscar usuário'))
+      .finally(() => setIsLoading(false));
   }, []);
 
   const handleSelectOption = (name: string, value: string) => {
@@ -92,7 +100,11 @@ const ProfileView: React.FC<ProfileViewProps> = ({ match }) => {
         name="activeOption"
         value={data.activeOption}
       />
-      <EssayPreviewCard sort={data.activeOption} essayList={essays || []} />
+      <EssayPreviewCard
+        sort={data.activeOption}
+        essayList={essays || []}
+        isLoading={isLoading}
+      />
     </CenteredContainer>
   );
 };

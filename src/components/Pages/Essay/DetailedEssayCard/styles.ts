@@ -76,6 +76,7 @@ export const MoreInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  align-items: flex-end;
 
   b {
     font-weight: 600;

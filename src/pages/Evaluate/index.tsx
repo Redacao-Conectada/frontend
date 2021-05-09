@@ -40,7 +40,6 @@ const EvaluateEssay: React.FC = () => {
 
   const handleSelect = (event: React.FormEvent<HTMLSelectElement>) => {
     const { value, name } = event.currentTarget;
-    console.log({ value, name });
 
     setData({
       ...data,
@@ -67,6 +66,7 @@ const EvaluateEssay: React.FC = () => {
     event.preventDefault();
 
     // TODO: faz a requisição para criar correction
+    // api.post('/corrections', Mappers.)
 
     toast.success('Correção salva!');
   };

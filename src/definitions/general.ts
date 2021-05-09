@@ -48,10 +48,11 @@ export interface Essay {
   date?: string;
   isStarred: boolean;
   numOfStars: number;
-  numOfComments: number;
+  totalComments: number;
   total: number;
   correctionId?: number;
   ratingList?: RatingList;
+  hasUserUpVoted?: boolean;
 }
 
 export interface Commentary {
@@ -113,6 +114,8 @@ export interface EssayApi {
   authorImage?: any;
   authorName?: string;
   author?: number;
+  hasUserUpVoted?: boolean;
+  totalComments: number;
 }
 
 export enum UserRole {
@@ -137,8 +140,9 @@ export interface CorrectionApi {
   correctionGrade: number;
   createdDate: string;
   essayId: number;
-  id: number;
-  teacherId: number;
+  id?: number;
+  teacherId?: number;
+  idTeacherUser?: number;
 }
 
 export interface Correction {
