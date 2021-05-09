@@ -4,6 +4,7 @@ import api from '@/service/api';
 import { icons } from '@assets/icons';
 import ShowGrade from '@components/Pages/Essay/ShowGrade';
 import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import {
   AuthorContainer,
   DateContainer,
@@ -35,6 +36,8 @@ const DetailedEssayCard: React.FC<DetailedEssayCardProps> = ({
   const [isStarred, setIsStarred] = useState(essay.isStarred);
   const [numOfStars, setNumOfStars] = useState(essay.numOfStars);
 
+  const history = useHistory();
+
   const handleStarClick = () => {
     console.log(isStarred);
     if (isStarred) {
@@ -62,13 +65,27 @@ const DetailedEssayCard: React.FC<DetailedEssayCardProps> = ({
 
   return (
     <EssayCardContainer>
-      <HeaderContainer>
-        <h2>{essay.title}</h2>
-        {preview && <ShowGrade grade={getGrade()} />}
-      </HeaderContainer>
-      <div className={preview ? 'previewGradient' : ''}>
-        <p className={preview ? 'previewText' : ''}>{essay.text}</p>
-      </div>
+      {preview ? (
+        <Link to={`/essays/${essay.id}`}>
+          <HeaderContainer>
+            <h2>{essay.title}</h2>
+            {preview && <ShowGrade grade={getGrade()} />}
+          </HeaderContainer>
+          <div className={preview ? 'previewGradient' : ''}>
+            <p className={preview ? 'previewText' : ''}>{essay.text}</p>
+          </div>
+        </Link>
+      ) : (
+        <>
+          <HeaderContainer>
+            <h2>{essay.title}</h2>
+            {preview && <ShowGrade grade={getGrade()} />}
+          </HeaderContainer>
+          <div className={preview ? 'previewGradient' : ''}>
+            <p className={preview ? 'previewText' : ''}>{essay.text}</p>
+          </div>
+        </>
+      )}
       <FooterContainer>
         <StarsCounter>
           <IconsContainer>

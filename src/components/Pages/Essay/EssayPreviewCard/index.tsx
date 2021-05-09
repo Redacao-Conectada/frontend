@@ -1,7 +1,6 @@
 import DetailedEssayCard from '@/components/Pages/Essay/DetailedEssayCard';
 import { Essay } from '@/definitions/general';
 import React from 'react';
-import {} from './styles';
 
 interface EssayPreviewCardProps {
   sort: string;
@@ -34,7 +33,6 @@ const EssayPreviewCard: React.FC<EssayPreviewCardProps> = ({
   };
 
   const essayListSorted = essayList.sort(sortFunctions[sort]);
-  console.log(essayListSorted);
   const listEssays = essayListSorted.map((essay) => (
     <DetailedEssayCard key={essay.id} preview={preview} essay={essay} />
   ));

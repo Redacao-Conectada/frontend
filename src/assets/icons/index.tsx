@@ -11,6 +11,7 @@ import { ReactComponent as Pen } from './pen.svg';
 import { ReactComponent as PlusFile } from './plusFile.svg';
 import { ReactComponent as Reply } from './reply.svg';
 import { ReactComponent as Search } from './search.svg';
+import { ReactComponent as SendMessage } from './sendMessage.svg';
 import { ReactComponent as Star } from './star.svg';
 import { ReactComponent as TextFile } from './textFile.svg';
 import { ReactComponent as User } from './user.svg';
@@ -33,4 +34,5 @@ export const icons = {
   textFile: <TextFile />,
   user: <User />,
   users: <Users />,
+  sendMessage: <SendMessage />,
 };
