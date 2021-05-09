@@ -4,7 +4,7 @@ import {
   statesOptionsList,
   schoolYearOptionsList,
 } from '@definitions/Register/component';
-import { Form, LinksContainer } from '@styles/publicRoutes';
+import { Form, LinksContainer } from '@styles/general';
 import React, { useState } from 'react';
 
 const PersonalForm: React.FC<UpdatePersonalDataForm> = ({

@@ -1,6 +1,6 @@
 import { Input, Button, Switch } from '@components/General';
 import { Config } from '@definitions/Essay/Create';
-import { Form } from '@styles/publicRoutes';
+import { Form } from '@styles/general';
 import React from 'react';
 
 interface EssayConfigDataForm {

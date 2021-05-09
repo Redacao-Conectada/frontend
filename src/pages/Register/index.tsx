@@ -9,8 +9,8 @@ import {
 import api from '@/service/api';
 import { FormMappers } from '@/utils/formUtils';
 import { ReactComponent as Logo } from '@assets/logo.svg';
-import { CenteredContainer } from '@styles/general';
-import { Header } from '@styles/publicRoutes';
+import { CenteredContainer, Header } from '@styles/general';
+
 import { validateValues } from '@utils/validations';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';

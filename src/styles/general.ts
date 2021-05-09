@@ -46,3 +46,13 @@ export const Header = styled.h3`
   font-size: 1.25rem;
   font-weight: 500;
 `;
+
+export const Form = styled.form`
+  display: grid;
+  gap: 24px;
+`;
+
+export const LinksContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;

@@ -9,7 +9,7 @@ import {
 import api from '@/service/api';
 import { FormMappers } from '@/utils/formUtils';
 import { ReactComponent as Logo } from '@assets/logo.svg';
-import { CenteredContainer, Header } from '@styles/publicRoutes';
+import { CenteredContainer, Header } from '@styles/general';
 import { mockedUser } from '@utils/mocks';
 import { validateValues } from '@utils/validations';
 import React, { useState, useEffect } from 'react';

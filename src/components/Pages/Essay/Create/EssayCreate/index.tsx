@@ -1,7 +1,7 @@
 import { Input, Button } from '@components/General';
 import InputEssay from '@components/Pages/Essay/InputEssay';
 import { Essay } from '@definitions/Essay/Create';
-import { Form } from '@styles/publicRoutes';
+import { Form } from '@styles/general';
 import React from 'react';
 
 interface EssayCreateDataForm {

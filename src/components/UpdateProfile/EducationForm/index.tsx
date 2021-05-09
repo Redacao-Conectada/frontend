@@ -3,7 +3,7 @@ import {
   UpdateEducationDataForm,
   schoolYearOptionsList,
 } from '@definitions/Register/component';
-import { Form } from '@styles/publicRoutes';
+import { Form } from '@styles/general';
 import React, { useState } from 'react';
 
 const roleOptions = ['Escritor', 'Corretor'];

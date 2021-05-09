@@ -1,4 +1,4 @@
-import { UserRole } from '@/interfaces/general';
+import { UserRole } from '@/definitions/general';
 import axios, {
   AxiosRequestConfig,
   AxiosResponse as ImportedAxiosResponse,

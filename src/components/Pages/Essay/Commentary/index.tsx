@@ -1,6 +1,6 @@
 import { icons } from '@/assets/icons';
 import { General } from '@/definitions';
-import { Form } from '@/styles/publicRoutes';
+import { Form } from '@/styles/general';
 import { validateText } from '@/utils/validations';
 import { Button, Input } from '@components/General';
 import { Commentary } from '@definitions/general';
