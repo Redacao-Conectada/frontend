@@ -36,8 +36,6 @@ const DetailedEssayCard: React.FC<DetailedEssayCardProps> = ({
   const [isStarred, setIsStarred] = useState(essay.isStarred);
   const [numOfStars, setNumOfStars] = useState(essay.numOfStars);
 
-  const history = useHistory();
-
   const handleStarClick = () => {
     console.log(isStarred);
     if (isStarred) {

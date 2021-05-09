@@ -33,7 +33,7 @@ const adminRouteList: RouteProps[] = [
 
 const evaluatorRouteList: RouteProps[] = [
   {
-    path: '/profile',
+    path: '/profile/:id',
     component: pages.ProfileView,
     exact: true,
     title: 'Perfil',
