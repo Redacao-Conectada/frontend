@@ -23,6 +23,7 @@ const userFormToUserApi = (userForm: RegisterData): UserApi => {
     password: formData.password.value,
     schoolName: formData.school.value,
     state: formData.state.value,
+    userNewName: formData.name.value,
   };
 };
 
@@ -43,13 +44,21 @@ const userUpdateFormToUserApi = (userForm: UpdateData): UserApi => {
   };
 };
 
+export const formatDate = (date: string): string => {
+  if (!date) return '';
+  const [apiDate] = date.split('T');
+  const [year, month, day] = apiDate.split('-');
+
+  return `${day}/${month}/${year}`;
+};
+
 export const userApiToUserUpdateForm = (userApi: UserApi): UpdateData => {
   const formData = initialUpdateData;
   formData.personal.name.value = userApi.name;
   formData.personal.cpf.value = userApi.cpf;
   formData.personal.email.value = userApi.email;
   formData.personal.password.value = userApi.password;
-  formData.personal.birthDate.value = userApi.birthdate;
+  formData.personal.birthDate.value = formatDate(userApi.birthdate);
   formData.personal.state.value = userApi.state;
   formData.personal.city.value = userApi.city;
 
@@ -63,12 +72,4 @@ export const userApiToUserUpdateForm = (userApi: UserApi): UpdateData => {
 export const FormMappers = {
   userFormToUserApi,
   userUpdateFormToUserApi,
-};
-
-export const formatDate = (date: string): string => {
-  if (!date) return '';
-  const [apiDate] = date.split('T');
-  const [year, month, day] = apiDate.split('-');
-
-  return `${day}/${month}/${year}`;
 };

@@ -97,6 +97,7 @@ export interface UserApi {
   schoolName: string;
   state: string;
   school_registration?: string;
+  userNewName?: string;
 }
 
 export interface EssayApi {

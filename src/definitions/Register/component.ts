@@ -20,6 +20,7 @@ export interface EducationDataForm {
   onChangeSelect: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   onSubmit: () => void;
   toValidated: boolean;
+  isLoading: boolean;
 }
 
 export interface UpdatePersonalDataForm {

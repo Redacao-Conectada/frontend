@@ -25,9 +25,11 @@ interface MenuProps {
 }
 
 const Menu: React.FC<MenuProps> = ({ activeRole }) => {
+  const history = useHistory();
+
   const {
     location: { pathname },
-  } = useHistory();
+  } = history;
 
   const [activeOption, setActiveOption] = useState('');
 
@@ -37,18 +39,28 @@ const Menu: React.FC<MenuProps> = ({ activeRole }) => {
     setActiveOption(firstPathname);
   }, [pathname]);
 
-  const menu = options[activeRole].map(({ label, icon, path }) => {
-    const isActive = path.replace('/', '') === activeOption;
+  const callAction = (action: (() => void) | undefined) => {
+    if (action) {
+      action();
+      history.go(0);
+    }
+  };
 
-    return (
-      <Link to={path} key={label}>
-        <MenuItem active={isActive}>
-          <span>{label}</span>
-          {icon}
-        </MenuItem>
-      </Link>
-    );
-  });
+  const menu = options[activeRole].map(
+    ({ label, icon, path, color, action }) => {
+      const firstPath = path.split('/')[1];
+      const isActive = firstPath === activeOption;
+
+      return (
+        <Link to={path} key={label} onClick={() => callAction(action)}>
+          <MenuItem active={isActive} activeColor={color}>
+            <span>{label}</span>
+            {icon}
+          </MenuItem>
+        </Link>
+      );
+    },
+  );
 
   return (
     <MenuContainer quantityOfItems={options[activeRole].length}>

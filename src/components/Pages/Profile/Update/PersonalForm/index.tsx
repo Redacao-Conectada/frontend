@@ -1,4 +1,5 @@
 import { Button, Input, Link, Select } from '@/components/General';
+import ReadOnlyInput from '@/components/General/ReadOnlyInput';
 import {
   UpdatePersonalDataForm,
   statesOptionsList,
@@ -23,6 +24,7 @@ const PersonalForm: React.FC<UpdatePersonalDataForm> = ({
 
   return (
     <Form onSubmit={handleSubmit}>
+      <ReadOnlyInput label="Email">{data.email.value}</ReadOnlyInput>
       <Input
         entity={data.name}
         name="name"
@@ -48,15 +50,6 @@ const PersonalForm: React.FC<UpdatePersonalDataForm> = ({
         type="text"
         validated={validated}
         placeholder="01/01/2000"
-        onChange={onChange}
-      />
-      <Input
-        entity={data.email}
-        name="email"
-        label="Email"
-        type="email"
-        validated={validated}
-        placeholder="Digite seu e-mail"
         onChange={onChange}
       />
       <Select
