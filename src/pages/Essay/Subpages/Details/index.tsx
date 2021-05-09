@@ -5,7 +5,7 @@ import CommentaryList from '@components/Pages/Essay/Commentary';
 import DetailedEssayCard from '@components/Pages/Essay/DetailedEssayCard';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
-import { CommentBox, DetailsContainer } from './styles';
+import { CommentBox } from './styles';
 
 interface EssayDetailsProps {
   essay: Essay;
@@ -54,7 +54,7 @@ const EssayDetails: React.FC<EssayDetailsProps> = ({ essay }) => {
   };
 
   return (
-    <DetailsContainer>
+    <>
       <DetailedEssayCard essay={essay} />
       <CommentBox>
         <CommentaryList
@@ -68,7 +68,7 @@ const EssayDetails: React.FC<EssayDetailsProps> = ({ essay }) => {
           onShowCommentaries={handleShowCommentaries}
         />
       </CommentBox>
-    </DetailsContainer>
+    </>
   );
 };
 

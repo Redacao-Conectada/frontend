@@ -8,6 +8,8 @@ interface EssayConfigDataForm {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onChangeSwitch: (name: string, value: boolean) => void;
   onSubmit: (event: React.FormEvent) => void;
+  isLoading: boolean;
+  validated: boolean;
 }
 
 const EssayConfigForm: React.FC<EssayConfigDataForm> = ({
@@ -15,16 +17,19 @@ const EssayConfigForm: React.FC<EssayConfigDataForm> = ({
   onChange,
   onChangeSwitch,
   onSubmit,
+  isLoading,
+  validated,
 }) => {
   return (
     <Form onSubmit={onSubmit}>
       <Input
         entity={data.keyWords}
         name="keyWords"
-        label="Palavras Chave"
+        label="Palavras-Chave"
         type="text"
-        placeholder="Política, Meio Ambiente, Fora Bolsonaro"
+        placeholder="Política, Meio Ambiente"
         onChange={onChange}
+        validated={validated}
       />
       <Switch
         name="hideName"
@@ -38,7 +43,7 @@ const EssayConfigForm: React.FC<EssayConfigDataForm> = ({
         onChange={onChangeSwitch}
         value={data.requestCorrection}
       />
-      <Button text="Postar Redação" typeButton="submit" />
+      <Button text="Postar Redação" typeButton="submit" isLoading={isLoading} />
     </Form>
   );
 };

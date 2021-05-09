@@ -20,7 +20,7 @@ const EvaluatorCard: React.FC<EvaluatorCardProps> = ({
         </div>
       );
     }
-    return <div className="bottomText">Corretorx</div>;
+    return <div className="bottomText">Corretor</div>;
   };
 
   return (

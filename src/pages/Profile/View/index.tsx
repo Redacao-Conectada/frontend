@@ -8,8 +8,8 @@ import api, { hasAuthority } from '@/services/api';
 import Mappers from '@/utils/mappers';
 import { icons } from '@assets/icons';
 import { TagOptionList } from '@definitions/tag';
-import { CenteredContainer } from '@styles/general';
-import { evaluator, student } from '@utils/mocks';
+import { CenteredContainer, Header } from '@styles/general';
+import { evaluator } from '@utils/mocks';
 import React, { useEffect, useState } from 'react';
 
 const tagOptions: TagOptionList = [
@@ -63,6 +63,7 @@ const ProfileView: React.FC<ProfileViewProps> = (props) => {
 
   return (
     <CenteredContainer>
+      <Header>Perfil</Header>
       {hasAuthority(UserRole.ROLE_TEACHER) && userProfile && (
         <EvaluatorCard
           evaluator={userProfile}

@@ -52,7 +52,7 @@ export const evaluatorOptions: MenuOption[] = [
   {
     label: 'Perfil',
     icon: icons.user,
-    path: '/profile',
+    path: `/profile/${getLoggedUserId()}`,
     color: colors.primary,
   },
   {

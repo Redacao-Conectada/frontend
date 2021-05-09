@@ -88,7 +88,7 @@ export const initialRegisterData: RegisterData = {
   education: {
     state: {
       ...initialValue,
-      //  TODO: Verificar se vai precisar validar o select e talvez criar o input de select
+      value: 'AC',
     },
     city: {
       ...initialValue,
@@ -100,7 +100,7 @@ export const initialRegisterData: RegisterData = {
     },
     schoolYear: {
       ...initialValue,
-      // TODO: Verificar se vai precisar validar o select e talvez criar o input de select
+      value: '1f',
     },
   },
 };
@@ -118,7 +118,6 @@ export const initialUpdateData: UpdateData = {
     birthDate: {
       ...initialValue,
       validation: (value: string): string => validateBirthdate(value),
-      // TODO: Criar mascára de formatação
     },
     email: {
       ...initialValue,
@@ -129,7 +128,7 @@ export const initialUpdateData: UpdateData = {
     },
     state: {
       ...initialValue,
-      //  TODO: Verificar se vai precisar validar o select e talvez criar o input de select
+      value: 'AC',
     },
     city: {
       ...initialValue,
@@ -139,7 +138,6 @@ export const initialUpdateData: UpdateData = {
   education: {
     function: {
       ...initialValue,
-      // TODO: Verificar se vai precisar validar o select e talvez criar o input de select
     },
     school: {
       ...initialValue,
@@ -147,7 +145,7 @@ export const initialUpdateData: UpdateData = {
     },
     schoolYear: {
       ...initialValue,
-      // TODO: Verificar se vai precisar validar o select e talvez criar o input de select
+      value: '1f',
     },
     schoolId: {
       ...initialValue,
