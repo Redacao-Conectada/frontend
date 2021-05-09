@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 interface ButtonContainerProps {
   decline: boolean;
+  isDisabled: boolean;
 }
 
 export const ButtonContainer = styled.button<ButtonContainerProps>`
@@ -23,7 +24,8 @@ export const ButtonContainer = styled.button<ButtonContainerProps>`
         ? colorWithTransparency(colors.error, 0.25)
         : 'rgba(4, 167, 119, 0.25)'};
   border-radius: 10px;
-  cursor: pointer;
+
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
 
   transition: all 200ms ease-in-out;
 
