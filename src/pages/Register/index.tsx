@@ -9,16 +9,19 @@ import {
 import api from '@/service/api';
 import { FormMappers } from '@/utils/formUtils';
 import { ReactComponent as Logo } from '@assets/logo.svg';
-import { CenteredContainer } from '@styles/general';
-import { Header } from '@styles/publicRoutes';
+import { CenteredContainer, Header } from '@styles/general';
+
 import { validateValues } from '@utils/validations';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
+import { useHistory } from 'react-router-dom';
 
 const Register: React.FC = () => {
   const [validated, setValidated] = useState(false);
 
   const [data, setData] = useState(initialRegisterData);
+
+  const history = useHistory();
 
   const handlePersonalData = (name: PersonalFields, value: any) => {
     const invalidity = data.personal[name].validation(value);
@@ -85,12 +88,12 @@ const Register: React.FC = () => {
     if (errors.length) {
       errors.map((error) => toast.error(error));
     } else {
-      console.log('data: ', FormMappers.userFormToUserApi(data));
-      api
-        .post('/users', FormMappers.userFormToUserApi(data))
-        .then(() => toast.success('Cadastrado com sucesso'));
-      api.get('/essays').then((res) => console.log(res.data));
+      api.post('/users', FormMappers.userFormToUserApi(data)).then(() => {
+        toast.success('Cadastrado com sucesso');
+        history.push('/login');
+      });
     }
+    // TODO: Passar por todos os campos de data procurando algum invalidity, se houver, chamar um toast com error informando o campo inválido
   };
 
   const [activeTab, setActiveTab] = useState('Pessoal');

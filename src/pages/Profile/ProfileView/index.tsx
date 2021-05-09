@@ -3,14 +3,14 @@ import { TagSwitcher } from '@/components/General';
 import EssayPreviewCard from '@/components/Pages/Essay/EssayPreviewCard';
 import EvaluatorCard from '@/components/Pages/Profile/EvaluatorCard';
 import StudentCard from '@/components/Pages/Profile/StudentCard';
-import { User } from '@/definitions/general';
+import { Essay, EssayApi, User, UserRole } from '@/definitions/general';
+import api, { hasAuthority } from '@/service/api';
+import Mappers from '@/utils/mappers';
 import { icons } from '@assets/icons';
 import { TagOptionList } from '@definitions/tag';
 import { CenteredContainer } from '@styles/general';
-import { evaluator, student, essayList } from '@utils/mocks';
-import React, { useState } from 'react';
-
-const user: User = student;
+import { evaluator, student } from '@utils/mocks';
+import React, { useEffect, useState } from 'react';
 
 const tagOptions: TagOptionList = [
   { label: 'Votos', icon: icons.emptyStar },
@@ -22,16 +22,37 @@ interface Data {
   activeOption: string;
 }
 
+interface ProfileViewProps {
+  match: any;
+}
+
 const initialData: Data = {
   activeOption: tagOptions[0].label,
 };
 
-interface UserCard {
-  [index: string]: JSX.Element;
-}
-
-const ProfileView: React.FC = () => {
+const ProfileView: React.FC<ProfileViewProps> = (props) => {
   const [data, setData] = useState(initialData);
+
+  const [userProfile, setUserProfile] = useState<User>();
+  const [essays, setEssays] = useState<Essay[]>();
+
+  useEffect(() => {
+    // Busca Usuário pelo id do path
+    api.get(`/users/${props.match.params.id}`).then((res) => {
+      const userApi = res.data;
+      const user = Mappers.userApiToUser(userApi);
+      setUserProfile(user);
+
+      // Busca Essays do usuário pelo id do path
+      api.get(`/essays/users/${props.match.params.id}`).then((r) => {
+        const essaysApi = r.data;
+        const userEssays = essaysApi.map((es: EssayApi) =>
+          Mappers.essayApiToEssay(es, user),
+        );
+        setEssays(userEssays);
+      });
+    });
+  }, []);
 
   const handleSelectOption = (name: string, value: string) => {
     setData({
@@ -40,21 +61,21 @@ const ProfileView: React.FC = () => {
     });
   };
 
-  const userCard: UserCard = {
-    teacher: (
-      <EvaluatorCard
-        evaluator={evaluator}
-        ratedEssays={evaluator.ratedEssays}
-      />
-    ),
-    student: (
-      <StudentCard student={student} writtenEssays={student.writtenEssays} />
-    ),
-  };
-
   return (
     <CenteredContainer>
-      {user.roleName && userCard[user.roleName]}
+      {hasAuthority(UserRole.ROLE_TEACHER) && userProfile && (
+        <EvaluatorCard
+          evaluator={userProfile}
+          ratedEssays={evaluator.ratedEssays}
+        />
+      )}
+
+      {hasAuthority(UserRole.ROLE_STUDENT) && userProfile && (
+        <StudentCard
+          student={userProfile}
+          writtenEssays={essays ? essays.length : 0}
+        />
+      )}
 
       <TagSwitcher
         options={tagOptions}
@@ -62,7 +83,7 @@ const ProfileView: React.FC = () => {
         name="activeOption"
         value={data.activeOption}
       />
-      <EssayPreviewCard sort={data.activeOption} essayList={essayList.list} />
+      <EssayPreviewCard sort={data.activeOption} essayList={essays || []} />
     </CenteredContainer>
   );
 };

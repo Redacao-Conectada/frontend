@@ -1,21 +1,23 @@
+import { UserRole } from '@/definitions/general';
 import axios, {
   AxiosRequestConfig,
   AxiosResponse as ImportedAxiosResponse,
 } from 'axios';
+import jwt from 'jwt-decode';
 import qs from 'qs';
 import toast from 'react-hot-toast';
 
 const API_URL = 'https://api-rc.herokuapp.com';
-
 const CLIENT_ID = 'redacaoconectada';
 const CLIENT_SECRET = 'redacaoconectada123';
-
 const TOKEN_KEY = '@RedacaoConectada:token';
+const USER_ROLES = 'USER_ROLES';
+const USER_USERNAME = 'USER_USERNAME';
+const USER_ID = 'USER_ID';
 
 const api = axios.create({ baseURL: API_URL });
 
 const requestHandler = (request: AxiosRequestConfig) => {
-  console.log(request);
   const savedToken = localStorage.getItem(TOKEN_KEY);
   if (savedToken) {
     const token = `Bearer ${savedToken}`;
@@ -61,9 +63,43 @@ export const login = (email: string, password: string): void => {
         },
       },
     )
-    .then((res) => localStorage.setItem(TOKEN_KEY, res.data.access_token))
+    .then((res) => {
+      const { access_token, userId } = res.data;
+      const user: any = jwt(access_token);
+
+      localStorage.setItem(TOKEN_KEY, access_token);
+      localStorage.setItem(USER_ROLES, user.authorities);
+      localStorage.setItem(USER_USERNAME, user.user_name);
+      localStorage.setItem(USER_ID, userId);
+    })
     .catch(() => toast.error('Usuário ou senha inválidos'));
 };
+
+export const logout = (): void => {
+  localStorage.removeItem(TOKEN_KEY);
+  localStorage.removeItem(USER_ROLES);
+  localStorage.removeItem(USER_USERNAME);
+  localStorage.removeItem(USER_ID);
+  toast.success('Bons estudos, volte sempre!');
+};
+
+export const isLogged = (): boolean => {
+  return (
+    localStorage.getItem(TOKEN_KEY) != null &&
+    localStorage.getItem(USER_ROLES) != null &&
+    localStorage.getItem(USER_USERNAME) != null &&
+    localStorage.getItem(USER_ID) != null
+  );
+};
+
+export const hasAuthority = (authority: UserRole): boolean =>
+  localStorage.getItem(USER_ROLES)?.includes(authority) || false;
+
+export const getLoggedUsername = (): string =>
+  localStorage.getItem(USER_USERNAME) || '';
+
+export const getLoggedUserId = (): number =>
+  Number(localStorage.getItem(USER_ID)) || -1;
 
 export type AxiosResponse<T> = ImportedAxiosResponse<T>;
 

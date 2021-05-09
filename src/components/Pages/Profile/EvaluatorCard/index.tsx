@@ -1,9 +1,9 @@
-import { Evaluator } from '@/definitions/general';
+import { User } from '@/definitions/general';
 import React from 'react';
 import { EvaluatorContainer } from './styles';
 
 interface EvaluatorCardProps {
-  evaluator: Evaluator;
+  evaluator: User;
   ratedEssays?: number;
 }
 
@@ -25,7 +25,10 @@ const EvaluatorCard: React.FC<EvaluatorCardProps> = ({
 
   return (
     <EvaluatorContainer>
-      <img alt="avaliador" src={evaluator.avatar} />
+      <img
+        alt="avaliador"
+        src={evaluator.avatar ? evaluator.avatar : 'https://picsum.photos/50'}
+      />
       <div className="evaluatorName">{evaluator.name}</div>
       {showRatedEssays(ratedEssays)}
     </EvaluatorContainer>

@@ -1,5 +1,6 @@
 import { InteractiveStarIcon } from '@/components/InteractiveIcon';
 import { Essay } from '@/definitions/general';
+import api from '@/service/api';
 import { icons } from '@assets/icons';
 import ShowGrade from '@components/Pages/Essay/ShowGrade';
 import React, { useState } from 'react';
@@ -32,16 +33,23 @@ const DetailedEssayCard: React.FC<DetailedEssayCardProps> = ({
   // TODO: fazer gerenciamento de estado
 
   const [isStarred, setIsStarred] = useState(essay.isStarred);
+  const [numOfStars, setNumOfStars] = useState(essay.numOfStars);
 
   const handleStarClick = () => {
-    setIsStarred(!isStarred);
-    // TODO: lança requisição para dar ou retirar estrela
+    console.log(isStarred);
+    if (isStarred) {
+      api.put(`/essays/${essay.id}/downvote`).then(() => setIsStarred(false));
+      setNumOfStars(numOfStars - 1);
+    } else {
+      api.put(`/essays/${essay.id}/upvote`).then(() => setIsStarred(true));
+      setNumOfStars(numOfStars + 1);
+    }
   };
 
   type Grades = '+900' | '+800' | '+700' | '+600' | '+500' | '-500' | 'noGrade';
 
   const getGrade = (): Grades => {
-    const grade = essay.numOfStars;
+    const grade = essay.total;
     if (!grade) {
       return 'noGrade';
     }
@@ -68,7 +76,7 @@ const DetailedEssayCard: React.FC<DetailedEssayCardProps> = ({
               onClick={handleStarClick}
               isFilled={isStarred}
             />
-            <span>{essay.numOfStars}</span>
+            <span>{numOfStars}</span>
           </IconsContainer>
           {preview && (
             <IconsContainer>
@@ -84,10 +92,10 @@ const DetailedEssayCard: React.FC<DetailedEssayCardProps> = ({
             </p>
           </DateContainer>
           <AuthorContainer>
-            <b>{essay.author.name}</b>
+            <b>{essay.author?.name}</b>
             <img
-              alt={essay.author.name}
-              src={essay.author.avatar ? essay.author.avatar : defaultAvatar}
+              alt={essay.author?.name}
+              src={essay.author?.avatar ? essay.author.avatar : defaultAvatar}
             />
           </AuthorContainer>
         </MoreInfoContainer>

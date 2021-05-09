@@ -1,12 +1,16 @@
 import { Button, Input, Link } from '@/components/General';
 import { General } from '@/definitions';
-import api, { login } from '@/service/api';
+import { login } from '@/service/api';
 import Image from '@assets/loginImage.svg';
 import { ReactComponent as Logo } from '@assets/logo.svg';
-import { CenteredContainer } from '@styles/general';
-import { LinksContainer, Form, Header } from '@styles/publicRoutes';
+import {
+  CenteredContainer,
+  LinksContainer,
+  Form,
+  Header,
+} from '@styles/general';
+
 import { validateEmail } from '@utils/validations';
-import qs from 'qs';
 import React, { useState } from 'react';
 
 const Login: React.FC = () => {
@@ -26,7 +30,10 @@ const Login: React.FC = () => {
 
     setValidated(true);
 
+    // TODO: validar campos antes de logar
     login(email.value, password.value);
+
+    // TODO: redirect to essays feed
   };
 
   const handleEmail = (event: React.ChangeEvent<HTMLInputElement>) => {

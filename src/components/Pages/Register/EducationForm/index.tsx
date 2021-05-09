@@ -4,7 +4,7 @@ import {
   statesOptionsList,
   schoolYearOptionsList,
 } from '@definitions/Register/component';
-import { Form } from '@styles/publicRoutes';
+import { Form } from '@styles/general';
 import React, { useState, useEffect } from 'react';
 
 const EducationForm: React.FC<EducationDataForm> = ({

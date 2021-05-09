@@ -1,3 +1,4 @@
+import { getLoggedUserId } from '@/service/api';
 import { icons } from '@assets/icons';
 import { ReactNode } from 'react';
 
@@ -11,12 +12,12 @@ export const studentsOptions: MenuOption[] = [
   {
     label: 'Redações',
     icon: icons.book,
-    path: '/essays',
+    path: '/feed',
   },
   {
     label: 'Perfil',
     icon: icons.user,
-    path: '/profile',
+    path: `/profile/${getLoggedUserId()}`,
   },
   {
     label: 'Escrever',

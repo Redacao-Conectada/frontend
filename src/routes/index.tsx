@@ -1,3 +1,4 @@
+import { isLogged } from '@/service/api';
 import { roles } from '@definitions/general';
 import PrivateTemplate from '@templates/Private';
 import React from 'react';
@@ -9,8 +10,7 @@ import {
 } from './routeList';
 
 const Routes: React.FC = () => {
-  const activeRole: roles = 'admin';
-  const authenticated = true;
+  const activeRole: roles = 'student';
 
   const publicRouteComponents = publicRouteList.map(
     ({ component: Component, path, exact, title }) => {
@@ -33,6 +33,7 @@ const Routes: React.FC = () => {
 
       return (
         <Route
+          key={path}
           path={path}
           exact={exact}
           render={(props) => (
@@ -44,6 +45,8 @@ const Routes: React.FC = () => {
       );
     },
   );
+
+  const authenticated = isLogged();
 
   return (
     <BrowserRouter>

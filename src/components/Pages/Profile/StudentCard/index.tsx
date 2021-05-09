@@ -1,9 +1,9 @@
-import { Student } from '@/definitions/general';
+import { User } from '@/definitions/general';
 import React from 'react';
 import { StudentContainer } from './styles';
 
 interface EvaluatorCardProps {
-  student: Student;
+  student: User;
   writtenEssays?: number;
 }
 
@@ -33,7 +33,10 @@ const StudentCard: React.FC<EvaluatorCardProps> = ({
 
   return (
     <StudentContainer>
-      <img alt="avaliador" src={student.avatar} />
+      <img
+        alt="avaliador"
+        src={student.avatar ? student.avatar : 'https://picsum.photos/50'}
+      />
       {showStudentHeader()}
     </StudentContainer>
   );

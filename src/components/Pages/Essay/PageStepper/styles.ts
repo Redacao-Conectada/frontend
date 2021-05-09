@@ -20,5 +20,6 @@ export const Option = styled.li<OptionProps>`
     color: ${({ isActive }) => (isActive ? colors.primary : colors.black)};
     text-decoration: ${({ isActive }) => (isActive ? 'underline' : 'none')};
     font-size: 14px;
+    cursor: pointer;
   }
 `;

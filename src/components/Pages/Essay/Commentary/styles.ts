@@ -25,6 +25,10 @@ export const Comment = styled.div<CommentProps>`
     text-align: left;
   }
 
+  .commentary-author-name {
+    font-size: 10px;
+  }
+
   p strong {
     font-size: 12px;
   }
@@ -35,6 +39,8 @@ export const CommentaryListContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: start;
+
+    height: 50px;
   }
 
   img {
@@ -102,5 +108,6 @@ export const ShowCommentariesBox = styled.div`
   a {
     text-decoration: underline;
     color: ${colors.link};
+    cursor: pointer;
   }
 `;
