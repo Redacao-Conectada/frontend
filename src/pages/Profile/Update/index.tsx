@@ -1,5 +1,3 @@
-import SwitchRouter, { SwitchOption } from '@/components/General/SwitchRouter';
-import { PersonalForm, EducationForm } from '@/components/UpdateProfile';
 import {
   initialUpdateData,
   UpdateGroups,
@@ -8,8 +6,9 @@ import {
 } from '@/definitions/Register/dataForm';
 import api from '@/service/api';
 import { FormMappers } from '@/utils/formUtils';
-import { ReactComponent as Logo } from '@assets/logo.svg';
-import { CenteredContainer, Header } from '@styles/general';
+import SwitchRouter, { SwitchOption } from '@components/General/SwitchRouter';
+import { PersonalForm, EducationForm } from '@components/Pages/Profile/Update';
+import { CenteredContainer } from '@styles/general';
 import { mockedUser } from '@utils/mocks';
 import { validateValues } from '@utils/validations';
 import React, { useState, useEffect } from 'react';
@@ -18,8 +17,6 @@ import { useHistory } from 'react-router-dom';
 
 const UpdateProfile: React.FC = () => {
   const [validated, setValidated] = useState(false);
-
-  const [schoolId, setSchoolId] = useState('');
 
   const [data, setData] = useState(initialUpdateData);
 

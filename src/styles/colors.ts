@@ -4,6 +4,7 @@ export const colors = {
   primary: '#008D64',
   lightPrimary: '#CAE4DB',
   black: '#131735',
+  kindaGrey: '#4E5268',
   error: '#CD3A28',
   normalBorder: 'rgba(42, 70, 112, 0.1)',
   errorBorder: '#EE6352',
