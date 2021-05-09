@@ -6,7 +6,7 @@ import { EssayApi } from '@/definitions/general';
 import { TagOptionList } from '@/definitions/tag';
 import api from '@/services/api';
 import Mappers from '@/utils/mappers';
-import { CenteredContainer } from '@styles/general';
+import { CenteredContainer, Header } from '@styles/general';
 import React, { useEffect, useState } from 'react';
 
 interface Data {
@@ -58,6 +58,7 @@ const EssayFeed: React.FC = () => {
 
   return (
     <CenteredContainer>
+      <Header>Lista de Redações</Header>
       <TagSwitcher
         options={tagOptions}
         onChange={handleSelectOption}

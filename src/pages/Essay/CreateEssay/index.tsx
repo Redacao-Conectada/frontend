@@ -7,7 +7,7 @@ import {
   Config,
   DataGroup,
 } from '@definitions/Essay/Create';
-import { CenteredContainer } from '@styles/general';
+import { CenteredContainer, Header } from '@styles/general';
 import { validateValues } from '@utils/validations';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
@@ -142,7 +142,7 @@ const CreateEssay: React.FC = () => {
   return (
     <>
       <CenteredContainer>
-        <h2>Criação de Redação</h2>
+        <Header>Criação de Redação</Header>
         <SwitchRouter
           firstOption={essayOption}
           secondOption={configOption}
