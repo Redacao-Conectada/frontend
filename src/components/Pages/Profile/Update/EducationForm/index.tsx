@@ -18,9 +18,20 @@ const EducationForm: React.FC<UpdateEducationDataForm> = ({
   const [validated, setValidated] = useState(false);
   // TODO: Corrigir uso do validated
 
+  const role = () => {
+    const listRoles = localStorage.getItem('USER_ROLES');
+    if (listRoles) {
+      if (listRoles.length === 1) {
+        return 'Escritor';
+      }
+    }
+    return 'Corretor';
+  };
+
   return (
     <Form onSubmit={onSubmit}>
       <RadioSelect
+        value={role()}
         label="Função"
         name="function"
         optionList={roleOptions}
