@@ -24,8 +24,9 @@ const InputEssay: React.FC<InputProps> = ({
   placeholder,
   name: inputName,
 }) => {
-  const { value, invalidity } = entity;
+  const { value, validation } = entity;
 
+  const [invalidity, setInvalidity] = useState(entity.invalidity);
   const [invalid, setInvalid] = useState(false);
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -33,8 +34,10 @@ const InputEssay: React.FC<InputProps> = ({
   };
 
   useEffect(() => {
-    setInvalid(Boolean(validated && invalidity));
-  }, [entity]);
+    const newInvalidity = validation(value);
+    setInvalidity(newInvalidity);
+    setInvalid(Boolean(validated && newInvalidity));
+  }, [entity, validated]);
 
   return (
     <Wrapper>

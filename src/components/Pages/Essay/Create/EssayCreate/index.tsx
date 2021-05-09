@@ -9,6 +9,7 @@ interface EssayCreateDataForm {
   data: Essay;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onChangeTextArea: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  validated: boolean;
 }
 
 const EssayCreateForm: React.FC<EssayCreateDataForm> = ({
@@ -16,6 +17,7 @@ const EssayCreateForm: React.FC<EssayCreateDataForm> = ({
   data,
   onChange,
   onChangeTextArea,
+  validated,
 }) => {
   return (
     <Form>
@@ -24,7 +26,7 @@ const EssayCreateForm: React.FC<EssayCreateDataForm> = ({
         name="title"
         label="Título"
         type="text"
-        // validated={validated}
+        validated={validated}
         placeholder="Seu título"
         onChange={onChange}
       />
@@ -33,7 +35,7 @@ const EssayCreateForm: React.FC<EssayCreateDataForm> = ({
         name="essay"
         label="Redação"
         type="text"
-        // validated={validated}
+        validated={validated}
         placeholder="Digite sua redação"
         onChange={onChangeTextArea}
       />
