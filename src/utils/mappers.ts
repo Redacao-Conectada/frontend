@@ -106,6 +106,29 @@ const correctionApiToCorrection = (
   return correction;
 };
 
+const correctionToCorrectionApi = (correction: Correction): CorrectionApi => {
+  const correctionApi = {
+    competences: {
+      competence1Comments: correction.rate1.commentary,
+      competence1Grade: correction.rate1.rate,
+      competence2Comments: correction.rate2.commentary,
+      competence2Grade: correction.rate2.rate,
+      competence3Comments: correction.rate3.commentary,
+      competence3Grade: correction.rate3.rate,
+      competence4Comments: correction.rate4.commentary,
+      competence4Grade: correction.rate4.rate,
+      competence5Comments: correction.rate5.commentary,
+      competence5Grade: correction.rate5.rate,
+      gradesSum: correction.total,
+    },
+    createdDate: new Date().toISOString(),
+    correctionGrade: correction.total,
+    essayId: correction.essayId,
+    idTeacherUser: correction.evaluator?.id,
+  };
+  return correctionApi;
+};
+
 // TODO: mapear Correction/CorrectionApi
 
 const Mappers = {

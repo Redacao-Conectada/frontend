@@ -98,6 +98,7 @@ export interface UserApi {
   schoolName: string;
   state: string;
   school_registration?: string;
+  userNewName?: string;
 }
 
 export interface EssayApi {
@@ -138,8 +139,9 @@ export interface CorrectionApi {
   correctionGrade: number;
   createdDate: string;
   essayId: number;
-  id: number;
-  teacherId: number;
+  id?: number;
+  teacherId?: number;
+  idTeacherUser?: number;
 }
 
 export interface Correction {
