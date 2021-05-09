@@ -7,7 +7,15 @@ import {
 
 const convertDateToISODate = (str: string) => {
   const [day, month, year] = str.split('/');
-  return new Date(Number(year), Number(month), Number(day)).toISOString();
+  return new Date(
+    Number(year),
+    Number(month),
+    Number(day),
+    Number(10),
+    Number(0),
+    Number(0),
+    Number(0),
+  ).toISOString();
 };
 
 const userFormToUserApi = (userForm: RegisterData): UserApi => {
