@@ -13,6 +13,7 @@ const EducationForm: React.FC<EducationDataForm> = ({
   onChangeSelect,
   onSubmit,
   toValidated,
+  isLoading,
 }) => {
   const [validated, setValidated] = useState(toValidated);
 
@@ -52,7 +53,7 @@ const EducationForm: React.FC<EducationDataForm> = ({
         onChange={onChangeSelect}
         optionsList={schoolYearOptionsList}
       />
-      <Button text="Concluir" typeButton="submit" />
+      <Button text="Concluir" typeButton="submit" isLoading={isLoading} />
     </Form>
   );
 };

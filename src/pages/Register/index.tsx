@@ -10,7 +10,6 @@ import api from '@/service/api';
 import { FormMappers } from '@/utils/formUtils';
 import { ReactComponent as Logo } from '@assets/logo.svg';
 import { CenteredContainer, Header } from '@styles/general';
-
 import { validateValues } from '@utils/validations';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
@@ -20,6 +19,8 @@ const Register: React.FC = () => {
   const [validated, setValidated] = useState(false);
 
   const [data, setData] = useState(initialRegisterData);
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const history = useHistory();
 
@@ -86,14 +87,20 @@ const Register: React.FC = () => {
     ];
 
     if (errors.length) {
-      errors.map((error) => toast.error(error));
-    } else {
-      api.post('/users', FormMappers.userFormToUserApi(data)).then(() => {
+      return errors.map((error) => toast.error(error));
+    }
+
+    setIsLoading(true);
+    try {
+      await api.post('/users', FormMappers.userFormToUserApi(data)).then(() => {
         toast.success('Cadastrado com sucesso');
         history.push('/login');
       });
+    } catch (err) {
+      toast.error('Falha ao realizar cadastro, tente um email diferente');
+    } finally {
+      setIsLoading(false);
     }
-    // TODO: Passar por todos os campos de data procurando algum invalidity, se houver, chamar um toast com error informando o campo inválido
   };
 
   const [activeTab, setActiveTab] = useState('Pessoal');
@@ -111,6 +118,7 @@ const Register: React.FC = () => {
         onChangeSelect={handleSelect}
         onSubmit={() => handleSubmit}
         toValidated={validated}
+        isLoading={isLoading}
       />
     ),
   };
