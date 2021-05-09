@@ -10,7 +10,7 @@ import {
 } from './routeList';
 
 const Routes: React.FC = () => {
-  const activeRole: roles = 'student';
+  const activeRole: roles = 'admin';
 
   const publicRouteComponents = publicRouteList.map(
     ({ component: Component, path, exact, title }) => {
