@@ -28,6 +28,8 @@ const EssayFeed: React.FC = () => {
   const [essays, setEssays] = useState<Essay[]>([]);
   const [data, setData] = useState(initialData);
 
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     api
       .get(`/essays`)
@@ -47,7 +49,8 @@ const EssayFeed: React.FC = () => {
       })
       .catch((err) => {
         toast.error('Falha ao carregar as redações');
-      });
+      })
+      .finally(() => setIsLoading(false));
   }, []);
 
   const handleSelectOption = (name: string, value: string) => {
@@ -66,7 +69,11 @@ const EssayFeed: React.FC = () => {
         name="activeOption"
         value={data.activeOption}
       />
-      <EssayPreviewCard sort={data.activeOption} essayList={essays} />
+      <EssayPreviewCard
+        sort={data.activeOption}
+        essayList={essays}
+        isLoading={isLoading}
+      />
     </CenteredContainer>
   );
 };

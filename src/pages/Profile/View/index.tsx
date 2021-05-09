@@ -36,22 +36,27 @@ const ProfileView: React.FC<ProfileViewProps> = (props) => {
   const [userProfile, setUserProfile] = useState<User>();
   const [essays, setEssays] = useState<Essay[]>();
 
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     // Busca Usuário pelo id do path
-    api.get(`/users/${props.match.params.id}`).then((res) => {
-      const userApi = res.data;
-      const user = Mappers.userApiToUser(userApi);
-      setUserProfile(user);
+    api
+      .get(`/users/${props.match.params.id}`)
+      .then((res) => {
+        const userApi = res.data;
+        const user = Mappers.userApiToUser(userApi);
+        setUserProfile(user);
 
-      // Busca Essays do usuário pelo id do path
-      api.get(`/essays/users/${props.match.params.id}`).then((r) => {
-        const essaysApi = r.data;
-        const userEssays = essaysApi.map((es: EssayApi) =>
-          Mappers.essayApiToEssay(es, user),
-        );
-        setEssays(userEssays);
-      });
-    });
+        // Busca Essays do usuário pelo id do path
+        api.get(`/essays/users/${props.match.params.id}`).then((r) => {
+          const essaysApi = r.data;
+          const userEssays = essaysApi.map((es: EssayApi) =>
+            Mappers.essayApiToEssay(es, user),
+          );
+          setEssays(userEssays);
+        });
+      })
+      .finally(() => setIsLoading(false));
   }, []);
 
   const handleSelectOption = (name: string, value: string) => {
@@ -84,7 +89,11 @@ const ProfileView: React.FC<ProfileViewProps> = (props) => {
         name="activeOption"
         value={data.activeOption}
       />
-      <EssayPreviewCard sort={data.activeOption} essayList={essays || []} />
+      <EssayPreviewCard
+        sort={data.activeOption}
+        essayList={essays || []}
+        isLoading={isLoading}
+      />
     </CenteredContainer>
   );
 };

@@ -32,9 +32,6 @@ const DetailedEssayCard: React.FC<DetailedEssayCardProps> = ({
   preview,
   evaluateMode,
 }) => {
-  // TODO: fazer estrela ficar amarela quando curtido.
-  // TODO: fazer gerenciamento de estado
-
   const [isStarred, setIsStarred] = useState(essay.hasUserUpVoted || false);
   const [numOfStars, setNumOfStars] = useState(essay.numOfStars);
 
@@ -120,13 +117,17 @@ const DetailedEssayCard: React.FC<DetailedEssayCardProps> = ({
                 em <b>{essay.date}</b>
               </p>
             </DateContainer>
-            <AuthorContainer>
-              <b>{essay.author?.name}</b>
-              <img
-                alt={essay.author?.name}
-                src={essay.author?.avatar ? essay.author.avatar : defaultAvatar}
-              />
-            </AuthorContainer>
+            <Link to={`/profile/${essay.author.id}`}>
+              <AuthorContainer>
+                <b>{essay.author?.name}</b>
+                <img
+                  alt={essay.author?.name}
+                  src={
+                    essay.author?.avatar ? essay.author.avatar : defaultAvatar
+                  }
+                />
+              </AuthorContainer>
+            </Link>
           </MoreInfoContainer>
         </FooterContainer>
       )}

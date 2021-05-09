@@ -1,10 +1,12 @@
 import DetailedEssayCard from '@/components/Pages/Essay/DetailedEssayCard';
 import { Essay } from '@/definitions/general';
 import React from 'react';
+import Skeleton from 'react-loading-skeleton';
 
 interface EssayPreviewCardProps {
   sort: string;
   essayList: Essay[];
+  isLoading: boolean;
 }
 
 interface SortFunctions {
@@ -14,6 +16,7 @@ interface SortFunctions {
 const EssayPreviewCard: React.FC<EssayPreviewCardProps> = ({
   essayList,
   sort,
+  isLoading,
 }) => {
   const preview = true;
 
@@ -30,7 +33,7 @@ const EssayPreviewCard: React.FC<EssayPreviewCardProps> = ({
   const listEssays = essayListSorted.map((essay) => (
     <DetailedEssayCard key={essay.id} preview={preview} essay={essay} />
   ));
-  return <>{listEssays}</>;
+  return <> {isLoading ? <Skeleton height="150px" /> : listEssays}</>;
 };
 
 export default EssayPreviewCard;
