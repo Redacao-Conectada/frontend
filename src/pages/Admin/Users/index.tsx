@@ -2,9 +2,12 @@ import { icons } from '@/assets/icons';
 import { TagSwitcher, Input } from '@/components/General';
 import { General } from '@/definitions';
 import { TagOptionList } from '@/definitions/tag';
+import api from '@/services/api';
 import { CenteredContainer, Header } from '@/styles/general';
 import UserCard from '@components/Pages/Admin/UserCard';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
+import toast from 'react-hot-toast';
 import { TagContainer } from './styles';
 
 const tagOptions: TagOptionList = [
@@ -25,6 +28,17 @@ const initialData: Data = {
 
 const UsersList: React.FC = () => {
   const [data, setData] = useState(initialData);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await api.get('/admin');
+      } catch (err) {
+        toast.error('Erro ao buscar usuários');
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handleTag = (name: string, value: string) => {
     setData({
