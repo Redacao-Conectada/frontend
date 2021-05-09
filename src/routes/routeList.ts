@@ -45,13 +45,13 @@ const evaluatorRouteList: RouteProps[] = [
     title: 'Avaliar Redação',
   },
   {
-    path: '/feed',
+    path: '/essays',
     component: pages.Feed,
     exact: true,
     title: 'Feed',
   },
   {
-    path: '/essay/:id',
+    path: '/essays/:id',
     component: pages.EssayMainPage,
     exact: true,
     title: 'Redação em Detalhes',
@@ -90,7 +90,7 @@ const studentRouteList: RouteProps[] = [
   },
   {
     path: '/essays',
-    component: pages.EssayMainPage,
+    component: pages.Feed,
     exact: true,
     title: 'Feed',
   },
