@@ -13,7 +13,6 @@ const EvaluateEssay: React.FC = () => {
 
   const handleSelect = (event: React.FormEvent<HTMLSelectElement>) => {
     const { value, name } = event.currentTarget;
-    console.log({ value, name });
 
     setData({
       ...data,

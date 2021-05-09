@@ -52,6 +52,7 @@ export interface Essay {
   total: number;
   correctionId?: number;
   ratingList?: RatingList;
+  hasUserUpVoted?: boolean;
 }
 
 export interface Commentary {
@@ -112,6 +113,7 @@ export interface EssayApi {
   authorImage?: any;
   authorName?: string;
   author?: number;
+  hasUserUpVoted?: boolean;
 }
 
 export enum UserRole {

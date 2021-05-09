@@ -4,7 +4,8 @@ import api from '@/services/api';
 import { icons } from '@assets/icons';
 import ShowGrade from '@components/Pages/Essay/ShowGrade';
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 import {
   AuthorContainer,
   DateContainer,
@@ -33,17 +34,28 @@ const DetailedEssayCard: React.FC<DetailedEssayCardProps> = ({
   // TODO: fazer estrela ficar amarela quando curtido.
   // TODO: fazer gerenciamento de estado
 
-  const [isStarred, setIsStarred] = useState(essay.isStarred);
+  const [isStarred, setIsStarred] = useState(essay.hasUserUpVoted || false);
   const [numOfStars, setNumOfStars] = useState(essay.numOfStars);
 
-  const handleStarClick = () => {
-    console.log(isStarred);
+  const handleStarClick = async () => {
     if (isStarred) {
-      api.put(`/essays/${essay.id}/downvote`).then(() => setIsStarred(false));
-      setNumOfStars(numOfStars - 1);
+      try {
+        await api.put(`/essays/${essay.id}/downvote`);
+
+        setIsStarred(false);
+        setNumOfStars(numOfStars - 1);
+      } catch (err) {
+        toast.error('Não foi possível remover o voto');
+      }
     } else {
-      api.put(`/essays/${essay.id}/upvote`).then(() => setIsStarred(true));
-      setNumOfStars(numOfStars + 1);
+      try {
+        await api.put(`/essays/${essay.id}/upvote`);
+
+        setIsStarred(true);
+        setNumOfStars(numOfStars + 1);
+      } catch (err) {
+        toast.error('Não foi possível adicionar o voto');
+      }
     }
   };
 

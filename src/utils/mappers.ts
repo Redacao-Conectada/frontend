@@ -19,7 +19,7 @@ import { formatDate } from './formUtils';
  */
 const essayApiToEssay = (essayApi: EssayApi, user: User): Essay => {
   // FIXME: retornar se o usuários curtiu a redação
-  const essay = {
+  const essay: Essay = {
     id: essayApi.id,
     text: essayApi.body,
     title: essayApi.title,
@@ -30,6 +30,7 @@ const essayApiToEssay = (essayApi: EssayApi, user: User): Essay => {
     numOfComments: 0,
     total: essayApi.grade,
     correctionId: essayApi.correctionId,
+    hasUserUpVoted: essayApi.hasUserUpVoted,
   };
 
   return essay;

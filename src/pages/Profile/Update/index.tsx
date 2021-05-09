@@ -22,12 +22,14 @@ const UpdateProfile: React.FC = () => {
   const history = useHistory();
 
   useEffect(() => {
-    api.get(`/users/${getLoggedUserId()}`).then((res) => {
-      const userApi = res.data;
-      const userForm = userApiToUserUpdateForm(userApi);
-      console.log(res);
-      setData(userForm);
-    });
+    api
+      .get(`/users/${getLoggedUserId()}`)
+      .then((res) => {
+        const userApi = res.data;
+        const userForm = userApiToUserUpdateForm(userApi);
+        setData(userForm);
+      })
+      .catch((err) => toast.error('Falha ao carregar dados do usuário'));
   }, []);
 
   const handlePersonalData = (name: UpdatePersonalFields, value: any) => {
@@ -44,7 +46,6 @@ const UpdateProfile: React.FC = () => {
         },
       },
     });
-    console.log(data);
   };
 
   const handleEducationData = (name: UpdateEducationFields, value: any) => {
@@ -61,7 +62,6 @@ const UpdateProfile: React.FC = () => {
         },
       },
     });
-    console.log(data);
   };
 
   const handleSelectEducation = (event: React.FormEvent<HTMLSelectElement>) => {

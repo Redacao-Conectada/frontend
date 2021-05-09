@@ -22,14 +22,8 @@ const EssayPreviewCard: React.FC<EssayPreviewCardProps> = ({
       essay1.numOfStars < essay2.numOfStars ? 1 : -1,
     Comentários: (essay1: Essay, essay2: Essay) =>
       essay1.numOfComments < essay2.numOfComments ? 1 : -1,
-    Nota: (essay1: Essay, essay2: Essay) => {
-      console.log(
-        essay1.total,
-        essay2.total,
-        essay1.total < essay2.total ? 1 : -1,
-      );
-      return essay1.total < essay2.total ? 1 : -1;
-    },
+    Nota: (essay1: Essay, essay2: Essay) =>
+      essay1.total < essay2.total ? 1 : -1,
   };
 
   const essayListSorted = essayList.sort(sortFunctions[sort]);
