@@ -6,7 +6,7 @@ import {
   PersonalFields,
   EducationFields,
 } from '@/definitions/Register/dataForm';
-import api from '@/service/api';
+import api from '@/services/api';
 import { FormMappers } from '@/utils/formUtils';
 import { ReactComponent as Logo } from '@assets/logo.svg';
 import { CenteredContainer, Header } from '@styles/general';

@@ -4,7 +4,7 @@ import EssayPreviewCard from '@/components/Pages/Essay/EssayPreviewCard';
 import EvaluatorCard from '@/components/Pages/Profile/EvaluatorCard';
 import StudentCard from '@/components/Pages/Profile/StudentCard';
 import { Essay, EssayApi, User, UserRole } from '@/definitions/general';
-import api, { hasAuthority } from '@/service/api';
+import api, { hasAuthority } from '@/services/api';
 import Mappers from '@/utils/mappers';
 import { icons } from '@assets/icons';
 import { TagOptionList } from '@definitions/tag';

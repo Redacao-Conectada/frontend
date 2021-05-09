@@ -1,4 +1,4 @@
-import { getLoggedUserId } from '@/service/api';
+import { getLoggedUserId } from '@/services/api';
 import { icons } from '@assets/icons';
 import { ReactNode } from 'react';
 

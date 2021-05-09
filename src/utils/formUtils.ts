@@ -1,5 +1,9 @@
 import { UserApi } from '@/definitions/general';
-import { RegisterData, UpdateData } from '@/definitions/Register/dataForm';
+import {
+  initialUpdateData,
+  RegisterData,
+  UpdateData,
+} from '@/definitions/Register/dataForm';
 
 const convertDateToISODate = (str: string) => {
   const [day, month, year] = str.split('/');
@@ -35,7 +39,25 @@ const userUpdateFormToUserApi = (userForm: UpdateData): UserApi => {
     password: formData.password.value,
     schoolName: formData.school.value,
     state: formData.state.value,
+    school_registration: formData.schoolId.value,
   };
+};
+
+export const userApiToUserUpdateForm = (userApi: UserApi): UpdateData => {
+  const formData = initialUpdateData;
+  formData.personal.name.value = userApi.name;
+  formData.personal.cpf.value = userApi.cpf;
+  formData.personal.email.value = userApi.email;
+  formData.personal.password.value = userApi.password;
+  formData.personal.birthDate.value = userApi.birthdate;
+  formData.personal.state.value = userApi.state;
+  formData.personal.city.value = userApi.city;
+
+  formData.education.school.value = userApi.schoolName;
+  formData.education.schoolYear.value = userApi.graduation;
+  formData.education.schoolId.value = userApi.school_registration;
+
+  return formData;
 };
 
 export const FormMappers = {

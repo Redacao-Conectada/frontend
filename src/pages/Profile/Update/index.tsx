@@ -4,8 +4,8 @@ import {
   UpdatePersonalFields,
   UpdateEducationFields,
 } from '@/definitions/Register/dataForm';
-import api from '@/service/api';
-import { FormMappers } from '@/utils/formUtils';
+import api, { getLoggedUserId } from '@/services/api';
+import { FormMappers, userApiToUserUpdateForm } from '@/utils/formUtils';
 import SwitchRouter, { SwitchOption } from '@components/General/SwitchRouter';
 import { PersonalForm, EducationForm } from '@components/Pages/Profile/Update';
 import { CenteredContainer } from '@styles/general';
@@ -23,73 +23,11 @@ const UpdateProfile: React.FC = () => {
   const history = useHistory();
 
   useEffect(() => {
-    const {
-      id,
-      name,
-      avatar,
-      birthDate,
-      city,
-      cpf,
-      email,
-      schoolYear,
-      roleName,
-      roleId,
-      school,
-      state,
-    } = mockedUser;
-    setData({
-      ...data,
-      personal: {
-        ...data.personal,
-        name: {
-          ...data.personal.name,
-          value: name,
-        },
-        cpf: {
-          ...data.personal.cpf,
-          value: cpf,
-        },
-        birthDate: {
-          ...data.personal.birthDate,
-          value: birthDate,
-          // TODO: Criar mascára de formatação
-        },
-        email: {
-          ...data.personal.email,
-          value: email,
-        },
-        password: {
-          ...data.personal.password,
-        },
-        state: {
-          ...data.personal.state,
-          value: state,
-          //  TODO: Verificar se vai precisar validar o select e talvez criar o input de select
-        },
-        city: {
-          ...data.personal.city,
-          value: city,
-        },
-      },
-      education: {
-        function: {
-          ...data.education.function,
-          value: roleName,
-          // TODO: Verificar se vai precisar validar o select e talvez criar o input de select
-        },
-        school: {
-          ...data.education.school,
-          value: school,
-        },
-        schoolYear: {
-          ...data.education.schoolYear,
-          value: schoolYear,
-          // TODO: Verificar se vai precisar validar o select e talvez criar o input de select
-        },
-        schoolId: {
-          ...data.education.schoolId,
-        },
-      },
+    api.get(`/users/${getLoggedUserId()}`).then((res) => {
+      const userApi = res.data;
+      const userForm = userApiToUserUpdateForm(userApi);
+      console.log(res);
+      setData(userForm);
     });
   }, []);
 

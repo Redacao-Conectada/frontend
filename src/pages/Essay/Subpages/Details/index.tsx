@@ -1,5 +1,5 @@
 import { Commentary, CommentaryApi, Essay } from '@/definitions/general';
-import api, { getLoggedUserId } from '@/service/api';
+import api, { getLoggedUserId } from '@/services/api';
 import { commentaryApiToCommentary } from '@/utils/mappers';
 import CommentaryList from '@components/Pages/Essay/Commentary';
 import DetailedEssayCard from '@components/Pages/Essay/DetailedEssayCard';

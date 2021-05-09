@@ -1,6 +1,6 @@
 import { InteractiveStarIcon } from '@/components/InteractiveIcon';
 import { Essay } from '@/definitions/general';
-import api from '@/service/api';
+import api from '@/services/api';
 import { icons } from '@assets/icons';
 import ShowGrade from '@components/Pages/Essay/ShowGrade';
 import React, { useState } from 'react';

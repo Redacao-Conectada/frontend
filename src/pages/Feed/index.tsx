@@ -4,7 +4,7 @@ import { TagSwitcher } from '@/components/General';
 import EssayPreviewCard from '@/components/Pages/Essay/EssayPreviewCard';
 import { EssayApi } from '@/definitions/general';
 import { TagOptionList } from '@/definitions/tag';
-import api from '@/service/api';
+import api from '@/services/api';
 import Mappers from '@/utils/mappers';
 import { CenteredContainer } from '@styles/general';
 import React, { useEffect, useState } from 'react';
