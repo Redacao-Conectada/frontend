@@ -1,7 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
 
 :root {
   --black: #131735;
+  --lightGrey: #f0f1f5;
+  --primary: #008D64;
+  --darkPrimary: rgba(6, 113, 81, 0.5);
 }
 
 * {
@@ -11,7 +14,37 @@
   vertical-align: baseline;
   list-style: none;
   border: 0;
-  background-color: #FCFAF9;
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+h2 {
+  font-family: 'Open Sans', sans-serif;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  background-color: #fcfaf9;
+}
+
+::-webkit-scrollbar {
+  margin-left: 5px;
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--lightGrey);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 8px;
+
 }

@@ -1,12 +1,16 @@
+import { roles } from '@definitions/general';
 import PrivateTemplate from '@templates/Private';
 import React from 'react';
 import { Route, BrowserRouter, Switch, Redirect } from 'react-router-dom';
-import { privateRouteList, publicRouteList } from './routeList';
+import {
+  privateRedirects,
+  privateRouteList,
+  publicRouteList,
+} from './routeList';
 
 const Routes: React.FC = () => {
-  // TODO: Verificar a autenticação do usuário
-
-  const authenticated = false;
+  const activeRole: roles = 'admin';
+  const authenticated = true;
 
   const publicRouteComponents = publicRouteList.map(
     ({ component: Component, path, exact, title }) => {
@@ -14,6 +18,7 @@ const Routes: React.FC = () => {
 
       return (
         <Route
+          key={path}
           path={path}
           exact={exact}
           render={(props) => <Component {...props} />}
@@ -22,37 +27,37 @@ const Routes: React.FC = () => {
     },
   );
 
-  const privateRouteComponents = privateRouteList.map(
+  const privateRouteComponents = privateRouteList[activeRole].map(
     ({ component: Component, path, exact, title }) => {
       document.title = title;
 
       return (
-        <PrivateTemplate>
-          <Route
-            path={path}
-            exact={exact}
-            render={(props) => <Component {...props} />}
-          />
-        </PrivateTemplate>
+        <Route
+          path={path}
+          exact={exact}
+          render={(props) => (
+            <PrivateTemplate role={activeRole}>
+              <Component {...props} />
+            </PrivateTemplate>
+          )}
+        />
       );
     },
   );
 
   return (
     <BrowserRouter>
-      <Switch>
-        {authenticated ? (
-          <>
-            {privateRouteComponents}
-            <Redirect to="/feed" />
-          </>
-        ) : (
-          <>
-            {publicRouteComponents}
-            <Redirect to="/login" />
-          </>
-        )}
-      </Switch>
+      {authenticated ? (
+        <Switch>
+          {privateRouteComponents}
+          <Redirect to={privateRedirects[activeRole]} />
+        </Switch>
+      ) : (
+        <Switch>
+          {publicRouteComponents}
+          <Redirect to="/login" />
+        </Switch>
+      )}
     </BrowserRouter>
   );
 };
