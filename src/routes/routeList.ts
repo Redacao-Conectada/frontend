@@ -34,10 +34,16 @@ export const privateRouteList: RouteProps[] = [
     title: 'Criar Redação',
   },
   {
-    path: '/profile/:id', // FIXME: deve ser /profile/id
+    path: '/profile/:id',
     component: pages.ProfileView,
     exact: true,
     title: 'Exemplo',
+  },
+  {
+    path: '/profile/update',
+    component: pages.UpdateProfile,
+    exact: true,
+    title: 'Atualizar Perfil',
   },
 ];
 

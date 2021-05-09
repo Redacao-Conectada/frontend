@@ -1,6 +1,11 @@
 import { OptionsList } from '@components/General/Select';
 import React from 'react';
-import { PersonalGroup, EducationGroup } from './dataForm';
+import {
+  PersonalGroup,
+  EducationGroup,
+  UpdatePersonal,
+  UpdateEducation,
+} from './dataForm';
 
 export interface PersonalDataForm {
   data: PersonalGroup;
@@ -12,6 +17,21 @@ export interface EducationDataForm {
   data: EducationGroup;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onChangeSelect: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  onSubmit: () => void;
+}
+
+export interface UpdatePersonalDataForm {
+  data: UpdatePersonal;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChangeSelect: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  nextPage: () => void;
+}
+
+export interface UpdateEducationDataForm {
+  data: UpdateEducation;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChangeSelect: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  onChangeRadio: (name: string, value: string) => void;
   onSubmit: () => void;
 }
 
