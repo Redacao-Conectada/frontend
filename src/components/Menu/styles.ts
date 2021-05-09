@@ -24,6 +24,7 @@ export const MenuContainer = styled.div<MenuContainerProps>`
 
 interface MenuItemProps {
   active: boolean;
+  activeColor: string;
 }
 
 export const MenuItem = styled.div<MenuItemProps>`
@@ -43,7 +44,7 @@ export const MenuItem = styled.div<MenuItemProps>`
     transform: translate(-50%, -50%);
     padding-top: ${({ active }) => (active ? '8px' : '0')};
 
-    color: ${colors.primary};
+    color: ${({ activeColor }) => activeColor};
     font-family: 'Comfortaa';
     font-size: 0.75rem;
     font-weight: bold;
@@ -64,13 +65,14 @@ export const MenuItem = styled.div<MenuItemProps>`
   :hover > svg {
     opacity: 0;
     transition: all 200ms ease-in-out;
-    stroke: ${colors.primary};
+    stroke: ${({ activeColor }) => activeColor};
   }
 
   ::before {
     transition: all 200ms ease-in-out;
     content: '';
-    background: ${({ active }) => (active ? colors.primary : 'transparent')};
+    background: ${({ active, activeColor }) =>
+      active ? activeColor : 'transparent'};
     color: red;
     border-radius: 50%;
     width: 6px;

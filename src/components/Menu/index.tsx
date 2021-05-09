@@ -46,19 +46,21 @@ const Menu: React.FC<MenuProps> = ({ activeRole }) => {
     }
   };
 
-  const menu = options[activeRole].map(({ label, icon, path, action }) => {
-    const firstPath = path.split('/')[1];
-    const isActive = firstPath === activeOption;
+  const menu = options[activeRole].map(
+    ({ label, icon, path, color, action }) => {
+      const firstPath = path.split('/')[1];
+      const isActive = firstPath === activeOption;
 
-    return (
-      <Link to={path} key={label} onClick={() => callAction(action)}>
-        <MenuItem active={isActive}>
-          <span>{label}</span>
-          {icon}
-        </MenuItem>
-      </Link>
-    );
-  });
+      return (
+        <Link to={path} key={label} onClick={() => callAction(action)}>
+          <MenuItem active={isActive} activeColor={color}>
+            <span>{label}</span>
+            {icon}
+          </MenuItem>
+        </Link>
+      );
+    },
+  );
 
   return (
     <MenuContainer quantityOfItems={options[activeRole].length}>
