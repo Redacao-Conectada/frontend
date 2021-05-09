@@ -1,7 +1,11 @@
 import { colors } from '@styles/colors';
 import styled from 'styled-components';
 
-export const MenuContainer = styled.div`
+interface MenuContainerProps {
+  quantityOfItems: number;
+}
+
+export const MenuContainer = styled.div<MenuContainerProps>`
   background: ${colors.menuBackground};
   border-radius: 8px 8px 0px 0px;
   box-shadow: 2px 8px 16px ${colors.menuShadow};
@@ -9,7 +13,8 @@ export const MenuContainer = styled.div`
   height: 56px;
   padding: 16px 64px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: ${({ quantityOfItems }) =>
+    `repeat(${quantityOfItems}, 1fr)`};
   gap: 64px;
   width: 100%;
   position: fixed;

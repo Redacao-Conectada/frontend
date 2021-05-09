@@ -11,6 +11,7 @@ export interface PersonalDataForm {
   data: PersonalGroup;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   nextPage: () => void;
+  toValidated: boolean;
 }
 
 export interface EducationDataForm {
@@ -18,6 +19,7 @@ export interface EducationDataForm {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onChangeSelect: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   onSubmit: () => void;
+  toValidated: boolean;
 }
 
 export interface UpdatePersonalDataForm {

@@ -75,7 +75,6 @@ export const initialRegisterData: RegisterData = {
     birthDate: {
       ...initialValue,
       validation: (value: string): string => validateBirthdate(value),
-      // TODO: Criar mascára de formatação
     },
     email: {
       ...initialValue,

@@ -5,10 +5,9 @@ import {
   CorrectionApi,
   Essay,
   EssayApi,
-  Rate,
   User,
   UserApi,
-} from '@/interfaces/general';
+} from '@/definitions/general';
 import { formatDate } from './formUtils';
 
 /**

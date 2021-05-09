@@ -12,6 +12,8 @@ export const colors = {
   white: '#FFF',
   offWhite: '#EEE',
   darkGrey: '#888997',
+  grey: '#7C7F8E',
+  lightGrey: '#f0f1f5',
 
   // Switch
   switchBackground: '#04A777',
@@ -30,6 +32,9 @@ export const colors = {
   // Menu
   menuBackground: '#FCFAF9',
   menuShadow: 'rgba(24, 50, 115, 0.03)',
+
+  // Star
+  yellow: '#FFD700',
 };
 
 export const gradeColors = {

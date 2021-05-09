@@ -1,5 +1,5 @@
 import SwitchRouter, { SwitchOption } from '@/components/General/SwitchRouter';
-import { PersonalForm, EducationForm } from '@/components/Register';
+import { PersonalForm, EducationForm } from '@/components/Pages/Register';
 import {
   initialRegisterData,
   RegisterGroups,
@@ -9,7 +9,8 @@ import {
 import api from '@/service/api';
 import { FormMappers } from '@/utils/formUtils';
 import { ReactComponent as Logo } from '@assets/logo.svg';
-import { CenteredContainer, Header } from '@styles/publicRoutes';
+import { CenteredContainer } from '@styles/general';
+import { Header } from '@styles/publicRoutes';
 import { validateValues } from '@utils/validations';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
@@ -109,6 +110,7 @@ const Register: React.FC = () => {
         onChange={(event) => handleData(event, 'education')}
         onChangeSelect={handleSelect}
         onSubmit={() => handleSubmit}
+        toValidated={validated}
       />
     ),
   };
@@ -120,6 +122,7 @@ const Register: React.FC = () => {
         data={data.personal}
         onChange={(event) => handleData(event, 'personal')}
         nextPage={() => changeActiveTab(educationOption.name)}
+        toValidated={validated}
       />
     ),
   };

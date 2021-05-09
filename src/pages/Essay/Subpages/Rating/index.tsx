@@ -1,8 +1,8 @@
 // import Evaluator from '@/components/Evaluator';
-import Evaluator from '@/components/EvaluatorCard';
-import RatingEssayCard from '@/components/RatingEssayCard';
-import { Correction } from '@/interfaces/general';
-import { CenteredContainer } from '@styles/publicRoutes';
+import RatingEssayCard from '@/components/Pages/Essay/RatingEssayCard';
+import Evaluator from '@/components/Pages/Profile/EvaluatorCard';
+import { Correction } from '@/definitions/general';
+import { CenteredContainer } from '@styles/general';
 import React from 'react';
 
 interface EssayRatingProps {

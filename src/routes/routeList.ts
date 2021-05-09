@@ -1,6 +1,8 @@
 import * as pages from '@pages';
 import { RouteProps as ReactDOMRouterProps } from 'react-router-dom';
 
+const { Admin } = pages;
+
 interface RouteProps extends ReactDOMRouterProps {
   path: string;
   component: React.ComponentType<any>;
@@ -8,12 +10,39 @@ interface RouteProps extends ReactDOMRouterProps {
   title: string;
 }
 
-export const privateRouteList: RouteProps[] = [
+const adminRouteList: RouteProps[] = [
   {
-    path: '/example',
-    component: pages.Example,
+    path: '/users',
+    component: Admin.Users,
     exact: true,
-    title: 'Exemplo',
+    title: 'Usuários',
+  },
+  {
+    path: '/requests',
+    component: Admin.RequestList,
+    exact: true,
+    title: 'Listagem de Solicitações',
+  },
+  {
+    path: '/requests/:id',
+    component: Admin.Request,
+    exact: true,
+    title: 'Avaliar Solicitação',
+  },
+];
+
+const evaluatorRouteList: RouteProps[] = [
+  {
+    path: '/profile',
+    component: pages.ProfileView,
+    exact: true,
+    title: 'Perfil',
+  },
+  {
+    path: '/evaluate',
+    component: pages.EvaluateEssay,
+    exact: true,
+    title: 'Avaliar Redação',
   },
   {
     path: '/feed',
@@ -27,8 +56,16 @@ export const privateRouteList: RouteProps[] = [
     exact: true,
     title: 'Redação em Detalhes',
   },
+];
+const studentRouteList: RouteProps[] = [
   {
-    path: '/essays/create',
+    path: '/profile',
+    component: pages.ProfileView,
+    exact: true,
+    title: 'Perfil',
+  },
+  {
+    path: '/create',
     component: pages.CreateEssay,
     exact: true,
     title: 'Criar Redação',
@@ -45,7 +82,31 @@ export const privateRouteList: RouteProps[] = [
     exact: true,
     title: 'Atualizar Perfil',
   },
+  {
+    path: '/essays/:id',
+    component: pages.EssayMainPage,
+    exact: true,
+    title: 'Redação em Detalhes',
+  },
+  {
+    path: '/essays',
+    component: pages.EssayMainPage,
+    exact: true,
+    title: 'Feed',
+  },
 ];
+
+export const privateRouteList = {
+  admin: adminRouteList,
+  evaluator: evaluatorRouteList,
+  student: studentRouteList,
+};
+
+export const privateRedirects = {
+  admin: '/users',
+  evaluator: '/essays',
+  student: '/essays',
+};
 
 export const publicRouteList: RouteProps[] = [
   {

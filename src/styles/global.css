@@ -2,6 +2,9 @@
 
 :root {
   --black: #131735;
+  --lightGrey: #f0f1f5;
+  --primary: #008D64;
+  --darkPrimary: rgba(6, 113, 81, 0.5);
 }
 
 * {
@@ -16,6 +19,10 @@
   box-sizing: border-box;
 }
 
+a {
+  text-decoration: none;
+}
+
 h2 {
   font-family: 'Open Sans', sans-serif;
 }
@@ -24,4 +31,20 @@ body {
   display: grid;
   place-items: center;
   background-color: #fcfaf9;
+}
+
+::-webkit-scrollbar {
+  margin-left: 5px;
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--lightGrey);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 8px;
+
 }

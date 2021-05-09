@@ -1,24 +1,97 @@
-import { EssayConfigForm, EssayCreateForm } from '@components/Essay';
 import SwitchRouter, { SwitchOption } from '@components/General/SwitchRouter';
-import { CenteredContainer, Header } from '@styles/publicRoutes';
+import { EssayConfigForm, EssayCreateForm } from '@components/Pages/Essay';
+import {
+  initialData,
+  Essay,
+  Config,
+  DataGroup,
+} from '@definitions/Essay/Create';
+import { CenteredContainer } from '@styles/general';
 import React, { useState } from 'react';
 
 const CreateEssay: React.FC = () => {
-  const [activeTab, setActiveTab] = useState('Config');
+  const [data, setData] = useState(initialData);
+
+  const [activeTab, setActiveTab] = useState('Redação');
 
   const changeActiveTab = (tabName: string) => {
     setActiveTab(tabName);
   };
 
+  const handleEssayCreate = (name: keyof Essay, value: string) => {
+    const invalidity = data.essayCreate[name].validation(value);
+
+    setData({
+      ...data,
+      essayCreate: {
+        ...data.essayCreate,
+        [name]: { ...data.essayCreate[name], value, invalidity },
+      },
+    });
+  };
+
+  const handleEssayConfig = (name: keyof Config, value: string | boolean) => {
+    if (name === 'keyWords') {
+      const invalidity = data.essayConfig[name].validation(value);
+
+      setData({
+        ...data,
+        essayConfig: {
+          ...data.essayConfig,
+          [name]: { ...data.essayConfig[name], value, invalidity },
+        },
+      });
+    }
+  };
+
+  const handleSwitch = (name: string, value: boolean) => {
+    setData({
+      ...data,
+      essayConfig: {
+        ...data.essayConfig,
+        [name]: value,
+      },
+    });
+  };
+
+  const handleData = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    group: DataGroup,
+  ) => {
+    const { value, name } = event.target;
+
+    if (group === 'essayCreate') {
+      handleEssayCreate(name as keyof Essay, value);
+    } else if (group === 'essayConfig') {
+      handleEssayConfig(name as keyof Config, value);
+    }
+  };
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+  };
+
   const configOption: SwitchOption = {
     name: 'Config',
-    Component: <EssayConfigForm />,
+    Component: (
+      <EssayConfigForm
+        data={data.essayConfig}
+        onChangeSwitch={handleSwitch}
+        onChange={(event) => handleData(event, 'essayConfig')}
+        onSubmit={handleSubmit}
+      />
+    ),
   };
 
   const essayOption: SwitchOption = {
     name: 'Redação',
     Component: (
-      <EssayCreateForm nextPage={() => changeActiveTab(configOption.name)} />
+      <EssayCreateForm
+        data={data.essayCreate}
+        nextPage={() => changeActiveTab(configOption.name)}
+        onChange={(event) => handleData(event, 'essayCreate')}
+        onChangeTextArea={(event) => handleData(event, 'essayCreate')}
+      />
     ),
   };
 

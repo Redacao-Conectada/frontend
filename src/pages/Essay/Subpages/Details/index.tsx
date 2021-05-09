@@ -1,8 +1,8 @@
-import { Commentary, CommentaryApi, Essay } from '@/interfaces/general';
+import { Commentary, CommentaryApi, Essay } from '@/definitions/general';
 import api, { getLoggedUserId } from '@/service/api';
-import Mappers, { commentaryApiToCommentary } from '@/utils/mappers';
-import CommentaryList from '@components/Commentary';
-import DetailedEssayCard from '@components/DetailedEssayCard';
+import { commentaryApiToCommentary } from '@/utils/mappers';
+import CommentaryList from '@components/Pages/Essay/Commentary';
+import DetailedEssayCard from '@components/Pages/Essay/DetailedEssayCard';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { CommentBox, DetailsContainer } from './styles';

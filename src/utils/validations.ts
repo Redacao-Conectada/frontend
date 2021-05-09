@@ -1,4 +1,4 @@
-import { General } from '@definitions';
+import { isValid as isValidCpf } from '@fnando/cpf';
 
 export const validateEmail = (email: string): string => {
   // eslint-disable-next-line no-useless-escape
@@ -13,8 +13,12 @@ export const validateEmail = (email: string): string => {
   return 'Digite um e-mail válido.';
 };
 
-export const validateCpf = (cpf: string): string =>
-  cpf.trim().length < 1 ? `O campo cpf está vazio` : '';
+export const validateCpf = (CPF: string): string => {
+  const cleanCPF = CPF.replace(/[^\d]+/g, '');
+  if (cleanCPF === '00000000000') return 'CPF inválido';
+
+  return isValidCpf(cleanCPF) ? '' : 'CPF inválido';
+};
 
 export const validateName = (name: string): string =>
   name.split(' ').length < 2 ? 'Insira seu nome completo' : '';

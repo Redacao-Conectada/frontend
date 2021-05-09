@@ -1,15 +1,15 @@
 // import Evaluator from '@/components/Evaluator';
-import EssayPreviewCard from '@/components/EssayPreviewCard';
-import EvaluatorCard from '@/components/EvaluatorCard';
 import { TagSwitcher } from '@/components/General';
-import StudentCard from '@/components/StudentCard';
-import { Essay, EssayApi, User, UserRole } from '@/interfaces/general';
+import EssayPreviewCard from '@/components/Pages/Essay/EssayPreviewCard';
+import EvaluatorCard from '@/components/Pages/Profile/EvaluatorCard';
+import StudentCard from '@/components/Pages/Profile/StudentCard';
+import { Essay, EssayApi, User, UserRole } from '@/definitions/general';
 import api, { hasAuthority } from '@/service/api';
 import Mappers from '@/utils/mappers';
 import { icons } from '@assets/icons';
 import { TagOptionList } from '@definitions/tag';
-import { CenteredContainer } from '@styles/publicRoutes';
-import { evaluator, student, essayList } from '@utils/mocks';
+import { CenteredContainer } from '@styles/general';
+import { evaluator, student } from '@utils/mocks';
 import React, { useEffect, useState } from 'react';
 
 const tagOptions: TagOptionList = [
@@ -60,7 +60,7 @@ const ProfileView: React.FC<ProfileViewProps> = (props) => {
       [name as keyof Data]: value,
     });
   };
-  console.log(data);
+
   return (
     <CenteredContainer>
       {hasAuthority(UserRole.ROLE_TEACHER) && userProfile && (

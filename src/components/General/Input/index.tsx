@@ -1,7 +1,7 @@
 import { General, Input as InputInterface } from '@/definitions';
-import { Wrapper } from '@styles/generalComponents';
+import { Wrapper } from '@styles/general';
 import React, { useState, useEffect } from 'react';
-import { InputContainer, ErrorMessage } from './styles';
+import { InputContainer, InputMaskContainer, ErrorMessage } from './styles';
 
 interface InputProps {
   entity: General.Value;
@@ -9,9 +9,10 @@ interface InputProps {
   label?: string;
   type: InputInterface.InputTypes;
   validated?: boolean;
-  mask?: string;
   placeholder?: string;
   name?: string;
+  mask?: string;
+  maskChar?: string;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -20,12 +21,14 @@ const Input: React.FC<InputProps> = ({
   validated,
   type = 'text',
   label,
-  mask,
   placeholder,
   name: inputName,
+  mask,
+  maskChar = '_',
 }) => {
-  const { value, invalidity } = entity;
+  const { value, validation } = entity;
 
+  const [invalidity, setInvalidity] = useState(entity.invalidity);
   const [invalid, setInvalid] = useState(false);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,20 +36,36 @@ const Input: React.FC<InputProps> = ({
   };
 
   useEffect(() => {
-    setInvalid(Boolean(validated && invalidity));
-  }, [entity]);
+    const newInvalidity = validation(value);
+    setInvalidity(newInvalidity);
+    setInvalid(Boolean(validated && newInvalidity));
+  }, [entity, validated]);
 
   return (
     <Wrapper>
       {label || null}
-      <InputContainer
-        name={inputName}
-        type={type}
-        placeholder={placeholder}
-        error={invalid}
-        onChange={handleChange}
-        value={value}
-      />
+      {mask ? (
+        <InputMaskContainer
+          name={inputName}
+          type={type}
+          placeholder={placeholder}
+          onChange={handleChange}
+          value={value}
+          error={invalid}
+          mask={mask}
+          maskPlaceholder={maskChar}
+        />
+      ) : (
+        <InputContainer
+          name={inputName}
+          type={type}
+          placeholder={placeholder}
+          onChange={handleChange}
+          value={value}
+          error={invalid}
+        />
+      )}
+
       <ErrorMessage show={invalid}>{invalidity}</ErrorMessage>
     </Wrapper>
   );

@@ -9,3 +9,5 @@ export { default as Example } from './Example';
 export { default as ProfileView } from './Profile/ProfileView';
 export { default as CreateEssay } from './Essay/CreateEssay';
 export { default as Feed } from './Feed';
+export { default as EvaluateEssay } from './Evaluate';
+export * as Admin from './Admin';

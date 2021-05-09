@@ -1,4 +1,4 @@
-import { HorizontalWrapper } from '@styles/generalComponents';
+import { HorizontalWrapper } from '@styles/general';
 import React, { useState } from 'react';
 
 import { SwitchButton } from './styles';
@@ -7,10 +7,11 @@ interface SwitchProps {
   label: string;
   name: string;
   onChange: (name: string, value: boolean) => void;
+  value: boolean;
 }
 
-const Switch: React.FC<SwitchProps> = ({ label, name, onChange }) => {
-  const [selected, setSelected] = useState(false);
+const Switch: React.FC<SwitchProps> = ({ label, name, onChange, value }) => {
+  const [selected, setSelected] = useState(value);
 
   const handleClick = () => {
     onChange(name, !selected);

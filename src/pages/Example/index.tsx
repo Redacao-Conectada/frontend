@@ -1,4 +1,4 @@
-import { CenteredContainer } from '@styles/publicRoutes';
+import { CenteredContainer } from '@styles/general';
 import React from 'react';
 
 const Example: React.FC = () => {
