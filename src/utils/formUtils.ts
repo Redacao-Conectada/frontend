@@ -108,7 +108,7 @@ const correctionFormToCorrectionApi = (
     },
     createdDate: new Date().toISOString(),
     correctionGrade: total,
-    essayId,
+    idEssay: essayId,
     idTeacherUser,
   };
   return correctionApi;
