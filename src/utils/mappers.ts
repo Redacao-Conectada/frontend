@@ -114,7 +114,7 @@ const correctionApiToCorrection = (
       commentary: correctionApi.competences.competence5Comments,
     },
     total: correctionApi.correctionGrade,
-    essayId: correctionApi.essayId,
+    essayId: correctionApi.essayId ? correctionApi.essayId : -1,
     id: correctionApi.id || -1,
     createdDate: formatDate(correctionApi.createdDate),
   };
