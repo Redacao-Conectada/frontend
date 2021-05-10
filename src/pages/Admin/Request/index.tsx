@@ -5,6 +5,7 @@ import { CenteredContainer, Header } from '@styles/general';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import Skeleton from 'react-loading-skeleton';
+import { useHistory } from 'react-router-dom';
 import { ButtonsContainer } from './styles';
 
 interface RequestProps {
@@ -13,6 +14,8 @@ interface RequestProps {
 
 const Request: React.FC<RequestProps> = ({ match }) => {
   const requestId: number = match.params.id;
+
+  const history = useHistory();
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -40,7 +43,9 @@ const Request: React.FC<RequestProps> = ({ match }) => {
   const handleAccept = async () => {
     setIsLoading(true);
     try {
-      await api.get(`/approve/${requestId}`);
+      await api.put(`/admin/approve/${userInfo?.user.id}`);
+      toast.success('Solicitação aceita!');
+      history.push('/users');
     } catch (err) {
       toast.error('Erro ao aceitar solicitação');
     } finally {
@@ -50,7 +55,9 @@ const Request: React.FC<RequestProps> = ({ match }) => {
   const handleDecline = async () => {
     setIsLoading(true);
     try {
-      await api.get(`/dennied/${requestId}`);
+      await api.put(`/admin/dennied/${userInfo?.user.id}`);
+      toast.success('Solicitação recusada!');
+      history.push('/users');
     } catch (err) {
       toast.error('Erro ao aceitar solicitação');
     } finally {
