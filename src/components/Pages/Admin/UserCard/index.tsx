@@ -26,7 +26,9 @@ const UserCard: React.FC<UserCardProps> = ({
 
   const card = (
     <UserContainer hasLink={Boolean(requestId)}>
-      <CircularPhoto />
+      <CircularPhoto>
+        <img alt="#" src="https://picsum.photos/50" />
+      </CircularPhoto>
       <span>{children}</span>
       <span>{roleText[String(userRole)]}</span>
     </UserContainer>

@@ -11,4 +11,8 @@ export const PhotoContainer = styled.div<PhotoContainerProps>`
   width: ${({ size }) => size};
   height: ${({ size }) => size};
   margin: auto;
+
+  img {
+    border-radius: 50%;
+  }
 `;
