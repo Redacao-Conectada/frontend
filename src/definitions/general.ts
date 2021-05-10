@@ -156,10 +156,11 @@ export interface CorrectionApi {
   };
   correctionGrade: number;
   createdDate: string;
-  essayId: number;
+  essayId?: number;
   id?: number;
   teacherId?: number;
   idTeacherUser?: number;
+  idEssay?: number;
 }
 
 export interface Correction {
