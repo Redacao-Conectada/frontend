@@ -73,11 +73,9 @@ const Login: React.FC = () => {
 
   return (
     <CenteredContainer onSubmit={handleSubmit}>
-      <Header>
-        <Logo />
-        <h2>Acesse sua conta e comece escrever redações agora!</h2>
-        <img src={Image} alt="imagem" />
-      </Header>
+      <Logo />
+      <Header>Acesse sua conta e comece escrever redações agora!</Header>
+      <img src={Image} alt="imagem" />
       <Form>
         <Input
           entity={email}
