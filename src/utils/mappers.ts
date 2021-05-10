@@ -7,6 +7,9 @@ import {
   EssayApi,
   User,
   UserApi,
+  UserRole,
+  roles,
+  apiRoles,
 } from '@/definitions/general';
 import { formatDate } from './formUtils';
 
@@ -36,7 +39,18 @@ const essayApiToEssay = (essayApi: EssayApi, user: User): Essay => {
   return essay;
 };
 
+export const getTopRole = (rolesList: apiRoles[]): roles => {
+  if (rolesList.includes(UserRole.ROLE_ADMIN)) return 'admin';
+  if (rolesList.includes(UserRole.ROLE_TEACHER)) return 'evaluator';
+  return 'student';
+};
+
 const userApiToUser = (userApi: UserApi): User => {
+  let userRoles;
+  if (userApi.roles) {
+    userRoles = userApi.roles.map(({ authority }) => authority);
+  }
+
   const user = {
     id: userApi.id,
     name: userApi.name,
@@ -48,6 +62,7 @@ const userApiToUser = (userApi: UserApi): User => {
     schoolYear: userApi.graduation,
     school: userApi.schoolName,
     state: userApi.state,
+    role: getTopRole(userRoles || ['ROLE_STUDENT']),
   };
 
   return user;

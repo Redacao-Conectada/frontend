@@ -12,6 +12,8 @@ export const initialValue = {
 
 export type roles = 'admin' | 'evaluator' | 'student';
 
+export type apiRoles = 'ROLE_STUDENT' | 'ROLE_TEACHER' | 'ROLE_ADMIN';
+
 export interface RatingList {
   evaluator: User;
   rate1: Rate;
@@ -32,6 +34,7 @@ export interface User {
   cpf?: string;
   email?: string;
   roles?: UserRole[];
+  role?: roles;
   roleId?: number;
   school?: string;
   schoolYear?: string;
@@ -99,6 +102,10 @@ export interface UserApi {
   state: string;
   school_registration?: string;
   userNewName?: string;
+  roles?: {
+    id: number;
+    authority: 'ROLE_STUDENT' | 'ROLE_TEACHER' | 'ROLE_ADMIN';
+  }[];
 }
 
 export interface EssayApi {
