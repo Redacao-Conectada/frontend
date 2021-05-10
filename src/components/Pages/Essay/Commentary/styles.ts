@@ -12,7 +12,7 @@ export const Comment = styled.div<CommentProps>`
   display: flex;
   justify-content: space-between;
 
-  padding: 4px 16px 4px 16px;
+  padding: 4px 12px;
   margin-left: ${(props) => (props.marginLeft ? props.marginLeft : '0')};
 
   margin-bottom: 2px;
@@ -25,6 +25,10 @@ export const Comment = styled.div<CommentProps>`
     text-align: left;
   }
 
+  .commentary-author-name {
+    font-size: 10px;
+  }
+
   p strong {
     font-size: 12px;
   }
@@ -35,14 +39,16 @@ export const CommentaryListContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: start;
+
+    height: 50px;
   }
 
   img {
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
 
     border-radius: 50%;
-    margin-right: 5px;
+    margin-right: 12px;
   }
 
   margin-top: 5px;
@@ -54,29 +60,32 @@ export const CommentaryListContainer = styled.div`
 export const WriteCommentaryContainer = styled.div`
   display: flex;
   justify-content: center;
-  padding: 4px;
+  margin: 12px;
 
   img {
     width: 30px;
     height: 30px;
 
     border-radius: 50%;
-    margin-right: 5px;
+    margin-right: 12px;
 
     align-self: center;
   }
 
   form {
-    display: flex;
-    margin-right: 8px;
+    display: grid;
+    grid-template-columns: auto 30px;
+
+    width: 100%;
+
+    align-items: center;
   }
 
-  form div {
-    align-self: center;
+  form > div {
     gap: 0px;
   }
 
-  input {
+  form input {
     height: 30px;
   }
 
@@ -102,5 +111,6 @@ export const ShowCommentariesBox = styled.div`
   a {
     text-decoration: underline;
     color: ${colors.link};
+    cursor: pointer;
   }
 `;

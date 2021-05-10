@@ -1,6 +1,11 @@
 import { OptionsList } from '@components/General/Select';
 import React from 'react';
-import { PersonalGroup, EducationGroup } from './dataForm';
+import {
+  PersonalGroup,
+  EducationGroup,
+  UpdatePersonal,
+  UpdateEducation,
+} from './dataForm';
 
 export interface PersonalDataForm {
   data: PersonalGroup;
@@ -15,6 +20,21 @@ export interface EducationDataForm {
   onChangeSelect: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   onSubmit: () => void;
   toValidated: boolean;
+  isLoading: boolean;
+}
+
+export interface UpdatePersonalDataForm {
+  data: UpdatePersonal;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChangeSelect: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  nextPage: () => void;
+}
+
+export interface UpdateEducationDataForm {
+  data: UpdateEducation;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChangeSelect: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  onSubmit: () => void;
 }
 
 export const statesOptionsList: OptionsList = [
@@ -62,3 +82,11 @@ export const schoolYearOptionsList: OptionsList = [
   { name: 'Curso / Pré-Vestibular', value: 'course' },
   { name: 'Outro', value: 'other' },
 ];
+
+export const getSchoolYearNameFromValue = (
+  value: string | undefined,
+): string => {
+  if (!value) return '';
+  const [schoolYear] = schoolYearOptionsList.filter((sy) => sy.value === value);
+  return schoolYear ? schoolYear.name : '';
+};

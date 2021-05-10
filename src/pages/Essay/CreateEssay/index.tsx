@@ -1,3 +1,4 @@
+import api, { getLoggedUserId } from '@/services/api';
 import SwitchRouter, { SwitchOption } from '@components/General/SwitchRouter';
 import { EssayConfigForm, EssayCreateForm } from '@components/Pages/Essay';
 import {
@@ -6,13 +7,21 @@ import {
   Config,
   DataGroup,
 } from '@definitions/Essay/Create';
-import { CenteredContainer } from '@styles/general';
+import { CenteredContainer, Header } from '@styles/general';
+import { validateValues } from '@utils/validations';
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
+import { useHistory } from 'react-router-dom';
 
 const CreateEssay: React.FC = () => {
   const [data, setData] = useState(initialData);
 
   const [activeTab, setActiveTab] = useState('Redação');
+
+  const history = useHistory();
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [validated, setValidated] = useState(false);
 
   const changeActiveTab = (tabName: string) => {
     setActiveTab(tabName);
@@ -67,18 +76,52 @@ const CreateEssay: React.FC = () => {
     }
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+
+    setValidated(true);
+
+    const errors = [
+      ...validateValues(data.essayCreate),
+      ...validateValues(data.essayConfig),
+    ];
+
+    if (errors.length) {
+      return errors.map((error) => toast.error(error));
+    }
+
+    setIsLoading(true);
+    try {
+      await api.post('/essays', {
+        body: data.essayCreate.essay.value,
+        idUser: getLoggedUserId(),
+        isAnon: data.essayConfig.hideName,
+        title: data.essayCreate.title.value,
+        keywords: data.essayConfig.keyWords.value,
+        requestCorrection: data.essayConfig.requestCorrection,
+      });
+
+      toast.success('Redação enviada com sucesso!');
+      history.push('/essays');
+    } catch (err) {
+      toast.error(
+        'Algum problema aconteceu e não pudemos enviar sua redação... :(',
+      );
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const configOption: SwitchOption = {
-    name: 'Config',
+    name: 'Configurações',
     Component: (
       <EssayConfigForm
         data={data.essayConfig}
         onChangeSwitch={handleSwitch}
         onChange={(event) => handleData(event, 'essayConfig')}
         onSubmit={handleSubmit}
+        isLoading={isLoading}
+        validated={validated}
       />
     ),
   };
@@ -91,6 +134,7 @@ const CreateEssay: React.FC = () => {
         nextPage={() => changeActiveTab(configOption.name)}
         onChange={(event) => handleData(event, 'essayCreate')}
         onChangeTextArea={(event) => handleData(event, 'essayCreate')}
+        validated={validated}
       />
     ),
   };
@@ -98,7 +142,7 @@ const CreateEssay: React.FC = () => {
   return (
     <>
       <CenteredContainer>
-        <h2>Criação de Redação</h2>
+        <Header>Criação de Redação</Header>
         <SwitchRouter
           firstOption={essayOption}
           secondOption={configOption}

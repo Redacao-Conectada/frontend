@@ -81,8 +81,12 @@ export const validateBirthdate = (birthdate: string): string => {
 export const validateValues = (object: any): string[] => {
   const invalidityMessages = Object.values(object).reduce(
     (acc: string[], obj: any) => {
-      const invalidity = obj.validation(obj.value);
-      return [...acc, invalidity];
+      if (obj?.validation) {
+        const invalidity = obj?.validation(obj.value);
+        return [...acc, invalidity];
+      }
+
+      return [...acc];
     },
     [],
   );

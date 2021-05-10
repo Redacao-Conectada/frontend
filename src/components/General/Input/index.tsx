@@ -36,9 +36,11 @@ const Input: React.FC<InputProps> = ({
   };
 
   useEffect(() => {
-    const newInvalidity = validation(value);
-    setInvalidity(newInvalidity);
-    setInvalid(Boolean(validated && newInvalidity));
+    if (validation) {
+      const newInvalidity = validation(value);
+      setInvalidity(newInvalidity);
+      setInvalid(Boolean(validated && newInvalidity));
+    }
   }, [entity, validated]);
 
   return (

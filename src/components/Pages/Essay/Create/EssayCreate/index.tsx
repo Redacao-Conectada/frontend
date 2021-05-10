@@ -1,7 +1,7 @@
 import { Input, Button } from '@components/General';
 import InputEssay from '@components/Pages/Essay/InputEssay';
 import { Essay } from '@definitions/Essay/Create';
-import { Form } from '@styles/publicRoutes';
+import { Form } from '@styles/general';
 import React from 'react';
 
 interface EssayCreateDataForm {
@@ -9,6 +9,7 @@ interface EssayCreateDataForm {
   data: Essay;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onChangeTextArea: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  validated: boolean;
 }
 
 const EssayCreateForm: React.FC<EssayCreateDataForm> = ({
@@ -16,6 +17,7 @@ const EssayCreateForm: React.FC<EssayCreateDataForm> = ({
   data,
   onChange,
   onChangeTextArea,
+  validated,
 }) => {
   return (
     <Form>
@@ -24,7 +26,7 @@ const EssayCreateForm: React.FC<EssayCreateDataForm> = ({
         name="title"
         label="Título"
         type="text"
-        // validated={validated}
+        validated={validated}
         placeholder="Seu título"
         onChange={onChange}
       />
@@ -33,7 +35,7 @@ const EssayCreateForm: React.FC<EssayCreateDataForm> = ({
         name="essay"
         label="Redação"
         type="text"
-        // validated={validated}
+        validated={validated}
         placeholder="Digite sua redação"
         onChange={onChangeTextArea}
       />

@@ -1,16 +1,25 @@
 import { Button, Input, Link } from '@/components/General';
 import { General } from '@/definitions';
-import api, { login } from '@/service/api';
+import { login } from '@/services/api';
 import Image from '@assets/loginImage.svg';
 import { ReactComponent as Logo } from '@assets/logo.svg';
-import { CenteredContainer } from '@styles/general';
-import { LinksContainer, Form, Header } from '@styles/publicRoutes';
-import { validateEmail } from '@utils/validations';
-import qs from 'qs';
+import {
+  CenteredContainer,
+  LinksContainer,
+  Form,
+  Header,
+} from '@styles/general';
+import { validateEmail, validateText } from '@utils/validations';
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
+import { useHistory } from 'react-router-dom';
 
 const Login: React.FC = () => {
   const [validated, setValidated] = useState(false);
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const history = useHistory();
 
   const [email, setEmail] = useState<General.Value>({
     ...General.initialValue,
@@ -19,14 +28,33 @@ const Login: React.FC = () => {
 
   const [password, setPassword] = useState<General.Value>({
     ...General.initialValue,
+    validation: (value: string) => validateText(value, 'senha'),
   });
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-
     setValidated(true);
 
-    login(email.value, password.value);
+    const errors = [
+      email.validation(email.value),
+      password.validation(password.value),
+    ].filter(Boolean);
+
+    if (errors.length) {
+      return errors.map((error) => toast.error(error));
+    }
+
+    try {
+      setIsLoading(true);
+
+      await login(email.value, password.value);
+
+      history.go(0);
+    } catch (err) {
+      toast.error('Usuário ou senha inválidos');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,7 +95,7 @@ const Login: React.FC = () => {
           placeholder="Digite sua senha"
           onChange={handlePassword}
         />
-        <Button text="Acessar" typeButton="submit" />
+        <Button text="Acessar" typeButton="submit" isLoading={isLoading} />
         <LinksContainer>
           <Link path="/register" text="Sou novo aqui" />
         </LinksContainer>

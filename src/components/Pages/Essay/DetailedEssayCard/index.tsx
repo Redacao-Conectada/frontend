@@ -1,8 +1,11 @@
 import { InteractiveStarIcon } from '@/components/InteractiveIcon';
 import { Essay } from '@/definitions/general';
+import api from '@/services/api';
 import { icons } from '@assets/icons';
 import ShowGrade from '@components/Pages/Essay/ShowGrade';
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 import {
   AuthorContainer,
   DateContainer,
@@ -19,29 +22,45 @@ interface DetailedEssayCardProps {
   preview?: boolean;
   comments?: boolean;
   essay: Essay;
+  evaluateMode?: boolean;
 }
 
-const defaultAvatar =
-  'https://www.ecp.org.br/wp-content/uploads/2017/12/default-avatar-1-300x300.png';
+const defaultAvatar = 'https://picsum.photos/50';
 
 const DetailedEssayCard: React.FC<DetailedEssayCardProps> = ({
   essay,
   preview,
+  evaluateMode,
 }) => {
-  // TODO: fazer estrela ficar amarela quando curtido.
-  // TODO: fazer gerenciamento de estado
+  const [isStarred, setIsStarred] = useState(essay.hasUserUpVoted || false);
+  const [numOfStars, setNumOfStars] = useState(essay.numOfStars);
 
-  const [isStarred, setIsStarred] = useState(essay.isStarred);
+  const handleStarClick = async () => {
+    if (isStarred) {
+      try {
+        await api.put(`/essays/${essay.id}/downvote`);
 
-  const handleStarClick = () => {
-    setIsStarred(!isStarred);
-    // TODO: lança requisição para dar ou retirar estrela
+        setIsStarred(false);
+        setNumOfStars(numOfStars - 1);
+      } catch (err) {
+        toast.error('Não foi possível remover o voto');
+      }
+    } else {
+      try {
+        await api.put(`/essays/${essay.id}/upvote`);
+
+        setIsStarred(true);
+        setNumOfStars(numOfStars + 1);
+      } catch (err) {
+        toast.error('Não foi possível adicionar o voto');
+      }
+    }
   };
 
   type Grades = '+900' | '+800' | '+700' | '+600' | '+500' | '-500' | 'noGrade';
 
   const getGrade = (): Grades => {
-    const grade = essay.numOfStars;
+    const grade = essay.total;
     if (!grade) {
       return 'noGrade';
     }
@@ -54,44 +73,64 @@ const DetailedEssayCard: React.FC<DetailedEssayCardProps> = ({
 
   return (
     <EssayCardContainer>
-      <HeaderContainer>
-        <h2>{essay.title}</h2>
-        {preview && <ShowGrade grade={getGrade()} />}
-      </HeaderContainer>
-      <div className={preview ? 'previewGradient' : ''}>
-        <p className={preview ? 'previewText' : ''}>{essay.text}</p>
-      </div>
-      <FooterContainer>
-        <StarsCounter>
-          <IconsContainer>
-            <InteractiveStarIcon
-              onClick={handleStarClick}
-              isFilled={isStarred}
-            />
-            <span>{essay.numOfStars}</span>
-          </IconsContainer>
-          {preview && (
+      {preview ? (
+        <Link to={`/essays/${essay.id}`}>
+          <HeaderContainer>
+            <h2>{essay.title}</h2>
+            {preview && <ShowGrade grade={getGrade()} />}
+          </HeaderContainer>
+          <div className={preview ? 'previewGradient' : ''}>
+            <p className={preview ? 'previewText' : ''}>{essay.text}</p>
+          </div>
+        </Link>
+      ) : (
+        <>
+          <HeaderContainer>
+            <h2>{essay.title}</h2>
+            {preview && <ShowGrade grade={getGrade()} />}
+          </HeaderContainer>
+          <div className={preview ? 'previewGradient' : ''}>
+            <p className={preview ? 'previewText' : ''}>{essay.text}</p>
+          </div>
+        </>
+      )}
+      {evaluateMode ? null : (
+        <FooterContainer>
+          <StarsCounter>
             <IconsContainer>
-              {icons.comments}
-              <span>{essay.numOfComments}</span>
+              <InteractiveStarIcon
+                onClick={handleStarClick}
+                isFilled={isStarred}
+              />
+              <span>{numOfStars}</span>
             </IconsContainer>
-          )}
-        </StarsCounter>
-        <MoreInfoContainer>
-          <DateContainer>
-            <p>
-              em <b>{essay.date}</b>
-            </p>
-          </DateContainer>
-          <AuthorContainer>
-            <b>{essay.author.name}</b>
-            <img
-              alt={essay.author.name}
-              src={essay.author.avatar ? essay.author.avatar : defaultAvatar}
-            />
-          </AuthorContainer>
-        </MoreInfoContainer>
-      </FooterContainer>
+            {preview && (
+              <IconsContainer>
+                {icons.comments}
+                <span>{essay.totalComments}</span>
+              </IconsContainer>
+            )}
+          </StarsCounter>
+          <MoreInfoContainer>
+            <DateContainer>
+              <p>
+                em <b>{essay.date}</b>
+              </p>
+            </DateContainer>
+            <Link to={`/profile/${essay.author.id}`}>
+              <AuthorContainer>
+                <b>{essay.author?.name}</b>
+                <img
+                  alt={essay.author?.name}
+                  src={
+                    essay.author?.avatar ? essay.author.avatar : defaultAvatar
+                  }
+                />
+              </AuthorContainer>
+            </Link>
+          </MoreInfoContainer>
+        </FooterContainer>
+      )}
     </EssayCardContainer>
   );
 };

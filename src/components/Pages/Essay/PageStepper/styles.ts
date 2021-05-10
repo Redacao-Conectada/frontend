@@ -7,18 +7,32 @@ interface OptionProps {
 
 export const OptionsContainer = styled.ul`
   display: flex;
-  justify-content: space-evenly;
-
-  padding: 12px 4px 12px 4px;
-  margin: 6px 0 6px 0;
+  justify-content: space-between;
 
   font-weight: 600;
+  width: 100%;
 `;
 
 export const Option = styled.li<OptionProps>`
   a {
+    transition: all 200ms ease-in-out;
+    position: relative;
     color: ${({ isActive }) => (isActive ? colors.primary : colors.black)};
-    text-decoration: ${({ isActive }) => (isActive ? 'underline' : 'none')};
-    font-size: 14px;
+    cursor: pointer;
+
+    ::before {
+      transition: all 200ms ease-in-out;
+
+      bottom: -5px;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      border-radius: 2px;
+      content: '';
+      background: ${({ isActive }) =>
+        isActive ? colors.primary : 'transparent'};
+    }
   }
 `;

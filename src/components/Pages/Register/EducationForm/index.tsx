@@ -4,7 +4,7 @@ import {
   statesOptionsList,
   schoolYearOptionsList,
 } from '@definitions/Register/component';
-import { Form } from '@styles/publicRoutes';
+import { Form } from '@styles/general';
 import React, { useState, useEffect } from 'react';
 
 const EducationForm: React.FC<EducationDataForm> = ({
@@ -13,6 +13,7 @@ const EducationForm: React.FC<EducationDataForm> = ({
   onChangeSelect,
   onSubmit,
   toValidated,
+  isLoading,
 }) => {
   const [validated, setValidated] = useState(toValidated);
 
@@ -52,7 +53,7 @@ const EducationForm: React.FC<EducationDataForm> = ({
         onChange={onChangeSelect}
         optionsList={schoolYearOptionsList}
       />
-      <Button text="Concluir" typeButton="submit" />
+      <Button text="Concluir" typeButton="submit" isLoading={isLoading} />
     </Form>
   );
 };

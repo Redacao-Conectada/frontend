@@ -33,7 +33,13 @@ const adminRouteList: RouteProps[] = [
 
 const evaluatorRouteList: RouteProps[] = [
   {
-    path: '/profile',
+    path: '/profile/update',
+    component: pages.UpdateProfile,
+    exact: true,
+    title: 'Atualizar Perfil',
+  },
+  {
+    path: '/profile/:id',
     component: pages.ProfileView,
     exact: true,
     title: 'Perfil',
@@ -45,7 +51,13 @@ const evaluatorRouteList: RouteProps[] = [
     title: 'Avaliar Redação',
   },
   {
-    path: '/essays', // FIXME: deve ser /essay/${id}
+    path: '/essays',
+    component: pages.Feed,
+    exact: true,
+    title: 'Feed',
+  },
+  {
+    path: '/essays/:id',
     component: pages.EssayMainPage,
     exact: true,
     title: 'Redação em Detalhes',
@@ -65,10 +77,28 @@ const studentRouteList: RouteProps[] = [
     title: 'Criar Redação',
   },
   {
-    path: '/essays', // FIXME: deve ser /essay/${id}
+    path: '/profile/update',
+    component: pages.UpdateProfile,
+    exact: true,
+    title: 'Atualizar Perfil',
+  },
+  {
+    path: '/profile/:id',
+    component: pages.ProfileView,
+    exact: true,
+    title: 'Exemplo',
+  },
+  {
+    path: '/essays/:id',
     component: pages.EssayMainPage,
     exact: true,
     title: 'Redação em Detalhes',
+  },
+  {
+    path: '/essays',
+    component: pages.Feed,
+    exact: true,
+    title: 'Feed',
   },
 ];
 
@@ -96,11 +126,5 @@ export const publicRouteList: RouteProps[] = [
     component: pages.Register,
     exact: true,
     title: 'Cadastro',
-  },
-  {
-    path: '/profile',
-    component: pages.ProfileView,
-    exact: true,
-    title: 'Perfil',
   },
 ];

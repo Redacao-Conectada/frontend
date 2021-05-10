@@ -1,6 +1,6 @@
 import { icons } from '@/assets/icons';
 import { General } from '@/definitions';
-import { Form } from '@/styles/publicRoutes';
+import { Form } from '@/styles/general';
 import { validateText } from '@/utils/validations';
 import { Button, Input } from '@components/General';
 import { Commentary } from '@definitions/general';
@@ -16,7 +16,6 @@ interface CommentaryListProps {
   authorAvatar: string;
   commentaries: Commentary[];
   onCommentSubmit: (text: string) => void;
-  onShowCommentaries: () => void;
 }
 
 interface ShowCommentaryBoxProps {
@@ -27,7 +26,6 @@ const CommentaryList: React.FC<CommentaryListProps> = ({
   onCommentSubmit,
   authorAvatar,
   commentaries,
-  onShowCommentaries,
 }) => {
   const [commentText, setCommentText] = useState<General.Value>({
     ...General.initialValue,
@@ -57,18 +55,19 @@ const CommentaryList: React.FC<CommentaryListProps> = ({
 
   const handleShowCommentariesClick = () => {
     setShowCommentaries(true);
-    onShowCommentaries();
   };
 
   const comment = (commentary: Commentary, isReply: boolean) => (
     <Comment marginLeft={isReply ? '20%' : '0px'}>
       <div className="avatar-and-text">
         <img alt="#" src={commentary.author.avatar} />
-        <p>
-          <strong>{commentary.text}</strong>
-        </p>
+        <div>
+          <p>
+            <strong>{commentary.text}</strong>
+          </p>
+          <p className="commentary-author-name">{commentary.author.name}</p>
+        </div>
       </div>
-      {isReply ? null : <div>{icons.reply}</div>}
     </Comment>
   );
 
@@ -82,41 +81,35 @@ const CommentaryList: React.FC<CommentaryListProps> = ({
     );
   };
 
-  const commentaryItem = (key: string, commentary: Commentary) => (
+  const commentaryItem = (key: number, commentary: Commentary) => (
     <li key={key}>
       {comment(commentary, false)}
       {commentary.replies ? replyList(commentary.replies) : null}
     </li>
   );
 
-  const writeCommentary = () => (
-    <WriteCommentaryContainer>
-      <img alt="#" src={authorAvatar} />
-      <Form onSubmit={handleSubmit}>
-        <Input
-          type="text"
-          entity={commentText}
-          placeholder="Deixe seu comentário"
-          onChange={handleComment}
-          validated={validated}
-          name="commentField"
-        />
-        <Button text="->" typeButton="submit" />
-      </Form>
-    </WriteCommentaryContainer>
-  );
-
-  const ComentariesList = () => (
-    <CommentaryListContainer>
-      {writeCommentary()}
-      <ul>{commentaries.map((c) => commentaryItem(c.id, c))}</ul>
-    </CommentaryListContainer>
-  );
-
   return (
     <>
       {showCommentaries ? (
-        <ComentariesList />
+        <CommentaryListContainer>
+          <WriteCommentaryContainer>
+            <img alt="#" src={authorAvatar} />
+            <Form onSubmit={handleSubmit}>
+              <Input
+                type="text"
+                entity={commentText}
+                placeholder="Deixe seu comentário"
+                onChange={handleComment}
+                validated={validated}
+                name="commentField"
+              />
+              <Button text="->" typeButton="submit">
+                {icons.sendMessage}
+              </Button>
+            </Form>
+          </WriteCommentaryContainer>
+          <ul>{commentaries.map((c) => commentaryItem(c.id, c))}</ul>
+        </CommentaryListContainer>
       ) : (
         <ShowCommentariesLabel onClick={handleShowCommentariesClick} />
       )}

@@ -5,6 +5,7 @@ import styled from 'styled-components';
 export const EvaluatorContainer = styled.div`
   background-color: #ffffff;
   padding: 8px;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -49,4 +50,11 @@ export const EvaluatorContainer = styled.div`
     margin-top: 9px;
     /* font-weight: 700; */
   }
+`;
+
+export const PenSVG = styled.div`
+  position: absolute;
+  right: 6px;
+  top: 6px;
+  cursor: pointer;
 `;

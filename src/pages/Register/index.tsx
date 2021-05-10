@@ -6,19 +6,23 @@ import {
   PersonalFields,
   EducationFields,
 } from '@/definitions/Register/dataForm';
-import api from '@/service/api';
+import api from '@/services/api';
 import { FormMappers } from '@/utils/formUtils';
 import { ReactComponent as Logo } from '@assets/logo.svg';
-import { CenteredContainer } from '@styles/general';
-import { Header } from '@styles/publicRoutes';
+import { CenteredContainer, Header } from '@styles/general';
 import { validateValues } from '@utils/validations';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
+import { useHistory } from 'react-router-dom';
 
 const Register: React.FC = () => {
   const [validated, setValidated] = useState(false);
 
   const [data, setData] = useState(initialRegisterData);
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const history = useHistory();
 
   const handlePersonalData = (name: PersonalFields, value: any) => {
     const invalidity = data.personal[name].validation(value);
@@ -83,13 +87,19 @@ const Register: React.FC = () => {
     ];
 
     if (errors.length) {
-      errors.map((error) => toast.error(error));
-    } else {
-      console.log('data: ', FormMappers.userFormToUserApi(data));
-      api
-        .post('/users', FormMappers.userFormToUserApi(data))
-        .then(() => toast.success('Cadastrado com sucesso'));
-      api.get('/essays').then((res) => console.log(res.data));
+      return errors.map((error) => toast.error(error));
+    }
+
+    setIsLoading(true);
+    try {
+      await api.post('/users', FormMappers.userFormToUserApi(data));
+
+      toast.success('Cadastrado com sucesso');
+      history.push('/login');
+    } catch (err) {
+      toast.error('Falha ao realizar cadastro, tente um email diferente');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -108,6 +118,7 @@ const Register: React.FC = () => {
         onChangeSelect={handleSelect}
         onSubmit={() => handleSubmit}
         toValidated={validated}
+        isLoading={isLoading}
       />
     ),
   };
