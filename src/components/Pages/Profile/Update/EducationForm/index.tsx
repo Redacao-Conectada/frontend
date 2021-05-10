@@ -16,6 +16,7 @@ import {
 import { Form } from '@styles/general';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
+import { useHistory } from 'react-router-dom';
 
 const roleOptions = ['Escritor', 'Corretor'];
 
@@ -28,6 +29,8 @@ const EducationForm: React.FC<UpdateEducationDataForm> = ({
   const [schoolName, setSchoolName] = useState(initialValue);
   const [schoolRegistration, setSchoolRegistration] = useState(initialValue);
   const [requestConfirm, setRequestConfirm] = useState(false);
+
+  const history = useHistory();
 
   const handleRequest = (name: string, value: boolean) => {
     setRequestConfirm(value);
@@ -56,7 +59,7 @@ const EducationForm: React.FC<UpdateEducationDataForm> = ({
       .post(`/users/changeRole/${getLoggedUserId()}`, requestData)
       .then(() => {
         toast.success('Solicitação enviada com sucesso');
-        // history.push('/profile/update');
+        history.push('/essays');
       })
       .catch(() => toast.error('Algo de errado aconteceu...'));
     // .finally(() => setLoading(false));
