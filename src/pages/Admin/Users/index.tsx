@@ -66,10 +66,8 @@ const UsersList: React.FC = () => {
   const teacherUsers = usersList.filter(({ role }) => role === 'evaluator');
 
   const renderUsers = (usersToRender: User[]) =>
-    usersToRender.map(({ role, name, id }) => (
-      <UserCard requestId={id} userRole={role}>
-        {name}
-      </UserCard>
+    usersToRender.map(({ role, name }) => (
+      <UserCard userRole={role}>{name}</UserCard>
     ));
 
   const usersMap: UsersMap = {
