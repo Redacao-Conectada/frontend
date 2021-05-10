@@ -138,7 +138,6 @@ const UpdateProfile: React.FC = () => {
         data={data.education}
         onChange={(event) => handleData(event, 'education')}
         onChangeSelect={handleSelectEducation}
-        onChangeRadio={handleRadio}
         onSubmit={() => handleSubmit}
       />
     ),

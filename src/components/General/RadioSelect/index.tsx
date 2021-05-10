@@ -7,7 +7,7 @@ interface RadioButtonProps {
   name: string;
   optionList: string[];
   onChange: (name: string, value: string) => void;
-  value: string;
+  value?: string;
 }
 
 const RadioSelect: React.FC<RadioButtonProps> = ({
