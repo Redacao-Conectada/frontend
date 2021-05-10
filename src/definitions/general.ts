@@ -176,3 +176,22 @@ export interface Correction {
 }
 
 // TODO: criar interface para Correction e CorrectionApi
+
+export interface RequestUserApi {
+  id: number;
+  proof_img: string;
+  school_name_as_teacher: string;
+  school_registration: string;
+  user: {
+    birthdate: string;
+    city: string;
+    cpf: string;
+    email: string;
+    graduation: string;
+    id: number;
+    image: string;
+    name: string;
+    schoolName: string;
+    state: string;
+  };
+}

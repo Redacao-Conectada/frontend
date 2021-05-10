@@ -5,9 +5,12 @@ import { CenteredContainer, Header } from '@/styles/general';
 import React, { useState, useEffect } from 'react';
 
 import toast from 'react-hot-toast';
+import Skeleton from 'react-loading-skeleton';
 
 const RequestList: React.FC = () => {
   const [usersList, setUserList] = useState<UserRequestApi[]>([]);
+
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,6 +22,8 @@ const RequestList: React.FC = () => {
         setUserList(userList);
       } catch (err) {
         toast.error('Erro ao buscar solicitações');
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -34,7 +39,7 @@ const RequestList: React.FC = () => {
   return (
     <CenteredContainer gapSize="16px">
       <Header>Solicitações</Header>
-      <>{renderUsers}</>
+      <>{isLoading ? <Skeleton height="70vh" /> : renderUsers}</>
     </CenteredContainer>
   );
 };

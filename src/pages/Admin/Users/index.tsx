@@ -20,12 +20,10 @@ const tagOptions: TagOptionList = [
 
 interface Data {
   activeOption: string;
-  searchField: General.Value;
   [index: string]: any;
 }
 const initialData: Data = {
   activeOption: tagOptions[0].label,
-  searchField: General.initialValue,
 };
 
 interface UsersMap {
@@ -64,18 +62,6 @@ const UsersList: React.FC = () => {
     });
   };
 
-  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-
-    setData({
-      ...data,
-      [name]: {
-        ...data[name],
-        value,
-      },
-    });
-  };
-
   const studentsUsers = usersList.filter(({ role }) => role === 'student');
   const teacherUsers = usersList.filter(({ role }) => role === 'evaluator');
 
@@ -95,13 +81,7 @@ const UsersList: React.FC = () => {
   return (
     <CenteredContainer gapSize="16px">
       <Header>Usuários</Header>
-      <Input
-        entity={data.searchField}
-        name="searchField"
-        type="search"
-        onChange={handleSearch}
-        placeholder="Nome do usuário"
-      />
+
       <TagContainer>
         <TagSwitcher
           name="activeOption"

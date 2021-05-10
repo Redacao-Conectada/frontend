@@ -1,10 +1,21 @@
-import { Button, Input, Select, RadioSelect } from '@/components/General';
+import {
+  Button,
+  Input,
+  Select,
+  RadioSelect,
+  Switch,
+} from '@/components/General';
+import { SwitchButton } from '@/components/General/SwitchButton/styles';
+import { initialValue } from '@/definitions/general';
+import api, { getLoggedUserId } from '@/services/api';
+import { FormMappers } from '@/utils/formUtils';
 import {
   UpdateEducationDataForm,
   schoolYearOptionsList,
 } from '@definitions/Register/component';
 import { Form } from '@styles/general';
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
 
 const roleOptions = ['Escritor', 'Corretor'];
 
@@ -12,31 +23,48 @@ const EducationForm: React.FC<UpdateEducationDataForm> = ({
   data,
   onChange,
   onChangeSelect,
-  onChangeRadio,
   onSubmit,
 }) => {
-  const [validated, setValidated] = useState(false);
-  // TODO: Corrigir uso do validated
+  const [schoolName, setSchoolName] = useState(initialValue);
+  const [schoolRegistration, setSchoolRegistration] = useState(initialValue);
+  const [requestConfirm, setRequestConfirm] = useState(false);
 
-  const role = () => {
-    const listRoles = localStorage.getItem('USER_ROLES');
-    if (listRoles) {
-      if (listRoles.length === 1) {
-        return 'Escritor';
-      }
-    }
-    return 'Corretor';
+  const handleRequest = (name: string, value: boolean) => {
+    setRequestConfirm(value);
   };
+
+  const handleSchoolName = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+    setSchoolName({ ...schoolName, value });
+  };
+  const handleSchoolRegistration = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    const { value } = event.target;
+    setSchoolRegistration({ ...schoolRegistration, value });
+  };
+
+  const handleSubmit = () => {
+    const requestData = {
+      idUser: getLoggedUserId(),
+      proof_img: 'https://picsum.photos/50',
+      school_name_as_teacher: schoolName.value,
+      school_registration: schoolRegistration.value,
+    };
+
+    api
+      .post(`/users/changeRole/${getLoggedUserId()}`, requestData)
+      .then(() => {
+        toast.success('Solicitação enviada com sucesso');
+        // history.push('/profile/update');
+      })
+      .catch(() => toast.error('Algo de errado aconteceu...'));
+    // .finally(() => setLoading(false));
+  };
+  const [validated, setValidated] = useState(false);
 
   return (
     <Form onSubmit={onSubmit}>
-      <RadioSelect
-        value={role()}
-        label="Função"
-        name="function"
-        optionList={roleOptions}
-        onChange={onChangeRadio}
-      />
       <Input
         entity={data.school}
         name="school"
@@ -69,7 +97,43 @@ const EducationForm: React.FC<UpdateEducationDataForm> = ({
         )
       )}
 
-      <Button text="Concluir" typeButton="submit" />
+      <Button text="Atualizar dados" typeButton="submit" />
+
+      {/* <span> Solicitar mudança para virar professor: </span> */}
+
+      <Switch
+        // value={role()}
+        value={requestConfirm}
+        label="Solicitar mudança para virar professor"
+        name="requestRole"
+        onChange={handleRequest}
+      />
+
+      {requestConfirm && (
+        <>
+          <Input
+            entity={schoolName}
+            name="schoolName"
+            label="Nome da escola"
+            type="text"
+            placeholder="Informe o nome da escola"
+            onChange={handleSchoolName}
+          />
+          <Input
+            entity={schoolRegistration}
+            name="schoolRegistration"
+            label="Matrícula da escola"
+            type="text"
+            placeholder="Informe a matrícula da escola"
+            onChange={handleSchoolRegistration}
+          />
+          <Button
+            text="Solicitar"
+            typeButton="button"
+            onClick={() => handleSubmit()}
+          />
+        </>
+      )}
     </Form>
   );
 };

@@ -138,10 +138,8 @@ const Register: React.FC = () => {
   return (
     <>
       <CenteredContainer onSubmit={handleSubmit}>
-        <Header>
-          <Logo />
-          <h2>Crie sua conta</h2>
-        </Header>
+        <Logo />
+        <Header>Crie sua conta</Header>
         <SwitchRouter
           firstOption={personalOption}
           secondOption={educationOption}
