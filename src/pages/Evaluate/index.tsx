@@ -10,6 +10,7 @@ import { CenteredContainer, Header } from '@styles/general';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import Skeleton from 'react-loading-skeleton';
+import { useHistory } from 'react-router-dom';
 import { Form } from './styles';
 
 const EvaluateEssay: React.FC = () => {
@@ -17,6 +18,8 @@ const EvaluateEssay: React.FC = () => {
   const [data, setData] = useState(initialEvaluation);
   const [loading, setLoading] = useState(true);
   const [buttonLoading, setButtonLoading] = useState(false);
+
+  const history = useHistory();
 
   useEffect(() => {
     api
@@ -74,6 +77,7 @@ const EvaluateEssay: React.FC = () => {
       .post('/corrections', correctionApi)
       .then(() => {
         toast.success('Correção salva!');
+        history.push('/essays');
       })
       .catch(() => {
         toast.error('Algo deu errado! :(');
