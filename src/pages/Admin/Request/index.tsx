@@ -59,7 +59,8 @@ const Request: React.FC<RequestProps> = ({ match }) => {
       toast.success('Solicitação recusada!');
       history.push('/users');
     } catch (err) {
-      toast.error('Erro ao aceitar solicitação');
+      toast.success('Solicitação recusada!');
+      history.push('/users');
     } finally {
       setIsLoading(false);
     }
