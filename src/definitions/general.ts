@@ -43,6 +43,15 @@ export interface User {
   ratedEssays?: number;
 }
 
+export interface UserRequestApi {
+  id: number;
+  proof_img: string;
+  school_name_as_teacher: string;
+  school_registration: string;
+  userId: number;
+  user_name: string;
+}
+
 export interface Essay {
   id: number;
   text: string;

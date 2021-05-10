@@ -81,7 +81,9 @@ const UsersList: React.FC = () => {
 
   const renderUsers = (usersToRender: User[]) =>
     usersToRender.map(({ role, name, id }) => (
-      <UserCard userRole={role}>{name}</UserCard>
+      <UserCard requestId={id} userRole={role}>
+        {name}
+      </UserCard>
     ));
 
   const usersMap: UsersMap = {

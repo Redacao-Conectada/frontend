@@ -1,17 +1,23 @@
 import { CircularPhoto } from '@components/General';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { UserContainer } from './styles';
 
 interface UserCardProps {
   children: string;
   userRole?: 'student' | 'evaluator' | 'admin';
+  requestId?: number;
 }
 
 interface RoleText {
   [index: string]: string;
 }
 
-const UserCard: React.FC<UserCardProps> = ({ children, userRole }) => {
+const UserCard: React.FC<UserCardProps> = ({
+  children,
+  userRole,
+  requestId,
+}) => {
   const roleText: RoleText = {
     student: 'Aluno',
     evaluator: 'Corretor',
@@ -19,14 +25,14 @@ const UserCard: React.FC<UserCardProps> = ({ children, userRole }) => {
   };
 
   const card = (
-    <UserContainer>
+    <UserContainer hasLink={Boolean(requestId)}>
       <CircularPhoto />
       <span>{children}</span>
       <span>{roleText[String(userRole)]}</span>
     </UserContainer>
   );
 
-  return card;
+  return requestId ? <Link to={`/requests/${requestId}`}>{card}</Link> : card;
 };
 
 export default UserCard;
