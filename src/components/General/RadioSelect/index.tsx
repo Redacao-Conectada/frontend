@@ -7,6 +7,7 @@ interface RadioButtonProps {
   name: string;
   optionList: string[];
   onChange: (name: string, value: string) => void;
+  value: string;
 }
 
 const RadioSelect: React.FC<RadioButtonProps> = ({
@@ -14,8 +15,9 @@ const RadioSelect: React.FC<RadioButtonProps> = ({
   name,
   optionList,
   onChange,
+  value,
 }) => {
-  const [selectedOption, setSelectedOption] = useState(optionList[0]);
+  const [selectedOption, setSelectedOption] = useState(value);
 
   const changeSelectedOption = (optionName: string) => {
     onChange(name, optionName);

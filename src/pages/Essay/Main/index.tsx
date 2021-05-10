@@ -5,6 +5,7 @@ import Mappers from '@/utils/mappers';
 import { CenteredContainer } from '@styles/general';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+import Skeleton from 'react-loading-skeleton';
 import EssayDetails from '../Subpages/Details';
 import EssayKeywords from '../Subpages/Keywords';
 import EssayRating from '../Subpages/Rating';
@@ -36,30 +37,36 @@ const EssayMain: React.FC<EssayMainProps> = (props) => {
         const authorId = essayApi.author;
         const { correctionId } = essayApi;
 
-        // Busca autor da essay
-        api.get(`/users/${authorId}`).then((r) => {
-          const author = Mappers.userApiToUser(r.data);
-          setEssay(Mappers.essayApiToEssay(essayApi, author));
-        });
-
-        // Busca correction da essay
+        api
+          .get(`/users/${authorId}`)
+          .then((r) => {
+            const author = Mappers.userApiToUser(r.data);
+            setEssay(Mappers.essayApiToEssay(essayApi, author));
+          })
+          .catch((err) => toast.error('Erro ao buscar autor'));
 
         // FIXME: bloquear opção de correção para redação não corrigida
         if (correctionId) {
-          api.get(`/corrections/${correctionId}`).then((response) => {
-            const correctionApi = response.data;
-            const { teacherId } = correctionApi;
+          api
+            .get(`/corrections/${correctionId}`)
+            .then((response) => {
+              const correctionApi = response.data;
+              const { teacherId } = correctionApi;
 
-            api.get(`/users/${teacherId}`).then((r) => {
-              const evaluator = Mappers.userApiToUser(r.data);
+              api
+                .get(`/users/${teacherId}`)
+                .then((r) => {
+                  const evaluator = Mappers.userApiToUser(r.data);
 
-              const correctionWithEvaluator = Mappers.correctionApiToCorrection(
-                correctionApi,
-                evaluator,
-              );
-              setCorrection(correctionWithEvaluator);
-            });
-          });
+                  const correctionWithEvaluator = Mappers.correctionApiToCorrection(
+                    correctionApi,
+                    evaluator,
+                  );
+                  setCorrection(correctionWithEvaluator);
+                })
+                .catch((err) => toast.error('Erro ao buscar corretor'));
+            })
+            .catch((err) => toast.error('Erro ao buscar dados da correção'));
         }
       })
       .catch(() => toast.error('Redação inexistente'));
@@ -79,9 +86,11 @@ const EssayMain: React.FC<EssayMainProps> = (props) => {
     return [];
   };
 
+  const skeleton = <Skeleton height="300px" />;
+
   const essayComponents: essayComponentsProps = {
-    0: essay ? <EssayDetails essay={essay} /> : <p>Loading...</p>,
-    1: correction ? <EssayRating ratingList={correction} /> : <p>Loading...</p>,
+    0: essay ? <EssayDetails essay={essay} /> : skeleton,
+    1: correction ? <EssayRating ratingList={correction} /> : skeleton,
     2: <EssayKeywords keywords={getKeywords()} />,
   };
 

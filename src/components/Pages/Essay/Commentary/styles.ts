@@ -12,7 +12,7 @@ export const Comment = styled.div<CommentProps>`
   display: flex;
   justify-content: space-between;
 
-  padding: 4px 16px 4px 16px;
+  padding: 4px 12px;
   margin-left: ${(props) => (props.marginLeft ? props.marginLeft : '0')};
 
   margin-bottom: 2px;
@@ -44,11 +44,11 @@ export const CommentaryListContainer = styled.div`
   }
 
   img {
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
 
     border-radius: 50%;
-    margin-right: 5px;
+    margin-right: 12px;
   }
 
   margin-top: 5px;
@@ -60,14 +60,14 @@ export const CommentaryListContainer = styled.div`
 export const WriteCommentaryContainer = styled.div`
   display: flex;
   justify-content: center;
-  padding: 4px;
+  margin: 12px;
 
   img {
     width: 30px;
     height: 30px;
 
     border-radius: 50%;
-    margin-right: 5px;
+    margin-right: 12px;
 
     align-self: center;
   }
@@ -78,11 +78,7 @@ export const WriteCommentaryContainer = styled.div`
 
     width: 100%;
 
-    margin-right: 8px;
-
     align-items: center;
-
-    margin-bottom: 8px;
   }
 
   form > div {

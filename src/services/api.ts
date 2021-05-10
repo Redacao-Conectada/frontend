@@ -91,8 +91,13 @@ export const isLogged = (): boolean => {
   );
 };
 
-export const hasAuthority = (authority: UserRole): boolean =>
-  localStorage.getItem(USER_ROLES)?.includes(authority) || false;
+export const hasAuthority = (authority: UserRole): boolean => {
+  const lcString = localStorage.getItem(USER_ROLES);
+  if (!authority || !lcString) return false;
+  const rolesString = lcString.split(',');
+
+  return rolesString.includes(authority.valueOf());
+};
 
 export const getLoggedUsername = (): string =>
   localStorage.getItem(USER_USERNAME) || '';

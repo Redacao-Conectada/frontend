@@ -2,12 +2,13 @@
 import { icons } from '@/assets/icons';
 import { TagSwitcher } from '@/components/General';
 import EssayPreviewCard from '@/components/Pages/Essay/EssayPreviewCard';
-import { EssayApi } from '@/definitions/general';
+import { EssayApi, Essay } from '@/definitions/general';
 import { TagOptionList } from '@/definitions/tag';
 import api from '@/services/api';
 import Mappers from '@/utils/mappers';
 import { CenteredContainer, Header } from '@styles/general';
 import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 
 interface Data {
   activeOption: string;
@@ -24,8 +25,10 @@ const initialData: Data = {
 };
 
 const EssayFeed: React.FC = () => {
-  const [essays, setEssays] = useState([]);
+  const [essays, setEssays] = useState<Essay[]>([]);
   const [data, setData] = useState(initialData);
+
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     api
@@ -33,7 +36,7 @@ const EssayFeed: React.FC = () => {
       .then((res) => {
         const essaysApi = res.data.content;
 
-        const allEssays = essaysApi.map((es: EssayApi) => {
+        const allEssays: Essay[] = essaysApi.map((es: EssayApi) => {
           const author = {
             id: es.author,
             name: es.authorName ? es.authorName : '',
@@ -41,12 +44,13 @@ const EssayFeed: React.FC = () => {
           };
           return Mappers.essayApiToEssay(es, author);
         });
-        console.log(allEssays);
+
         setEssays(allEssays);
       })
       .catch((err) => {
-        console.log(err);
-      });
+        toast.error('Falha ao carregar as redações');
+      })
+      .finally(() => setIsLoading(false));
   }, []);
 
   const handleSelectOption = (name: string, value: string) => {
@@ -65,7 +69,11 @@ const EssayFeed: React.FC = () => {
         name="activeOption"
         value={data.activeOption}
       />
-      <EssayPreviewCard sort={data.activeOption} essayList={essays} />
+      <EssayPreviewCard
+        sort={data.activeOption}
+        essayList={essays}
+        isLoading={isLoading}
+      />
     </CenteredContainer>
   );
 };
