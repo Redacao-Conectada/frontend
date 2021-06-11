@@ -22,7 +22,6 @@ Professor: Rohit Gheyi
 ## Objetivo
 
 A plataforma Redação Conectada foi pensada com o objetivo de prover um sistema onde alunos podem interagir com professores de redação, permitindo o cadastro e  correção de redações, semelhante à correção do ENEM. Além disso, alunos e professores podem curtir e comentar redações de outros usuários, criando um ambiente amigável ao aprendizado.
-In the project directory, you can run:
 
 ### Aplicação
 
